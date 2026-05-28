@@ -71,3 +71,7 @@ Handled in `script.js` keydown listener (ignored when an `<input>` is focused):
 - **Adjust default durations**: edit `MODES` object at the top of `script.js`.
 - **Add a new mode**: add entry to `MODES`, add a tab button in HTML, add handler in JS.
 - **Change auto-switch rules**: modify `onTimerComplete()` — current logic uses every 4th work session as a long break trigger.
+
+## Additional instruction
+
+- 当需要对前端进行修改时，去参考[text](品牌视觉规范)这个文件里的内容

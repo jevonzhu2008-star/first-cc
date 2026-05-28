@@ -242,8 +242,10 @@ function updateDisplay() {
 
   if (mode === 'work') {
     barEl.style.stroke = intervalId ? 'var(--running)' : 'var(--accent)';
+    brandBar.style.background = intervalId ? 'var(--running)' : 'var(--accent)';
   } else {
     barEl.style.stroke = 'var(--break)';
+    brandBar.style.background = 'var(--break)';
   }
 }
 
@@ -398,6 +400,7 @@ function clearData() {
 // DOM refs
 const timerEl = document.getElementById('timer');
 const barEl = document.querySelector('.bar');
+const brandBar = document.getElementById('brandBar');
 const tabs = document.querySelectorAll('.tab');
 const btnToggle = document.getElementById('btnToggle');
 const btnReset = document.getElementById('btnReset');
