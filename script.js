@@ -74,9 +74,9 @@ function addRecord(task, minutes) {
 function updateStats() {
   const today = getTodayRecords();
   const totalMin = today.reduce((s, r) => s + r.minutes, 0);
-  document.getElementById('count').textContent = `今日: ${today.length}`;
-  document.getElementById('totalTime').textContent = `专注: ${totalMin} 分钟`;
-  document.getElementById('weekCount').textContent = `本周: ${getWeekRecords()}`;
+  document.getElementById('count').textContent = today.length;
+  document.getElementById('totalTime').textContent = totalMin + 'm';
+  document.getElementById('weekCount').textContent = getWeekRecords();
 }
 
 function renderHistory() {
@@ -229,8 +229,14 @@ function updateTitle() {
   document.title = `${formatTime(remaining)} - ${MODES[mode].label}`;
 }
 
+function setAccentColor(color, glow) {
+  mainCard.style.setProperty('--accent-color', color);
+  mainCard.style.setProperty('--accent-glow', glow);
+}
+
 function updateDisplay() {
-  timerEl.textContent = formatTime(remaining);
+  const timeText = formatTime(remaining);
+  timerEl.childNodes[0].textContent = timeText;
   const progress = remaining / totalSeconds;
   barEl.style.strokeDashoffset = CIRCUMFERENCE * (1 - progress);
   updateTitle();
@@ -241,11 +247,19 @@ function updateDisplay() {
   }
 
   if (mode === 'work') {
-    barEl.style.stroke = intervalId ? 'var(--running)' : 'var(--accent)';
-    brandBar.style.background = intervalId ? 'var(--running)' : 'var(--accent)';
+    const color = intervalId ? '#118DFF' : '#D31145';
+    const glow = intervalId ? 'rgba(17, 141, 255, 0.3)' : 'rgba(211, 17, 69, 0.3)';
+    setAccentColor(color, glow);
+    barEl.style.stroke = color;
+    if (intervalId) {
+      timerLabel.textContent = '专注中';
+    } else {
+      timerLabel.textContent = '准备开始';
+    }
   } else {
-    barEl.style.stroke = 'var(--break)';
-    brandBar.style.background = 'var(--break)';
+    setAccentColor('#10B981', 'rgba(16, 185, 129, 0.3)');
+    barEl.style.stroke = '#10B981';
+    timerLabel.textContent = '休息中';
   }
 }
 
@@ -254,7 +268,7 @@ function updateTabs() {
   document.querySelector(`[data-mode="${mode}"]`).classList.add('active');
   tabs.forEach(t => {
     const m = t.dataset.mode;
-    t.textContent = MODES[m].label + ' ' + MODES[m].minutes + '分钟';
+    t.querySelector('span').textContent = MODES[m].label + ' ' + MODES[m].minutes + '分钟';
   });
 }
 
@@ -399,8 +413,9 @@ function clearData() {
 
 // DOM refs
 const timerEl = document.getElementById('timer');
+const timerLabel = document.getElementById('timerLabel');
 const barEl = document.querySelector('.bar');
-const brandBar = document.getElementById('brandBar');
+const mainCard = document.getElementById('mainCard');
 const tabs = document.querySelectorAll('.tab');
 const btnToggle = document.getElementById('btnToggle');
 const btnReset = document.getElementById('btnReset');

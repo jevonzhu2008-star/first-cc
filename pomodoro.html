@@ -8,37 +8,57 @@
 </head>
 <body>
 <div class="container">
-  <div class="brand-bar" id="brandBar"></div>
-  <div class="tabs">
-    <button class="tab active" data-mode="work">工作</button>
-    <button class="tab" data-mode="shortBreak">短休息</button>
-    <button class="tab" data-mode="longBreak">长休息</button>
-  </div>
+  <div class="main-card" id="mainCard">
+    <div class="brand-mark">
+      <div class="dot" id="brandDot"></div>
+      <span>专注计时</span>
+    </div>
 
-  <div class="task-section">
-    <input type="text" class="task-input" id="taskInput" placeholder="输入当前任务..." autocomplete="off">
-  </div>
+    <div class="tabs">
+      <button class="tab active" data-mode="work"><span>工作</span></button>
+      <button class="tab" data-mode="shortBreak"><span>短休息</span></button>
+      <button class="tab" data-mode="longBreak"><span>长休息</span></button>
+    </div>
 
-  <div class="timer-display">
-    <svg width="220" height="220" viewBox="0 0 220 220">
-      <circle class="bg" cx="110" cy="110" r="100"/>
-      <circle class="bar" cx="110" cy="110" r="100" stroke-dasharray="628.32" stroke-dashoffset="0"/>
-    </svg>
-    <div class="timer-text" id="timer">25:00</div>
-  </div>
+    <div class="task-section">
+      <input type="text" class="task-input" id="taskInput" placeholder="输入当前任务..." autocomplete="off">
+    </div>
 
-  <div class="controls">
-    <button class="btn btn-start" id="btnToggle">开始</button>
-    <button class="btn btn-reset" id="btnReset">重置</button>
-    <button class="btn btn-skip" id="btnSkip">跳过</button>
-    <button class="btn btn-icon" id="btnSound" title="白噪音">&#127926;</button>
-    <button class="btn btn-icon" id="btnSettings" title="设置">&#9881;</button>
-  </div>
+    <div class="timer-display">
+      <div class="timer-ring">
+        <svg viewBox="0 0 220 220">
+          <circle class="bg" cx="110" cy="110" r="100"/>
+          <circle class="bar" cx="110" cy="110" r="100" stroke-dasharray="628.32" stroke-dashoffset="0"/>
+        </svg>
+        <div class="timer-text" id="timer">
+          25:00
+          <span class="label" id="timerLabel">准备开始</span>
+        </div>
+      </div>
+    </div>
 
-  <div class="stats-bar" id="statsBar">
-    <span id="count">今日: 0</span>
-    <span id="totalTime">专注: 0 分钟</span>
-    <span id="weekCount">本周: 0</span>
+    <div class="controls">
+      <button class="btn btn-primary" id="btnToggle">开始</button>
+      <button class="btn btn-secondary" id="btnReset">重置</button>
+      <button class="btn btn-secondary" id="btnSkip">跳过</button>
+      <button class="btn btn-icon" id="btnSound" title="白噪音">&#127926;</button>
+      <button class="btn btn-icon" id="btnSettings" title="设置">&#9881;</button>
+    </div>
+
+    <div class="stats-bar" id="statsBar">
+      <div class="stat-chip">
+        <span>今日</span>
+        <span class="value" id="count">0</span>
+      </div>
+      <div class="stat-chip">
+        <span>专注</span>
+        <span class="value" id="totalTime">0m</span>
+      </div>
+      <div class="stat-chip">
+        <span>本周</span>
+        <span class="value" id="weekCount">0</span>
+      </div>
+    </div>
   </div>
 
   <div class="panel" id="settingsPanel">
@@ -64,9 +84,9 @@
       <div class="toggle-switch" id="toggleAutoWork"></div>
     </div>
     <div class="export-row">
-      <button class="btn btn-reset" id="btnExportJson">导出 JSON</button>
-      <button class="btn btn-reset" id="btnExportCsv">导出 CSV</button>
-      <button class="btn btn-reset" id="btnClear">清空数据</button>
+      <button class="btn btn-secondary" id="btnExportJson">导出 JSON</button>
+      <button class="btn btn-secondary" id="btnExportCsv">导出 CSV</button>
+      <button class="btn btn-secondary" id="btnClear">清空数据</button>
     </div>
   </div>
 
