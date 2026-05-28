@@ -1,0 +1,52 @@
+Under Budget Tag =
+VAR textStr = "Under Budget"
+VAR charWidth = 8
+VAR svgWidth = 54 + LEN(textStr) * charWidth
+VAR rectW = svgWidth - 2
+VAR svg =
+"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='" & svgWidth & "' height='36' viewBox='0 0 " & svgWidth & " 36'>" &
+"<rect x='1' y='1' width='" & rectW & "' height='34' rx='17' fill='#ECFDF5' stroke='#10B981' stroke-width='1.5'/>" &
+"<g transform='translate(12, 10)'>" &
+"<circle cx='8' cy='8' r='7' fill='none' stroke='#10B981' stroke-width='1.5'/>" &
+"<path d='M5 8.5l2 2 4-5' fill='none' stroke='#10B981' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/>" &
+"</g>" &
+"<text x='36' y='23' text-anchor='start' font-family='Segoe UI, Arial, sans-serif' font-size='13' font-weight='600' fill='#059669'>" & textStr & "</text>" &
+"</svg>"
+RETURN
+svg
+
+
+Over Budget Tag =
+VAR textStr = "Over Budget"
+VAR charWidth = 8
+VAR svgWidth = 54 + LEN(textStr) * charWidth
+VAR rectW = svgWidth - 2
+VAR svg =
+"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='" & svgWidth & "' height='36' viewBox='0 0 " & svgWidth & " 36'>" &
+"<rect x='1' y='1' width='" & rectW & "' height='34' rx='17' fill='#FEF2F2' stroke='#D31145' stroke-width='1.5'/>" &
+"<g transform='translate(12, 10)'>" &
+"<path d='M8 1.5L1.5 15.5h13z' fill='none' stroke='#D31145' stroke-width='1.5' stroke-linejoin='round'/>" &
+"<circle cx='8' cy='6.5' r='0.8' fill='#D31145'/>" &
+"<line x1='8' y1='8.5' x2='8' y2='11.5' stroke='#D31145' stroke-width='1.5' stroke-linecap='round'/>" &
+"</g>" &
+"<text x='36' y='23' text-anchor='start' font-family='Segoe UI, Arial, sans-serif' font-size='13' font-weight='600' fill='#D31145'>" & textStr & "</text>" &
+"</svg>"
+RETURN
+svg
+
+
+Monitor Tag =
+VAR textStr = "Monitor"
+VAR charWidth = 8
+VAR svgWidth = 54 + LEN(textStr) * charWidth
+VAR rectW = svgWidth - 2
+VAR svg =
+"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='" & svgWidth & "' height='36' viewBox='0 0 " & svgWidth & " 36'>" &
+"<rect x='1' y='1' width='" & rectW & "' height='34' rx='17' fill='#FFF7ED' stroke='#F59E0B' stroke-width='1.5'/>" &
+"<g transform='translate(14, 10)'>" &
+"<path d='M5 1L2 8h2.5l-1 5 5-6.5H6l1.5-5.5z' fill='#F59E0B' stroke='#F59E0B' stroke-width='0.5' stroke-linejoin='round'/>" &
+"</g>" &
+"<text x='36' y='23' text-anchor='start' font-family='Segoe UI, Arial, sans-serif' font-size='13' font-weight='600' fill='#D97706'>" & textStr & "</text>" &
+"</svg>"
+RETURN
+svg
