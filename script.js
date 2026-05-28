@@ -121,9 +121,6 @@ function loadSettings() {
     if (s.autoBreak !== undefined) { autoBreak = s.autoBreak; toggleEl(toggleAutoBreak, autoBreak); }
     if (s.autoWork !== undefined) { autoWork = s.autoWork; toggleEl(toggleAutoWork, autoWork); }
   }
-  if (data.theme === 'light') {
-    document.documentElement.setAttribute('data-theme', 'light');
-  }
 }
 
 function toggleEl(el, on) {
@@ -343,18 +340,6 @@ function toggleHistory() {
   settingsPanel.classList.remove('open');
 }
 
-function toggleTheme() {
-  const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-  if (isLight) {
-    document.documentElement.removeAttribute('data-theme');
-  } else {
-    document.documentElement.setAttribute('data-theme', 'light');
-  }
-  const data = getData();
-  data.theme = isLight ? 'dark' : 'light';
-  saveData(data);
-}
-
 function updateModeTimes() {
   MODES.work.minutes = parseInt(workMinEl.value) || 25;
   MODES.shortBreak.minutes = parseInt(shortBreakMinEl.value) || 5;
@@ -419,7 +404,6 @@ const btnReset = document.getElementById('btnReset');
 const btnSkip = document.getElementById('btnSkip');
 const btnSettings = document.getElementById('btnSettings');
 const btnSound = document.getElementById('btnSound');
-const btnTheme = document.getElementById('btnTheme');
 const settingsPanel = document.getElementById('settingsPanel');
 const historyPanel = document.getElementById('historyPanel');
 const workMinEl = document.getElementById('workMin');
@@ -437,7 +421,6 @@ btnReset.addEventListener('click', reset);
 btnSkip.addEventListener('click', skip);
 btnSettings.addEventListener('click', toggleSettings);
 btnSound.addEventListener('click', toggleWhiteNoise);
-btnTheme.addEventListener('click', toggleTheme);
 
 toggleAutoBreak.addEventListener('click', () => toggleSwitch(toggleAutoBreak, 'autoBreak'));
 toggleAutoWork.addEventListener('click', () => toggleSwitch(toggleAutoWork, 'autoWork'));
