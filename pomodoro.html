@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>番茄钟</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <div class="tabs">
+    <button class="tab active" data-mode="work">工作</button>
+    <button class="tab" data-mode="shortBreak">短休息</button>
+    <button class="tab" data-mode="longBreak">长休息</button>
+  </div>
+
+  <div class="task-section">
+    <input type="text" class="task-input" id="taskInput" placeholder="输入当前任务..." autocomplete="off">
+  </div>
+
+  <div class="timer-display">
+    <svg width="220" height="220" viewBox="0 0 220 220">
+      <circle class="bg" cx="110" cy="110" r="100"/>
+      <circle class="bar" cx="110" cy="110" r="100" stroke-dasharray="628.32" stroke-dashoffset="0"/>
+    </svg>
+    <div class="timer-text" id="timer">25:00</div>
+  </div>
+
+  <div class="controls">
+    <button class="btn btn-start" id="btnToggle">开始</button>
+    <button class="btn btn-reset" id="btnReset">重置</button>
+    <button class="btn btn-skip" id="btnSkip">跳过</button>
+    <button class="btn btn-icon" id="btnSound" title="白噪音">&#127926;</button>
+    <button class="btn btn-icon" id="btnTheme" title="切换主题">&#9788;</button>
+    <button class="btn btn-icon" id="btnSettings" title="设置">&#9881;</button>
+  </div>
+
+  <div class="stats-bar" id="statsBar">
+    <span id="count">今日: 0</span>
+    <span id="totalTime">专注: 0 分钟</span>
+    <span id="weekCount">本周: 0</span>
+  </div>
+
+  <div class="panel" id="settingsPanel">
+    <div class="panel-title">设置</div>
+    <div class="setting-row">
+      <span class="setting-label">工作 (分钟)</span>
+      <input type="number" class="setting-input" id="workMin" value="25" min="1" max="120">
+    </div>
+    <div class="setting-row">
+      <span class="setting-label">短休息 (分钟)</span>
+      <input type="number" class="setting-input" id="shortBreakMin" value="5" min="1" max="60">
+    </div>
+    <div class="setting-row">
+      <span class="setting-label">长休息 (分钟)</span>
+      <input type="number" class="setting-input" id="longBreakMin" value="15" min="1" max="120">
+    </div>
+    <div class="setting-row">
+      <span class="setting-label">自动开始休息</span>
+      <div class="toggle-switch on" id="toggleAutoBreak"></div>
+    </div>
+    <div class="setting-row">
+      <span class="setting-label">自动开始工作</span>
+      <div class="toggle-switch" id="toggleAutoWork"></div>
+    </div>
+    <div class="export-row">
+      <button class="btn btn-reset" id="btnExportJson">导出 JSON</button>
+      <button class="btn btn-reset" id="btnExportCsv">导出 CSV</button>
+      <button class="btn btn-reset" id="btnClear">清空数据</button>
+    </div>
+  </div>
+
+  <div class="panel" id="historyPanel">
+    <div class="panel-title">今日记录</div>
+    <div class="history-list" id="historyList">
+      <div class="history-empty">暂无记录</div>
+    </div>
+  </div>
+
+  <div class="shortcuts-hint">
+    <kbd>空格</kbd> 开始/暂停 &nbsp; <kbd>S</kbd> 跳过 &nbsp; <kbd>R</kbd> 重置 &nbsp; <kbd>H</kbd> 记录
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
