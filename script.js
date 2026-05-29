@@ -165,6 +165,7 @@ function toggleTaskCompleted(id) {
 }
 
 function deleteTask(id) {
+  if (!confirm('确定要删除这个任务吗？')) return;
   tasks = tasks.filter(t => t.id !== id);
   saveTasks();
   renderTasks();
