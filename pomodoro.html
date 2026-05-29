@@ -42,6 +42,7 @@
       <button class="btn btn-secondary" id="btnReset">重置</button>
       <button class="btn btn-secondary" id="btnSkip">跳过</button>
       <button class="btn btn-icon" id="btnSound" title="白噪音">&#127926;</button>
+      <button class="btn btn-icon" id="btnTasks" title="任务清单">&#128198;</button>
       <button class="btn btn-icon" id="btnSettings" title="设置">&#9881;</button>
     </div>
 
@@ -94,6 +95,17 @@
     <div class="panel-title">今日记录</div>
     <div class="history-list" id="historyList">
       <div class="history-empty">暂无记录</div>
+    </div>
+  </div>
+
+  <div class="panel" id="tasksPanel">
+    <div class="panel-title">任务清单</div>
+    <div class="task-add-row">
+      <input type="text" class="task-add-input" id="taskAddInput" placeholder="输入新任务..." autocomplete="off">
+      <button class="btn btn-primary btn-sm" id="btnAddTask">添加</button>
+    </div>
+    <div class="task-list" id="taskList">
+      <div class="task-empty">暂无任务</div>
     </div>
   </div>
 
