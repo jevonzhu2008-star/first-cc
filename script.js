@@ -448,7 +448,7 @@ function toggleHistory() {
   settingsPanel.classList.remove('open');
 }
 
-function toggleTasksPanel() {
+function toggleTasks() {
   tasksPanel.classList.toggle('open');
   settingsPanel.classList.remove('open');
   historyPanel.classList.remove('open');
@@ -541,7 +541,7 @@ btnReset.addEventListener('click', reset);
 btnSkip.addEventListener('click', skip);
 btnSettings.addEventListener('click', toggleSettings);
 btnSound.addEventListener('click', toggleWhiteNoise);
-btnTasks.addEventListener('click', toggleTasksPanel);
+btnTasks.addEventListener('click', toggleTasks);
 btnAddTask.addEventListener('click', () => addTask(taskAddInput.value));
 taskAddInput.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') addTask(taskAddInput.value);
@@ -581,6 +581,7 @@ document.addEventListener('keydown', (e) => {
   if (e.code === 'KeyS') skip();
   if (e.code === 'KeyR') reset();
   if (e.code === 'KeyH') toggleHistory();
+  if (e.code === 'KeyT') toggleTasks();
 });
 
 // Init
@@ -592,3 +593,4 @@ updateTabs();
 updateDisplay();
 updateStats();
 renderHistory();
+renderTasks();
