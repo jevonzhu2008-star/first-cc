@@ -14,6 +14,7 @@ let intervalId = null;
 let autoBreak = true;
 let autoWork = false;
 let soundOn = false;
+let tasks = [];
 
 const STORAGE_KEY = 'pomodoro_data_v1';
 
@@ -34,9 +35,10 @@ function getTodayKey() {
 }
 
 function getData() {
-  const data = loadData() || { records: {}, settings: {}, theme: 'dark' };
+  const data = loadData() || { records: {}, settings: {}, theme: 'dark', tasks: [] };
   const today = getTodayKey();
   if (!data.records[today]) data.records[today] = [];
+  if (!data.tasks) data.tasks = [];
   return data;
 }
 
@@ -121,6 +123,96 @@ function loadSettings() {
     if (s.autoBreak !== undefined) { autoBreak = s.autoBreak; toggleEl(toggleAutoBreak, autoBreak); }
     if (s.autoWork !== undefined) { autoWork = s.autoWork; toggleEl(toggleAutoWork, autoWork); }
   }
+}
+
+function loadTasks() {
+  const data = getData();
+  tasks = data.tasks || [];
+}
+
+function saveTasks() {
+  const data = getData();
+  data.tasks = tasks;
+  saveData(data);
+}
+
+function generateTaskId() {
+  return Date.now().toString(36) + Math.random().toString(36).substr(2);
+}
+
+function addTask(title) {
+  title = title.trim();
+  if (!title) return;
+  tasks.push({
+    id: generateTaskId(),
+    title: title,
+    completedPomodoros: 0,
+    completed: false,
+    createdAt: new Date().toISOString()
+  });
+  saveTasks();
+  renderTasks();
+  taskAddInput.value = '';
+}
+
+function toggleTaskCompleted(id) {
+  const task = tasks.find(t => t.id === id);
+  if (task) {
+    task.completed = !task.completed;
+    saveTasks();
+    renderTasks();
+  }
+}
+
+function deleteTask(id) {
+  if (!confirm('确定要删除这个任务吗？')) return;
+  tasks = tasks.filter(t => t.id !== id);
+  saveTasks();
+  renderTasks();
+}
+
+function startTask(id) {
+  const task = tasks.find(t => t.id === id);
+  if (task) {
+    taskInput.value = task.title;
+    tasksPanel.classList.remove('open');
+  }
+}
+
+function incrementTaskPomodoro(taskTitle) {
+  if (!taskTitle) return;
+  const task = tasks.find(t => t.title === taskTitle.trim() && !t.completed);
+  if (task) {
+    task.completedPomodoros++;
+    saveTasks();
+    renderTasks();
+  }
+}
+
+function renderTasks() {
+  const list = document.getElementById('taskList');
+  if (tasks.length === 0) {
+    list.innerHTML = '<div class="task-empty">暂无任务</div>';
+    return;
+  }
+
+  // Sort: incomplete first, then by creation time (newest first)
+  const sortedTasks = [...tasks].sort((a, b) => {
+    if (a.completed !== b.completed) {
+      return a.completed ? 1 : -1;
+    }
+    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+  });
+
+  list.innerHTML = sortedTasks.map(task => `
+    <div class="task-item ${task.completed ? 'completed' : ''}">
+      <div class="task-checkbox ${task.completed ? 'checked' : ''}" data-action="toggle" data-id="${task.id}"></div>
+      <span class="task-title">${escapeHtml(task.title)}</span>
+      <span class="task-pomodoro">${task.completedPomodoros}</span>
+      ${!task.completed ? `<button class="btn-task-start" data-action="start" data-id="${task.id}">开始</button>` : ''}
+      <button class="btn-task-delete" data-action="delete" data-id="${task.id}">&times;</button>
+    </div>
+  `).join('');
 }
 
 function toggleEl(el, on) {
@@ -305,6 +397,7 @@ function onTimerComplete() {
   if (mode === 'work') {
     const task = taskInput.value.trim();
     addRecord(task, MODES.work.minutes);
+    incrementTaskPomodoro(task);
     notify('番茄钟 - 工作完成', task ? `任务完成: ${task}` : '工作时段结束，休息一下吧！');
 
     if (autoBreak) {
@@ -354,6 +447,12 @@ function toggleSettings() {
 function toggleHistory() {
   historyPanel.classList.toggle('open');
   settingsPanel.classList.remove('open');
+}
+
+function toggleTasks() {
+  tasksPanel.classList.toggle('open');
+  settingsPanel.classList.remove('open');
+  historyPanel.classList.remove('open');
 }
 
 function updateModeTimes() {
@@ -430,6 +529,10 @@ const longBreakMinEl = document.getElementById('longBreakMin');
 const toggleAutoBreak = document.getElementById('toggleAutoBreak');
 const toggleAutoWork = document.getElementById('toggleAutoWork');
 const taskInput = document.getElementById('taskInput');
+const btnTasks = document.getElementById('btnTasks');
+const tasksPanel = document.getElementById('tasksPanel');
+const taskAddInput = document.getElementById('taskAddInput');
+const btnAddTask = document.getElementById('btnAddTask');
 
 // Events
 tabs.forEach(tab => tab.addEventListener('click', () => setMode(tab.dataset.mode)));
@@ -439,6 +542,11 @@ btnReset.addEventListener('click', reset);
 btnSkip.addEventListener('click', skip);
 btnSettings.addEventListener('click', toggleSettings);
 btnSound.addEventListener('click', toggleWhiteNoise);
+btnTasks.addEventListener('click', toggleTasks);
+btnAddTask.addEventListener('click', () => addTask(taskAddInput.value));
+taskAddInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') addTask(taskAddInput.value);
+});
 
 toggleAutoBreak.addEventListener('click', () => toggleSwitch(toggleAutoBreak, 'autoBreak'));
 toggleAutoWork.addEventListener('click', () => toggleSwitch(toggleAutoWork, 'autoWork'));
@@ -450,6 +558,22 @@ toggleAutoWork.addEventListener('click', () => toggleSwitch(toggleAutoWork, 'aut
 document.getElementById('btnExportJson').addEventListener('click', exportJson);
 document.getElementById('btnExportCsv').addEventListener('click', exportCsv);
 document.getElementById('btnClear').addEventListener('click', clearData);
+document.getElementById('taskList').addEventListener('click', (e) => {
+  const action = e.target.dataset.action;
+  const id = e.target.dataset.id;
+  if (!action || !id) return;
+  switch (action) {
+    case 'toggle':
+      toggleTaskCompleted(id);
+      break;
+    case 'start':
+      startTask(id);
+      break;
+    case 'delete':
+      deleteTask(id);
+      break;
+  }
+});
 
 // Keyboard
 document.addEventListener('keydown', (e) => {
@@ -458,13 +582,16 @@ document.addEventListener('keydown', (e) => {
   if (e.code === 'KeyS') skip();
   if (e.code === 'KeyR') reset();
   if (e.code === 'KeyH') toggleHistory();
+  if (e.code === 'KeyT') toggleTasks();
 });
 
 // Init
 barEl.style.strokeDasharray = CIRCUMFERENCE;
 barEl.style.strokeDashoffset = '0';
 loadSettings();
+loadTasks();
 updateTabs();
 updateDisplay();
 updateStats();
 renderHistory();
+renderTasks();
