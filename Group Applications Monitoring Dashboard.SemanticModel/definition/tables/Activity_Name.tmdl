@@ -1,0 +1,43 @@
+table Activity_Name
+	lineageTag: e69464f3-8bed-4c4e-b983-33d54a45b8c3
+
+	measure 'Data As Of_A' =
+			
+			var max_ = CALCULATE(MAX('ADFACTIVITYRUN'[CREATE_TIME]),ALL('ADFACTIVITYRUN'))
+			return CONCATENATE("Data As Of: UTC ",max_)
+		lineageTag: 95f652e4-a58f-478d-84a6-80705bd8906f
+
+	measure 'Data As Of' =
+			
+			var max_ = CALCULATE(MAX('ADFPIPELINERUN'[CREATE_TIME]),ALL('ADFPIPELINERUN'))
+			return CONCATENATE("Data As Of: UTC ",max_)
+		lineageTag: 3c6fdee8-dbbd-4b3e-a69a-043102a77c58
+
+	measure 'Data As Of_T' =
+			
+			var max_ = CALCULATE(MAX('ADFTRIGGERRUN'[CREATE_TIME]),ALL('ADFTRIGGERRUN'))
+			return CONCATENATE("Data As Of: UTC ",max_)
+		lineageTag: b59ab8a6-a002-461b-ae37-e95c6e146574
+
+	column 'Pipeline Name'
+		lineageTag: 4f5f84ac-f3e9-47bd-bbdb-532e1b8732ff
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Pipeline Name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Activity Name'
+		lineageTag: 9c9f248c-5cb8-4172-a6ea-34984921fab7
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Activity Name]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Activity_Name = calculated
+		mode: import
+		source = DISTINCT(SELECTCOLUMNS('ADFACTIVITYRUN',"Pipeline Name",('ADFACTIVITYRUN'[PIPELINENAME]),"Activity Name",('ADFACTIVITYRUN'[ACTIVITYNAME])))
+
+	annotation PBI_Id = 072c48b4cacd4e2a83a72a7c171d3a00
+

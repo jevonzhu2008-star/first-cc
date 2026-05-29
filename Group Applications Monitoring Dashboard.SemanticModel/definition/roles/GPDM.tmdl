@@ -1,0 +1,13 @@
+role GPDM
+	modelPermission: read
+
+	tablePermission Dim_Project = [Dim_Project] == "GPDM"
+
+	tablePermission DIM_ProjectFlow = [PROJECT_ID] == "P009"
+
+	tablePermission V_SM_FLOW_INFO_LOG_SNAP = [PROJECT_ID] == "P009"
+
+	tablePermission V_SM_JOB_INFO_LOG_SNAP = [PROJECT_ID] == "P009"
+
+	annotation PBI_Id = 3daf502c63a149bbb68254d241dd210c
+

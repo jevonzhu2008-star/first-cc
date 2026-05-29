@@ -1,0 +1,26 @@
+table Taurus_DATE
+	lineageTag: 3d86cd04-e6eb-4378-9d59-fb0a4dd22822
+
+	column AS_OF_DAY
+		formatString: General Date
+		lineageTag: 7d0a68a9-0204-447b-87dc-14d9adb4c547
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: V_SM_JOB_INFO_LOG_SNAP[AS_OF_DAY]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Project
+		lineageTag: 8e2cc367-ea49-4b47-a5be-baccad3723ae
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Project]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Taurus_DATE = calculated
+		mode: import
+		source = ADDCOLUMNS(CALCULATETABLE(DISTINCT(V_SM_JOB_INFO_LOG_SNAP[AS_OF_DAY]),FILTER(V_SM_JOB_INFO_LOG_SNAP,V_SM_JOB_INFO_LOG_SNAP[PROJECT_ID] IN {"P001"}&&V_SM_JOB_INFO_LOG_SNAP[LAST_AS_OF_FALG]="Y")),"Project","Taurus")
+
+	annotation PBI_Id = 20ea6b41be144c4e9ff0787ae49b0f33
+

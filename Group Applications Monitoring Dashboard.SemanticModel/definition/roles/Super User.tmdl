@@ -1,0 +1,7 @@
+role 'Super User'
+	modelPermission: read
+
+	tablePermission Pages = [Super User] == "Y"
+
+	annotation PBI_Id = 0bd5531294994eeebc5f01e9c0db27ef
+

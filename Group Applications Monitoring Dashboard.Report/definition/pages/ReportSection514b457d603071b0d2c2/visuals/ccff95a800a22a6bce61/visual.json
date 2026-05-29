@@ -1,0 +1,110 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "ccff95a800a22a6bce61",
+  "position": {
+    "x": 48.785046728971963,
+    "y": 11.77570093457944,
+    "z": 3000,
+    "height": 60.5607476635514,
+    "width": 787.28971962616822,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Applications Monitoring",
+                    "textStyle": {
+                      "fontFamily": "Arial",
+                      "fontSize": "32px",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": "  ",
+                    "textStyle": {
+                      "fontFamily": "Arial",
+                      "fontSize": "24pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": "| Job Detail ",
+                    "textStyle": {
+                      "fontFamily": "Arial",
+                      "fontSize": "24pt",
+                      "color": "#cbaf78"
+                    }
+                  },
+                  {
+                    "value": "Data",
+                    "textStyle": {
+                      "fontFamily": "Arial",
+                      "fontSize": "32px",
+                      "color": "#cbaf78"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,70 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+/// From DB
+queryGroup View
+
+	annotation PBI_QueryGroupOrder = 0
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["Measure_Table","V_SM_JOB_INFO_LOG_SNAP","V_SM_SUB_JOB_INFO_LOG_SNAP","GCFR_Measure","Project","A_Slicer","Dim_Time","Process_measure","P_Schema","P_Schema_DQ","P_Server","P_DB","V_SM_FLOW_INFO_LOG_SNAP","DateTimeTable","P_DatetimeLimit","Project 1","Project 2","Flow_Parameter","ADF RG","RLS","ETLSL STATUS","Pages","RangeStart","RangeEnd","P_Interval","ADFPIPELINERUN","ADFTRIGGERRUN","ADFACTIVITYRUN","ADFPIPELINERUN_SUB","API Job Log","Databricks Log","LandingPageURL","ADFACTIVITYRUN_SUB","VS_","HelperTable"]
+
+annotation PBI_ProTooling = ["DaxQueryView_Desktop","WebModelingEdit","DevMode"]
+
+ref table 'Historical Data'
+ref table Measure_Table
+ref table 'DATE TABLE'
+ref table Parameter
+ref table _Measure
+ref table V_SM_JOB_INFO_LOG_SNAP
+ref table GCFR_Measure
+ref table V_SM_SUB_JOB_INFO_LOG_SNAP
+ref table Flow
+ref table Source
+ref table 'Parameter 2'
+ref table Project
+ref table A_Slicer
+ref table Dim_Time
+ref table Process_measure
+ref table Week_Table
+ref table Pipeline_Name
+ref table Activity_Name
+ref table DateTimeTable
+ref table TopN
+ref table AS_OF_DAY
+ref table V_SM_FLOW_INFO_LOG_SNAP
+ref table DIM_ProjectFlow
+ref table DIM_Status
+ref table Table
+ref table RLS
+ref table 'ETLSL STATUS'
+ref table ETLSL_DATE
+ref table Taurus_DATE
+ref table Pages
+ref table ADFPIPELINERUN
+ref table ADFTRIGGERRUN
+ref table ADFACTIVITYRUN
+ref table ADFPIPELINERUN_SUB
+ref table 'API Job Log'
+ref table 'Databricks Log'
+ref table LandingPageURL
+ref table ADFACTIVITYRUN_SUB
+ref table VS_
+ref table 'DateTable Dummy'
+ref table HelperTable
+ref table Dim_Project
+
+ref role 'Super User'
+ref role Taurus
+ref role FusionX
+ref role 'New Star'
+ref role GPDM
+
+ref cultureInfo en-US
+

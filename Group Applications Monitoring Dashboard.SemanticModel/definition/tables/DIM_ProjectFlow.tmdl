@@ -1,0 +1,53 @@
+table DIM_ProjectFlow
+	lineageTag: a8afe9e6-3f03-49e3-b2c9-758713a25df1
+
+	measure Tooptip = ```
+			
+			SWITCH(
+			    TRUE(),
+			    SELECTEDVALUE(DIM_ProjectFlow[PROJECT_ID]) = "P008" , "Job Frequency : [Mon-Fri] = Monday To Friday     [Tue-Sat] = Tuesday To Saturday    [Opt]=Optional" ,
+			    SELECTEDVALUE(DIM_ProjectFlow[PROJECT_ID]) = "P007" , "Job Frequency : [D] = Daily [M] = Monthly" ,
+			    SELECTEDVALUE(DIM_ProjectFlow[PROJECT_ID]) = "P001" , "Job Frequency : [D] = Daily [Opt]=Optional",
+			     "Job Frequency : [Mon-Fri] = Monday To Friday     [Tue-Sat] = Tuesday To Saturday  [D] = Daily [M] = Monthly  [Opt]=Optional" 
+			)
+			```
+		lineageTag: c1444e67-cd3c-4cbb-8b99-82daafd5b313
+
+	column PROJECT_NAME
+		lineageTag: ce648a5c-f69a-426e-bb27-4ac90a902e5d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: V_SM_JOB_INFO_LOG_SNAP[PROJECT_NAME]
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLOW_NAME
+		lineageTag: a2e883e2-b58c-4a8e-8410-b8464386b487
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: V_SM_JOB_INFO_LOG_SNAP[FLOW_NAME]
+
+		annotation SummarizationSetBy = Automatic
+
+	column PROJECT_ID
+		lineageTag: e3b89a80-4da4-4055-927c-f7c25e6b8e9a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: V_SM_JOB_INFO_LOG_SNAP[PROJECT_ID]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_ProjectFlow = calculated
+		mode: import
+		source = ```
+				
+				 FILTER(
+				    ALL('V_SM_JOB_INFO_LOG_SNAP'[PROJECT_NAME],'V_SM_JOB_INFO_LOG_SNAP'[FLOW_NAME],V_SM_JOB_INFO_LOG_SNAP[PROJECT_ID]),
+				   OR('V_SM_JOB_INFO_LOG_SNAP'[PROJECT_NAME] <> BLANK() ,
+				    'V_SM_JOB_INFO_LOG_SNAP'[FLOW_NAME] <> BLANK()
+				    )
+				 )
+				```
+
+	annotation PBI_Id = df7bc30029334193b21607296bfa026b
+

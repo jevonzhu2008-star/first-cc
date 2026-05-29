@@ -1,0 +1,56 @@
+table Dim_Project
+	lineageTag: 3ed14fcc-5541-4af0-bf34-6d59f9a493dc
+
+	column Dim_Project
+		lineageTag: 2994ef41-70cf-4d96-9f31-9faa9188976a
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Dim_Project Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Dim_Project Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dim_Project Fields'
+		isHidden
+		lineageTag: 9ed4f5f5-29d7-42b1-a7d5-334d20e994f7
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Dim_Project Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dim_Project Order'
+		isHidden
+		formatString: 0
+		lineageTag: 871819ee-f82d-4d4b-831d-a8c641e34c33
+		summarizeBy: none
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Project_Relationship = Dim_Project[Dim_Project]
+		lineageTag: 0b1dbae5-8147-4223-9804-4df4a7001cc4
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Project = calculated
+		mode: import
+		source =
+				{
+				    ("FusionX", NAMEOF('HelperTable'[FusionX]), 0),
+				    ("New Star", NAMEOF('HelperTable'[New Star]), 1),
+				    ("Taurus", NAMEOF('HelperTable'[Taurus]), 2)
+				    ,("GPDM", NAMEOF('HelperTable'[GPDM]), 3)
+				}
+
+	annotation PBI_Id = 8c7dfcdcf6104a1c961276b6b17dce5a
+

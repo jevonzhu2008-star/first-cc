@@ -1,0 +1,161 @@
+table Measure_Table
+	lineageTag: e397a1bc-ffda-4389-8735-b56b73524f44
+
+	-- 平均持续时间：计算所有作业的平均实际持续时间（隐藏）
+	measure Avg_Duration = AVERAGE('V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS])
+		lineageTag: aa92e5aa-08e1-41d6-bf2d-d363d341e1c9
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	-- 按来源排名：对所有来源按平均持续时间降序排名（隐藏）
+	measure 'P_rank by source' = ```
+
+			RANKX(ALLSELECTED('V_SM_JOB_INFO_LOG_SNAP'[SOURCE]),[Avg_Duration],,DESC,Dense)
+
+			```
+		formatString: 0
+		lineageTag: 723b3396-41e0-4f5d-80cb-77102d18115f
+
+		changedProperty = IsHidden
+
+	-- 按来源累计：对排名后的来源累计平均持续时间（隐藏）
+	measure 'P_running total by Source' = ```
+			CALCULATE([Avg_Duration],TOPN([P_rank by source],ALLSELECTED('V_SM_JOB_INFO_LOG_SNAP'[SOURCE]),[P_rank by source]))
+			```
+		lineageTag: 7279db95-f682-446b-90bb-4ca7225c0adc
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	-- 来源持续时间占比：当前来源累计占总体的百分比
+	measure 'Source_% duration' = DIVIDE([P_running total by Source],CALCULATE([Avg_Duration],ALLSELECTED('V_SM_JOB_INFO_LOG_SNAP')))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 2a8189db-e748-4f10-a4e5-33aec72f2651
+
+		changedProperty = IsHidden
+
+	-- 持续时间排名：对所有来源按平均持续时间升序排名
+	measure Rank_durations_source = RANKX(ALLSELECTED('V_SM_JOB_INFO_LOG_SNAP'[SOURCE]),[Avg_Duration])
+		formatString: 0
+		lineageTag: e721dd2a-1be6-4643-9818-4d70d9f70e74
+
+		changedProperty = IsHidden
+
+	-- 持续时间颜色条件格式：如果最大Latency_D = "Y"返回橙色
+	measure Duration_Color = IF(MAX('V_SM_JOB_INFO_LOG_SNAP'[Latency_D])="Y","#FBB51F")
+		lineageTag: b6ebba21-a3a1-4c79-9b90-794a3aad758a
+
+	-- ETLSL字体颜色：根据RLS类型返回对应颜色
+	measure 'ETLSL Font' =
+
+			VAR A = SELECTEDVALUE('RLS'[TYPE])
+			RETURN
+			SWITCH(TRUE(),
+			A = "ETLSL","#808080",
+			"#FFFFFF")
+		lineageTag: b8c2d172-0816-4903-b80e-51cd9302f199
+
+	-- ETLSL图标颜色：根据RLS类型返回对应颜色
+	measure 'ETLSL Icon' =
+
+			VAR A = SELECTEDVALUE('RLS'[TYPE])
+			RETURN
+			SWITCH(TRUE(),
+			A = "ETLSL","#808080",
+			"#5BBEFF")
+		lineageTag: 563045d9-2922-41fd-b84a-ea7d7b57cb95
+
+	-- 触发器运行文本：根据RLS类型动态显示标题
+	measure 'Trigger RUN' =
+
+			VAR A = SELECTEDVALUE('RLS'[TYPE])
+			RETURN
+			SWITCH(TRUE(),
+			A = "Taurus","Trigger Run",
+			A = "ETLSL",BLANK(),
+			"Trigger Run")
+		lineageTag: 08efbff7-c304-4572-b6f2-37011af53312
+
+	-- 管道运行文本：根据RLS类型动态显示标题
+	measure 'Pipeline RUN' =
+
+			VAR A = SELECTEDVALUE('RLS'[TYPE])
+			RETURN
+			SWITCH(TRUE(),
+			A = "Taurus","Pipeline Run",
+			A = "ETLSL",BLANK(),
+			"Pipeline Run")
+		lineageTag: 316e9247-a463-42ed-95ab-b2053123a840
+
+	-- 活动运行文本：根据RLS类型动态显示标题
+	measure 'Activity RUN' =
+
+			VAR A = SELECTEDVALUE('RLS'[TYPE])
+			RETURN
+			SWITCH(TRUE(),
+			A = "Taurus","Activity Run",
+			A = "ETLSL",BLANK(),
+			"Activity Run")
+		lineageTag: 6c59c8c0-83cb-4de7-b64e-aaf90f662512
+
+	-- 流程摘要标题：根据RLS类型动态显示页面标题
+	measure 'Flow summary' =
+
+			VAR A = SELECTEDVALUE('RLS'[TYPE])
+			RETURN
+			SWITCH(TRUE(),
+			A = "Taurus","Daily Applications Flow Summary",
+			A = "ETLSL","ETLSL Flow Summary",
+			"Daily Applications Flow Summary")
+		lineageTag: 8a2ca285-c102-4e82-8a42-f60d8ed70382
+
+	-- 获取当前选中页面：从Pages表获取选中的页面名称
+	measure SELECTED_PAGE = SELECTEDVALUE('Pages'[Page])
+		lineageTag: 14d05635-a008-4e36-9aec-a56bdc46238a
+
+	-- 问候语1：根据当前时间（UTC+8）和用户名生成问候语，使用完整用户名
+	measure Greeting1 =
+
+			VAR user = USERPRINCIPALNAME()
+			VAR hour = HOUR(NOW()+(8/24))
+			VAR minute = MINUTE(NOW())
+			VAR prefix = SWITCH(
+			                    TRUE(),
+			                    hour<12,"Good Morning, ",
+			                    hour>=12 && hour<17,"Good Afternoon, ",
+			                    "Good Evening, "
+			             )
+			RETURN CONCATENATE(prefix,user)
+		lineageTag: 0e2f0829-01b8-4aba-a3d1-3383104aa5a6
+
+	-- 问候语2：根据当前时间（UTC+8）和用户名生成问候语，仅保留@前的用户名部分
+	measure Greeting2 =
+
+			VAR user = USERPRINCIPALNAME()
+			VAR left_ = LEFT(user,SEARCH("@",user)-1)
+			VAR hour = HOUR(NOW()+(8/24))
+			VAR prefix = SWITCH(
+			                    TRUE(),
+			                    hour<12,"Good Morning, ",
+			                    hour>=12 && hour<17,"Good Afternoon, ",
+			                    "Good Evening, "
+			             )
+			RETURN CONCATENATE(prefix,left_)
+		lineageTag: 1b1d3e4c-adcc-4dc2-b2f3-8663a8e47555
+
+	partition Measure_Table-78375cd0-feee-40fd-96a9-d03fbbedfe37 = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation

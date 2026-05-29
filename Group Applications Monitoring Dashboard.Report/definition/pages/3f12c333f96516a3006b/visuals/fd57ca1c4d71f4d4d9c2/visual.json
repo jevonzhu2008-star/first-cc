@@ -1,0 +1,81 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "fd57ca1c4d71f4d4d9c2",
+  "position": {
+    "x": 53.726171106945984,
+    "y": 17.331022937724509,
+    "z": 6000,
+    "height": 51.993068813173529,
+    "width": 1745.2340098288582,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "   Azure Jobs Monitoring & Logging  ",
+                    "textStyle": {
+                      "fontFamily": "Arial",
+                      "fontSize": "24pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": "| Activity Run",
+                    "textStyle": {
+                      "fontFamily": "Arial",
+                      "fontSize": "24pt",
+                      "color": "#cbaf78"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,202 @@
+table ADFACTIVITYRUN_SUB
+	lineageTag: d733cae6-aa7b-42a1-bfe5-d60c5d53754c
+
+	measure 'Data As Of SubActivity' =
+			
+			// var max_ = CALCULATE(MAX('API Job Log'[CREATE_TIME]),ALL('API Job Log'))
+			var max_ = CALCULATE(MAX('ADFACTIVITYRUN_SUB'[CREATE_TIME]),ALL(ADFACTIVITYRUN_SUB))
+			return CONCATENATE("Data As Of: UTC ",max_)
+		lineageTag: 18ad2e10-c040-48c0-be78-c6bddbd41484
+
+	column TIMEGENERATED
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime
+		lineageTag: 27d38e99-c799-4a05-ae31-28ee77f91b77
+		summarizeBy: none
+		sourceColumn: TIMEGENERATED
+
+		annotation SummarizationSetBy = Automatic
+
+	column STATUS
+		dataType: string
+		sourceProviderType: varchar(16)
+		lineageTag: 32839930-ac6b-4b43-aac7-97ca1dbb9b82
+		summarizeBy: none
+		sourceColumn: STATUS
+
+		annotation SummarizationSetBy = Automatic
+
+	column START
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime
+		lineageTag: 889d9da2-f1b6-4db8-bc74-62e354bb5b6c
+		summarizeBy: none
+		sourceColumn: START
+
+		annotation SummarizationSetBy = Automatic
+
+	column END
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime
+		lineageTag: 76c2363f-5549-4ab6-80f9-ddb3cf31760c
+		summarizeBy: none
+		sourceColumn: END
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACTIVITYNAME
+		dataType: string
+		sourceProviderType: varchar(128)
+		lineageTag: 9541ded7-6b85-4b92-92c7-1482f3cca13a
+		summarizeBy: none
+		sourceColumn: ACTIVITYNAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACTIVITYRUNID
+		dataType: string
+		sourceProviderType: varchar(64)
+		lineageTag: 0b3a87f9-8b6c-475b-a490-2ab3313849aa
+		summarizeBy: none
+		sourceColumn: ACTIVITYRUNID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PIPELINENAME
+		dataType: string
+		sourceProviderType: varchar(64)
+		lineageTag: a978b844-3a20-4b6e-a09e-7b24f0634dd6
+		summarizeBy: none
+		sourceColumn: PIPELINENAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column PIPELINERUNID
+		dataType: string
+		sourceProviderType: varchar(64)
+		lineageTag: 9e9a23e8-547d-425b-aaff-5b05cc7d64d7
+		summarizeBy: none
+		sourceColumn: PIPELINERUNID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACTIVITYTYPE
+		dataType: string
+		sourceProviderType: varchar(64)
+		lineageTag: 2982f661-2219-4277-8e0a-6f71560ed4b0
+		summarizeBy: none
+		sourceColumn: ACTIVITYTYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACTIVITYITERATIONCOUNT
+		dataType: string
+		sourceProviderType: varchar(16)
+		lineageTag: 0d116db5-aca8-4c88-a524-1fac79f05078
+		summarizeBy: none
+		sourceColumn: ACTIVITYITERATIONCOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+	column FAILURETYPE
+		dataType: string
+		sourceProviderType: varchar(128)
+		lineageTag: c329c5ac-ce4a-41c9-b045-a260719c3cce
+		summarizeBy: none
+		sourceColumn: FAILURETYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column ERRORCODE
+		dataType: string
+		sourceProviderType: varchar(64)
+		lineageTag: b598a9e4-0f38-449e-8ecf-2c75687a60ec
+		summarizeBy: none
+		sourceColumn: ERRORCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column ERRORMESSAGE
+		dataType: string
+		sourceProviderType: varchar(max)
+		lineageTag: aa315e8c-55be-4ad1-8852-28d3866b5312
+		summarizeBy: none
+		sourceColumn: ERRORMESSAGE
+
+		annotation SummarizationSetBy = Automatic
+
+	column CORRELATIONID
+		dataType: string
+		sourceProviderType: varchar(64)
+		lineageTag: e3f7b2dd-bdf4-4234-8ff5-1d19e3b0446d
+		summarizeBy: none
+		sourceColumn: CORRELATIONID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SUBSCRIPTIONS
+		dataType: string
+		sourceProviderType: varchar(64)
+		lineageTag: 5fa6c1a8-766b-45f5-b546-4dafc68a9e9c
+		summarizeBy: none
+		sourceColumn: SUBSCRIPTIONS
+
+		annotation SummarizationSetBy = Automatic
+
+	column RESOURCEGROUPS
+		dataType: string
+		sourceProviderType: varchar(64)
+		lineageTag: fe500954-0688-4b3f-a4cd-4864737c4d80
+		summarizeBy: none
+		sourceColumn: RESOURCEGROUPS
+
+		annotation SummarizationSetBy = Automatic
+
+	column FACTORIES
+		dataType: string
+		sourceProviderType: varchar(64)
+		lineageTag: 433613c2-acfd-45a1-a18d-aaf0fddaec3a
+		summarizeBy: none
+		sourceColumn: FACTORIES
+
+		annotation SummarizationSetBy = Automatic
+
+	column CREATE_TIME
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime
+		lineageTag: eda6b5a1-b3a0-46b6-9020-062c7a4ada76
+		summarizeBy: none
+		sourceColumn: CREATE_TIME
+
+		annotation SummarizationSetBy = Automatic
+
+	column SUBSCRIPTIONS_NAME
+		dataType: string
+		sourceProviderType: varchar(50)
+		lineageTag: 9793aeb8-5c30-4b9e-922f-312fede481f1
+		summarizeBy: none
+		sourceColumn: SUBSCRIPTIONS_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ADFACTIVITYRUN_SUB = m
+		mode: directQuery
+		queryGroup: View
+		source = ```
+				let
+				    Source = Sql.Database(P_Server, P_DB),
+				    Custom1 = Value.NativeQuery(
+				         Source,
+				         "SELECT * FROM ["&P_Schema_DQ&"].[ADFACTIVITYRUN]  where CREATE_TIME >="&P_Interval&""
+				         
+				     )
+				in
+				    Custom1
+				```
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,19 @@
+role Taurus
+	modelPermission: read
+
+	tablePermission DIM_ProjectFlow = [PROJECT_ID] == "P001"
+
+	tablePermission RLS = [Type] == "Taurus"
+
+	tablePermission V_SM_FLOW_INFO_LOG_SNAP = [PROJECT_ID] == "P001"
+
+	tablePermission V_SM_JOB_INFO_LOG_SNAP = [PROJECT_ID] == "P001"
+
+	tablePermission V_SM_SUB_JOB_INFO_LOG_SNAP = [PROJECT_ID] == "P001"
+
+	tablePermission Pages = [Taurus] == "Y"
+
+	tablePermission Dim_Project = [Dim_Project] == "Taurus"
+
+	annotation PBI_Id = c7924aaa88ed46b3b7aba983bbee1345
+

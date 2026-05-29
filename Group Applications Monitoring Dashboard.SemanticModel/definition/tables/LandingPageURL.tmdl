@@ -1,0 +1,20 @@
+table LandingPageURL
+	lineageTag: 97cb2566-4030-4859-9cb2-272186b43aea
+
+	measure m_LandingPageURL = SELECTEDVALUE( LandingPageURL[LandingPageURL] )
+		lineageTag: 698aaaf2-4310-40da-aaa3-5ea680e4513c
+
+	column LandingPageURL
+		dataType: string
+		lineageTag: 07cfc49f-ace0-4074-9803-78d060dcd2a6
+		summarizeBy: none
+		sourceColumn: LandingPageURL
+
+		annotation SummarizationSetBy = Automatic
+
+	partition LandingPageURL = m
+		mode: import
+		source = "https://app.powerbi.com/groups/8f476f2f-d86d-466e-aa85-464bfe2a82f9/reports/f7a50009-31fe-4b01-a82a-6afb81c2ccee/ReportSection?experience=power-bi" meta [IsParameterQuery = true, IsParameterQueryRequired = true, Type = "Text"]
+
+	annotation PBI_ResultType = Text
+

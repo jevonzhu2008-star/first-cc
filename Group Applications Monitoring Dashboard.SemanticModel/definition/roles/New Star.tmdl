@@ -1,0 +1,13 @@
+role 'New Star'
+	modelPermission: read
+
+	tablePermission DIM_ProjectFlow = [PROJECT_ID] == "P008"
+
+	tablePermission V_SM_FLOW_INFO_LOG_SNAP = [PROJECT_ID] == "P008"
+
+	tablePermission V_SM_JOB_INFO_LOG_SNAP = [PROJECT_ID] == "P008"
+
+	tablePermission Dim_Project = [Dim_Project] == "New Star"
+
+	annotation PBI_Id = 519995557bf643e3b159af0e48d09576
+

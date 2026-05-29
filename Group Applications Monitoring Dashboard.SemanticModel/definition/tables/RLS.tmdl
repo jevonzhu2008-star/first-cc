@@ -1,0 +1,22 @@
+table RLS
+	lineageTag: 01160d5b-7e86-464a-a585-e5df6d515c50
+
+	column Type
+		dataType: string
+		lineageTag: 550616ad-1c12-4ab7-8883-c8a948c4edca
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition RLS = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45Wcg3xCfZRitWJVgpJLC0qLVaKjQUA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Type = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Type", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

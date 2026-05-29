@@ -1,0 +1,20 @@
+table AS_OF_DAY
+	lineageTag: c904804e-0f23-46de-a6fb-3ffe39be65c6
+
+	column Date
+		formatString: mm/dd/yyyy
+		lineageTag: 066793a7-a59b-4b28-b1c8-c980b0edf959
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	partition AS_OF_DAY = calculated
+		mode: import
+		source = CALENDAR(MIN('V_SM_JOB_INFO_LOG_SNAP'[AS_OF_DAY]),MAX('V_SM_JOB_INFO_LOG_SNAP'[AS_OF_DAY]))
+
+	annotation PBI_Id = 0af9ce67ae2246f4aa7f62769497689a
+

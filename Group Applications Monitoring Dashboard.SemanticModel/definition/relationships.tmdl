@@ -1,0 +1,112 @@
+relationship 7f0cb330-5b2b-4738-9dfd-58b537ec2acc
+	fromColumn: V_SM_JOB_INFO_LOG_SNAP.SOURCE
+	toColumn: Source.SOURCE
+
+relationship c685b506-d5be-4a06-8a70-f865aaead178
+	fromColumn: V_SM_JOB_INFO_LOG_SNAP.FLOW_NAME
+	toColumn: Flow.FLOW_NAME
+
+relationship b51f41dd-a4a0-4f17-bbe0-5901e9a60e9a
+	fromColumn: V_SM_JOB_INFO_LOG_SNAP.Start_Time
+	toColumn: Dim_Time.Time
+
+relationship 0eb1e098-0a2f-454d-a1c0-8f3490633b0d
+	fromColumn: V_SM_JOB_INFO_LOG_SNAP.AS_OF_DAY
+	toColumn: AS_OF_DAY.Date
+
+relationship cb2c68b7-a0ce-439d-912f-92334d038751
+	toCardinality: many
+	fromColumn: V_SM_SUB_JOB_INFO_LOG_SNAP.JOB_ID
+	toColumn: V_SM_JOB_INFO_LOG_SNAP.JOB_ID
+
+relationship e9cc3920-4964-6a51-81a4-ae633b1860ec
+	fromColumn: V_SM_FLOW_INFO_LOG_SNAP.AS_OF_DAY
+	toColumn: AS_OF_DAY.Date
+
+relationship 9002f9a8-e36b-1df2-e785-6ca50b33163d
+	fromColumn: V_SM_JOB_INFO_LOG_SNAP.AS_OF_DAY
+	toColumn: 'DATE TABLE'.Date
+
+relationship db442d74-6897-54ac-c552-f89b9bf82160
+	fromColumn: V_SM_FLOW_INFO_LOG_SNAP.AS_OF_DAY
+	toColumn: 'DATE TABLE'.Date
+
+relationship bb0f1504-a68c-4e4b-95d8-53e4366d1a73
+	fromColumn: V_SM_FLOW_INFO_LOG_SNAP.FLOW_NAME
+	toColumn: DIM_ProjectFlow.FLOW_NAME
+
+relationship 39a23008-2124-493e-9d29-a9617fb9b50b
+	fromColumn: V_SM_JOB_INFO_LOG_SNAP.FLOW_NAME
+	toColumn: DIM_ProjectFlow.FLOW_NAME
+
+relationship af74e174-07ca-6d5c-3549-437710ba3f7a
+	fromColumn: V_SM_JOB_INFO_LOG_SNAP.STATUS
+	toColumn: 'ETLSL STATUS'.Status
+
+relationship cbe836ed-1f69-3a0a-8bd2-dae1697436d3
+	fromColumn: 'DATE TABLE'.Date
+	toColumn: ETLSL_DATE.AS_OF_DAY
+
+relationship 6bc71036-1f69-1d31-9926-2186083c7b81
+	fromColumn: 'DATE TABLE'.Date
+	toColumn: Taurus_DATE.AS_OF_DAY
+
+relationship 8cfc1500-22d4-d768-5904-1ae0b84a79c5
+	fromColumn: ADFTRIGGERRUN.TIMEGENERATED
+	toColumn: DateTimeTable.DateTime
+
+relationship 47c07cdb-c7a6-edab-4981-77b9b9d68257
+	toCardinality: many
+	fromColumn: ADFPIPELINERUN.PREDECESSORS_ID
+	toColumn: ADFTRIGGERRUN.TRIGGERID
+
+relationship 550bd11a-201a-8a31-9cd4-66f757b550f0
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: ADFPIPELINERUN.RUN_ID
+	toColumn: ADFACTIVITYRUN.PIPELINERUNID
+
+relationship 0e8ce872-623d-07c6-1593-503376708358
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: V_SM_JOB_INFO_LOG_SNAP.ADF_KEY
+	toColumn: ADFPIPELINERUN.SOURCE_RUN_ID
+
+relationship f6ac584a-a804-11bb-b8c3-f09b8f6d89ef
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: V_SM_JOB_INFO_LOG_SNAP.API_JOB_LOG_KEY
+	toColumn: 'API Job Log'.SOURCE_RUN_ID
+
+relationship b4ad3e97-3fac-8bc0-144b-f494651e2de3
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: V_SM_JOB_INFO_LOG_SNAP.Databricks_KEY
+	toColumn: 'Databricks Log'.SOURCE_RUN_ID
+
+relationship 8f72ac94-d705-4699-5ee4-0acca65158d7
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: ADFPIPELINERUN_SUB.RUN_ID
+	toColumn: ADFACTIVITYRUN_SUB.PIPELINERUNID
+
+relationship 0baf84ff-2724-0f7e-5823-b291f6624b5e
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: ADFACTIVITYRUN.PIPELINERUNID
+	toColumn: ADFPIPELINERUN_SUB.PREDECESSORS_PIPELINERUNID
+
+relationship 80fdd8c5-7f39-1a3c-f98b-93893666eb6e
+	fromColumn: 'DateTable Dummy'.Date
+	toColumn: 'DATE TABLE'.Date
+
+relationship f8003a35-9390-deff-eafc-a11179497e03
+	fromColumn: DIM_ProjectFlow.PROJECT_NAME
+	toColumn: Dim_Project.Project_Relationship
+
+relationship 79c6da1e-e195-365e-28a3-5da7bef85435
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: DIM_ProjectFlow.FLOW_NAME
+	toColumn: HelperTable.FusionX
+

@@ -1,0 +1,314 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "CY24SU02",
+      "reportVersionAtImport": {
+        "visual": "1.8.87",
+        "report": "2.0.87",
+        "page": "1.3.87"
+      },
+      "type": "SharedResources"
+    },
+    "customTheme": {
+      "name": "AccessibleTidal",
+      "reportVersionAtImport": {
+        "visual": "1.8.87",
+        "report": "2.0.87",
+        "page": "1.3.87"
+      },
+      "type": "SharedResources"
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "Filter90b1b3191170a26074ce",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DATE TABLE"
+              }
+            },
+            "Property": "Date"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "Filterd3c4120d085b491326a9",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "V_SM_FLOW_INFO_LOG_SNAP"
+              }
+            },
+            "Property": "PROJECT_NAME"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "v",
+              "Entity": "V_SM_FLOW_INFO_LOG_SNAP",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "Comparison": {
+                      "ComparisonKind": 0,
+                      "Left": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "v"
+                            }
+                          },
+                          "Property": "PROJECT_NAME"
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "null"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "Filterf8c635a3e821e8d89387",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "V_SM_FLOW_INFO_LOG_SNAP"
+              }
+            },
+            "Property": "FLOW_NAME"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "v",
+              "Entity": "V_SM_FLOW_INFO_LOG_SNAP",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "Comparison": {
+                      "ComparisonKind": 0,
+                      "Left": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "v"
+                            }
+                          },
+                          "Property": "FLOW_NAME"
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "null"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  },
+  "objects": {
+    "section": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Top'"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "true"
+              }
+            }
+          },
+          "visible": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "publicCustomVisuals": [
+    "advanceCardE03760C5AB684758B56AA29F9E6C257B",
+    "adwiseVisual73804AE4264848C8BCD67A31A0791911",
+    "AsterPlot1443303142064",
+    "BowtieChart1465021618681",
+    "boxPloty6C987A9E682A4A859272BFEC966AF372",
+    "BulletChart1443347686880",
+    "BusinessFlowF39DAE8D57A743EF89F5C3809DEE2B67",
+    "customGantt3E4C07C6049F43778D09D3DD5677C29C",
+    "dg5AAA90EFEFE747CB9357C4FC19B85A58",
+    "enlightenLegend0ED91DCE508743998CF5A23E37414AD6",
+    "Gantt1448688115699",
+    "GanttChart4C3653EFFFEB4E7DA5A699CE198391E2",
+    "handlebarsVisual",
+    "hierarchyChartByAkvelon6F792A8745784877BCD8F4ACA5AD4207",
+    "htmlContent443BE3AD55E043BF878BED274D3A6855",
+    "KPIColumn1823AB39DB23410928ADF752BCB2A457",
+    "kpifreeapi51D0292A0438427096AC459B59FEF2DE",
+    "KPIGrid39FBAB0336346DBB68AB522063E7241",
+    "lineStackedColumnMatrixADACEA3309644A92B1A6D50A68C81088",
+    "multiInfoCards9D184BB3D4E44A139DA08142D76EFD36",
+    "NetworkNavigator1550434005853",
+    "payPalKPIDonutChart55A431AB15A540ED924ACD72ED8D259F",
+    "PBI_3AGSystems_0B9C9FBA_15A2_4A94_8AE4_8F778869B190",
+    "PBI_CV_0B9C9FBA_15A2_4A94_8AE4_8F778869B200",
+    "PBI_CV_16948668_E17D_454B_8664_2F2C470EA8C1",
+    "PBI_CV_9894B302_1DFF_4A96_ABFE_BF858819711436",
+    "PBI_CV_9894B302_1DFF_4A96_ABFE_BF8588197714412",
+    "pipelineVariation2F63E952B62F640B082C360CB29E75360",
+    "Process_and_Task_Mining",
+    "processChampion136745E546B94C03AEE4E144D2DEC49F",
+    "processMapEE4E02B949754395AD0F88751FCB5864",
+    "processMiningD4BFA18191D74FA5AEEEB307FC3EAED1",
+    "processMiningGraphVisual7200A41BF02F4407848D84A0BC6EDD6D",
+    "ScrollingTextVisual1448795304508",
+    "scvationFlowBasic0A96D390481D4F8AB06B8214A21EC2F0",
+    "sparklines50DB3783432B40A69C0B91926CE74CD9",
+    "Tachometer1474636471549",
+    "ultimateVariance9712E1351D4E4FA89077ED4D9351DC71",
+    "wishyoulizationbarchartrace",
+    "WordCloud1447959067750"
+  ],
+  "resourcePackages": [
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "Go_to_(1)8654909996644888.png",
+          "path": "Go_to_(1)8654909996644888.png",
+          "type": "Image"
+        },
+        {
+          "name": "Go_to_(1)9119784129252528.png",
+          "path": "Go_to_(1)9119784129252528.png",
+          "type": "Image"
+        },
+        {
+          "name": "icons8-cancel-40598713576153443.png",
+          "path": "icons8-cancel-40598713576153443.png",
+          "type": "Image"
+        },
+        {
+          "name": "icons8-complete-9618482685347494487.png",
+          "path": "icons8-complete-9618482685347494487.png",
+          "type": "Image"
+        },
+        {
+          "name": "icons8-home-506886085979845191.png",
+          "path": "icons8-home-506886085979845191.png",
+          "type": "Image"
+        },
+        {
+          "name": "icons8-monitoring-6446152223808589943.png",
+          "path": "icons8-monitoring-6446152223808589943.png",
+          "type": "Image"
+        },
+        {
+          "name": "icons8-pie-6439590695675595255.png",
+          "path": "icons8-pie-6439590695675595255.png",
+          "type": "Image"
+        },
+        {
+          "name": "icons8-time-machine-806891603957344392.png",
+          "path": "icons8-time-machine-806891603957344392.png",
+          "type": "Image"
+        },
+        {
+          "name": "icons8-timer-608427254299566049.png",
+          "path": "icons8-timer-608427254299566049.png",
+          "type": "Image"
+        },
+        {
+          "name": "image_(9)18979798945430537.jfif",
+          "path": "image_(9)18979798945430537.jfif",
+          "type": "Image"
+        }
+      ]
+    },
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "AccessibleTidal",
+          "path": "BuiltInThemes/AccessibleTidal.json",
+          "type": "CustomTheme"
+        },
+        {
+          "name": "CY24SU02",
+          "path": "BaseThemes/CY24SU02.json",
+          "type": "BaseTheme"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useStylableVisualContainerHeader": true,
+    "exportDataMode": "None",
+    "defaultDrillFilterOtherVisuals": true,
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": false,
+    "filterPaneHiddenInEditMode": true
+  },
+  "slowDataSourceSettings": {
+    "isCrossHighlightingDisabled": true,
+    "isSlicerSelectionsButtonEnabled": false,
+    "isFilterSelectionsButtonEnabled": false,
+    "isFieldWellButtonEnabled": false,
+    "isApplyAllButtonEnabled": false
+  }
+}

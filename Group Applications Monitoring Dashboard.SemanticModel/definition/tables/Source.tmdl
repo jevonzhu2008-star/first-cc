@@ -1,0 +1,17 @@
+table Source
+	lineageTag: d9450359-b94f-4e88-a111-03169a6444d3
+
+	column SOURCE
+		lineageTag: 3952d6de-0a21-49dd-a691-2c471cedf310
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: V_SM_JOB_INFO_LOG_SNAP[SOURCE]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Source = calculated
+		mode: import
+		source = DISTINCT('V_SM_JOB_INFO_LOG_SNAP'[SOURCE])
+
+	annotation PBI_Id = d213fe5a1fca42b69fff34f1cff1ebc3
+

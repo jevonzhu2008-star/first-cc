@@ -1,0 +1,212 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "93a0b5a8be938b0529d1",
+  "displayName": "Drill Through to Activity",
+  "displayOption": "FitToWidth",
+  "height": 1350,
+  "width": 1800,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "Filter6ca19efec2c4ebce79b2",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ADFPIPELINERUN"
+              }
+            },
+            "Property": "PIPELINENAME"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "a",
+              "Entity": "ADFPIPELINERUN",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "a"
+                          }
+                        },
+                        "Property": "PIPELINENAME"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'PL_iSFTP_MASTER'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "Drillthrough"
+      },
+      {
+        "name": "Filter5aac68ec120f24f8dc68",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ADFPIPELINERUN"
+              }
+            },
+            "Property": "RUN_ID"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "a",
+              "Entity": "ADFPIPELINERUN",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "a"
+                          }
+                        },
+                        "Property": "RUN_ID"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'f452c4aa-1137-4262-b558-dffc396867b9'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "Drillthrough"
+      },
+      {
+        "name": "Filter3ffff5a16fab970e45ca",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ADFPIPELINERUN_SUB"
+              }
+            },
+            "Property": "PREDECESSORS_PIPELINERUNID"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      }
+    ]
+  },
+  "pageBinding": {
+    "name": "4a3e0216f476333dbcdf",
+    "type": "Drillthrough",
+    "parameters": [
+      {
+        "name": "Param_Filter6ca19efec2c4ebce79b2",
+        "boundFilter": "Filter6ca19efec2c4ebce79b2",
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ADFPIPELINERUN"
+              }
+            },
+            "Property": "PIPELINENAME"
+          }
+        }
+      },
+      {
+        "name": "Param_Filter5aac68ec120f24f8dc68",
+        "boundFilter": "Filter5aac68ec120f24f8dc68",
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ADFPIPELINERUN"
+              }
+            },
+            "Property": "RUN_ID"
+          }
+        }
+      },
+      {
+        "name": "Param_Filter3ffff5a16fab970e45ca",
+        "boundFilter": "Filter3ffff5a16fab970e45ca",
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ADFPIPELINERUN_SUB"
+              }
+            },
+            "Property": "PREDECESSORS_PIPELINERUNID"
+          }
+        }
+      }
+    ],
+    "acceptsFilterContext": "None"
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 1,
+                    "Percent": 0
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode"
+}

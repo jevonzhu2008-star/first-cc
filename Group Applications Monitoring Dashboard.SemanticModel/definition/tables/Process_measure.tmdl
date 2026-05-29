@@ -1,0 +1,99 @@
+table Process_measure
+	lineageTag: ee4f48fc-aec4-4787-9b7e-f1f2c1c10366
+
+	-- 本周重跑作业数量：在当前选中周日期范围内筛选重跑作业计数（隐藏）
+	measure '# of RerunJob' =
+
+			VAR CURRENT_DATE = SELECTEDVALUE(Week_Table[Date])
+			RETURN CALCULATE(COUNT('V_SM_JOB_INFO_LOG_SNAP'[JOB_NAME]),FILTER('V_SM_JOB_INFO_LOG_SNAP','V_SM_JOB_INFO_LOG_SNAP'[AS_OF_DAY]=CURRENT_DATE&&'V_SM_JOB_INFO_LOG_SNAP'[Rerun tag]="Rerun"))+0
+		formatString: 0
+		lineageTag: 5705839d-1fea-4d30-8f78-38d03f96a9b6
+
+		changedProperty = IsHidden
+
+	-- 对比周作业数量：对比周（当前周-7天）的作业总计数（隐藏）
+	measure 'Compared Week Job' =
+
+			VAR CURRENT_DATE = SELECTEDVALUE(Week_Table[Date])
+			RETURN CALCULATE(COUNT('V_SM_JOB_INFO_LOG_SNAP'[JOB_NAME]),FILTER('V_SM_JOB_INFO_LOG_SNAP','V_SM_JOB_INFO_LOG_SNAP'[AS_OF_DAY]=CURRENT_DATE-7)) + 0
+		formatString: 0
+		lineageTag: 67b39a91-cea0-45eb-9ae9-353d36f7ed9c
+
+		changedProperty = IsHidden
+
+	-- 对比周重跑作业数量：对比周（当前周-7天）的重跑作业计数（隐藏）
+	measure 'Compared Week RerunJob' =
+
+			VAR CURRENT_DATE = SELECTEDVALUE(Week_Table[Date])
+			RETURN CALCULATE(COUNT('V_SM_JOB_INFO_LOG_SNAP'[JOB_NAME]),FILTER('V_SM_JOB_INFO_LOG_SNAP','V_SM_JOB_INFO_LOG_SNAP'[AS_OF_DAY]=CURRENT_DATE-7&&'V_SM_JOB_INFO_LOG_SNAP'[Rerun tag]="Rerun"))+0
+		formatString: 0
+		lineageTag: 46d7f652-ec28-4d82-be03-fbf07563a3a5
+
+		changedProperty = IsHidden
+
+	-- 实际-计划持续时间差值（小时）：实际总持续时间减去计划总持续时间
+	measure Diff_durations_scheduled = [Actual Durations-h] - [Scheduled Durations-h]
+		formatString: 0.0
+		lineageTag: 91435359-abdd-48b9-8eaf-f60a72fc4e7f
+
+		changedProperty = IsHidden
+
+	-- 对比周总持续时间（小时）：对比周（当前周-7天）的总持续时间汇总（隐藏）
+	measure '# compared Week durations' =
+
+			VAR CURRENT_DATE = SELECTEDVALUE(Week_Table[Date])
+			RETURN CALCULATE(SUM('V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS])/3600,FILTER(('V_SM_JOB_INFO_LOG_SNAP'),'V_SM_JOB_INFO_LOG_SNAP'[AS_OF_DAY]=CURRENT_DATE-7))+0
+		formatString: #,0.0
+		lineageTag: 025cafb2-9fb0-4387-8edf-b5b5b2a31ba3
+
+		changedProperty = IsHidden
+
+	-- 最新数据时间标签：获取所有作业中的最大AS_OF日期并格式化为文本
+	measure Max_time_Tarus =
+			VAR TIME_ = CALCULATE(MAX('V_SM_JOB_INFO_LOG_SNAP'[AS_OF]),ALL('V_SM_JOB_INFO_LOG_SNAP'))
+			RETURN CONCATENATE("Data As of: ",TIME_)
+		lineageTag: 77bae0ab-bdc2-473e-a9d2-42eb8ce58faa
+
+		changedProperty = IsHidden
+
+	-- 本周作业数量：在当前选中周日期范围内的作业总计数（隐藏）
+	measure '# of jobs' =
+
+			var current_date = SELECTEDVALUE(Week_Table[Date])
+			RETURN CALCULATE([Jobs_snap],FILTER('V_SM_JOB_INFO_LOG_SNAP','V_SM_JOB_INFO_LOG_SNAP'[AS_OF_DAY]=current_date))
+		formatString: 0
+		lineageTag: a836f076-befb-4ee6-a16ab6048809
+
+		changedProperty = IsHidden
+
+	-- 本周总持续时间（小时）：在当前选中周日期范围内汇总总持续时间（隐藏）
+	measure '# Durations' =
+
+			var current_date = SELECTEDVALUE(Week_Table[Date])
+			RETURN CALCULATE(SUM('V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS])/3600,FILTER('V_SM_JOB_INFO_LOG_SNAP','V_SM_JOB_INFO_LOG_SNAP'[AS_OF_DAY]=current_date))+0
+		formatString: #,0.0
+		lineageTag: bf0eb736-3b28-4b87-be73-90c1ed465a8a
+
+		changedProperty = IsHidden
+
+	column Process_measure
+		dataType: int64
+		formatString: 0
+		lineageTag: 67a70d6a-0dab-47ca-9742-3145b89e860f
+		summarizeBy: sum
+		sourceColumn: Process_measure
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Process_measure = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMlSKjQUA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Process_measure = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Process_measure", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table

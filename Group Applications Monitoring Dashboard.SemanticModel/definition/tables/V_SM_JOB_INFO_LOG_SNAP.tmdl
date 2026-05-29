@@ -1,0 +1,931 @@
+table V_SM_JOB_INFO_LOG_SNAP
+	lineageTag: 007ecd64-965e-4d6c-b058-adc61ad05093
+
+	measure Avg_Run_Time = ```
+			
+			VAR DIF = AVERAGE('V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS]) + 0
+			VAR HOURS = INT(DIF/3600)
+			VAR MINUTES =INT(MOD(DIF ,3600 )/ 60)
+			VAR SECONDS = ROUNDDOWN(MOD(DIF-MINUTES*60,3600),0)
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    HOURS = 0 && MINUTES <> 0  ,MINUTES & "m" & SECONDS & "s",
+			    HOURS = 0 && MINUTES = 0 , SECONDS & "s",
+			    HOURS&"h" & MINUTES & "m" & SECONDS & "s"
+			)
+			
+			```
+		lineageTag: 8573edb5-29f3-49f2-8609-c3b3807f4ed0
+
+		changedProperty = IsHidden
+
+	measure 'Actual Durations' = ```
+			
+			VAR DIF = 
+			SUM('V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS])
+			VAR HOURS = INT(DIF/3600)
+			VAR MINUTES =INT(MOD(DIF ,3600 )/ 60)
+			VAR SECONDS = ROUNDDOWN(MOD(DIF-MINUTES*60,3600),0)
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    HOURS = 0 && MINUTES = 0 && SECONDS = 0  , "0",
+			    HOURS = 0 && MINUTES <> 0  ,MINUTES & "m" & SECONDS & "s",
+			    HOURS = 0 && MINUTES = 0 , SECONDS & "s",
+			    HOURS&"h" & MINUTES & "m" & SECONDS & "s"
+			)
+			```
+		lineageTag: f0cac35b-addc-496a-a006-f7fba7be7192
+
+		changedProperty = IsHidden
+
+	measure Avg_RunTime = AVERAGE('V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS])/60
+		lineageTag: 083b40c5-4174-4cf3-9414-bec70796e669
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Avg_RunTime_rank = RANKX(ALLSELECTED('V_SM_JOB_INFO_LOG_SNAP'[JOB_NAME]),[Avg_RunTime],,DESC,Skip)
+		formatString: 0
+		lineageTag: 8bd0545c-bdf1-4d50-b91c-8acbac8c45ef
+
+		changedProperty = IsHidden
+
+	measure V_Avg_RunTime = IF([Avg_RunTime_rank] <= 'TopN'[TopN Value] , [Avg_RunTime] )
+		lineageTag: b4f7aeaf-f846-4ea5-b385-14d87e7cfea4
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Actual Durations-h' = SUM('V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS]) / 3600
+		formatString: 0.0
+		lineageTag: fa90a54c-23ea-4671-a3a4-3c38e611a741
+
+		changedProperty = IsHidden
+
+	measure 'Scheduled Durations-h' = SUM('V_SM_JOB_INFO_LOG_SNAP'[SCHEDULE_DURANTIONS]) / 3600
+		formatString: 0.0
+		lineageTag: 7d5cb2ce-e21c-482c-9c67-5b8372aa5ac6
+
+		changedProperty = IsHidden
+
+	measure Avg_RunTime-h = AVERAGE('V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS])/3600
+		formatString: 0.0
+		lineageTag: 0b0ef84a-4c8c-480b-a098-c2e559b85447
+
+		changedProperty = IsHidden
+
+	measure 'Actual Durations AVG' = ```
+			
+			VAR MAXTIME = 
+			        CALCULATE(
+			                MAX('V_SM_JOB_INFO_LOG_SNAP'[END_TS]),
+			                'V_SM_JOB_INFO_LOG_SNAP'[STATUS] = "Succeeded"
+			            )   
+			
+			VAR MINTIME =  
+			        CALCULATE(
+			                MIN('V_SM_JOB_INFO_LOG_SNAP'[END_TS]),
+			                'V_SM_JOB_INFO_LOG_SNAP'[STATUS] = "Succeeded"
+			            )   
+			VAR DIF = 
+			        // DATEDIFF(MINTIME,MAXTIME,SECOND)
+			AVERAGE('V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS])
+			VAR HOURS = INT(DIF/3600)
+			VAR MINUTES =INT(MOD(DIF ,3600 )/ 60)
+			VAR SECONDS = ROUNDDOWN(MOD(DIF-MINUTES*60,3600),0)
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    HOURS = 0 && MINUTES = 0 && SECONDS = 0  , "0",
+			    HOURS = 0 && MINUTES <> 0  ,MINUTES & "m" & SECONDS & "s",
+			    HOURS = 0 && MINUTES = 0 , SECONDS & "s",
+			    HOURS&"h" & MINUTES & "m" & SECONDS & "s"
+			)
+			```
+		lineageTag: c2d2a321-cafd-4668-807a-0cff68a09c44
+
+		changedProperty = IsHidden
+
+	measure Avg_RunTime_Min = AVERAGE('V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS]) / 60
+		lineageTag: 4a160eb7-1179-4771-a41d-5da3fb5cce51
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Min_start = CALCULATE(MIN(V_SM_JOB_INFO_LOG_SNAP[START_TS]),ALLSELECTED(V_SM_JOB_INFO_LOG_SNAP))
+		formatString: General Date
+		lineageTag: 77528262-8526-4048-a4b1-5b69ef3bcfe3
+
+	measure earlist_ = IF(MAX(V_SM_JOB_INFO_LOG_SNAP[START_TS]) = [Min_start],1,0)
+		formatString: 0
+		lineageTag: c0e9838b-63dd-4c29-88c5-11c1385ba70b
+
+	measure 'Flow Actual Durations-h' = SUM(V_SM_JOB_INFO_LOG_SNAP[ACTUAL_DURANTIONS])/ 3600
+		formatString: 0.00
+		lineageTag: 7eb98142-bc5c-414b-832a-81949c797654
+
+	measure 'Flow Schedule Durations-h' = SUM(V_SM_JOB_INFO_LOG_SNAP[SCHEDULE_DURANTIONS])/ 3600
+		lineageTag: 440ea9d2-e24d-4907-9a89-9cb0d0804588
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Flow Diff Durations' = [Flow Actual Durations-h]-[Flow Schedule Durations-h]
+		lineageTag: 132c2ccf-8891-4112-99e4-15f5170bc83d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure distinct_job = DISTINCTCOUNT(V_SM_JOB_INFO_LOG_SNAP[JOB_ID])+0
+		formatString: 0
+		lineageTag: a18436fa-afbe-4419-8132-8a2c8e30290b
+
+	measure 'Actual Durations Max' = ```
+			
+			
+			VAR DIF = 
+			        // DATEDIFF(MINTIME,MAXTIME,SECOND)
+			MAX('V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS])
+			VAR HOURS = INT(DIF/3600)
+			VAR MINUTES =INT(MOD(DIF ,3600 )/ 60)
+			VAR SECONDS = ROUNDDOWN(MOD(DIF-MINUTES*60,3600),0)
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    HOURS = 0 && MINUTES = 0 && SECONDS = 0  , "0",
+			    HOURS = 0 && MINUTES <> 0  ,MINUTES & "m" & SECONDS & "s",
+			    HOURS = 0 && MINUTES = 0 , SECONDS & "s",
+			    HOURS&"h" & MINUTES & "m" & SECONDS & "s")
+			```
+		lineageTag: 18013144-88b3-4482-bc82-0f858593225e
+
+	measure 'Actual Durations Min' = ```
+			
+			
+			VAR DIF = 
+			        // DATEDIFF(MINTIME,MAXTIME,SECOND)
+			CALCULATE(MIN('V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS]),FILTER(V_SM_JOB_INFO_LOG_SNAP,V_SM_JOB_INFO_LOG_SNAP[STATUS]<>"Not Started"))
+			VAR HOURS = INT(DIF/3600)
+			VAR MINUTES =INT(MOD(DIF ,3600 )/ 60)
+			VAR SECONDS = ROUNDDOWN(MOD(DIF-MINUTES*60,3600),0)
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    HOURS = 0 && MINUTES = 0 && SECONDS = 0  , "0",
+			    HOURS = 0 && MINUTES <> 0  ,MINUTES & "m" & SECONDS & "s",
+			    HOURS = 0 && MINUTES = 0 , SECONDS & "s",
+			    HOURS&"h" & MINUTES & "m" & SECONDS & "s")
+			```
+		lineageTag: 3686f046-8088-47e9-83b6-0e1f2c67c1c7
+
+	column AS_OF
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: fe4e5e8d-ced9-4a6b-a20c-5720f2a9901c
+		summarizeBy: none
+		sourceColumn: AS_OF
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column RUN_ID
+		dataType: string
+		lineageTag: fad86a20-dfd9-4426-b394-4d1e5603f31b
+		summarizeBy: none
+		sourceColumn: RUN_ID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column JOB_ID
+		dataType: string
+		lineageTag: 7cf7ea3d-0b81-4417-821f-67d08807884e
+		summarizeBy: none
+		sourceColumn: JOB_ID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column JOB_NAME
+		dataType: string
+		lineageTag: a8bca77b-cc76-4d01-a053-c9c4523cd5ee
+		summarizeBy: none
+		sourceColumn: JOB_NAME
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column STATUS
+		dataType: string
+		lineageTag: 5c32c01b-95e6-4cff-8b9b-251ebd133248
+		summarizeBy: none
+		sourceColumn: STATUS
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column START_TS
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b788e744-1e24-46e3-a476-aa07468e3739
+		summarizeBy: none
+		sourceColumn: START_TS
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column END_TS
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d982aa96-793a-4214-bdfe-dae85afc8d73
+		summarizeBy: none
+		sourceColumn: END_TS
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ERROR_MSG
+		dataType: string
+		lineageTag: c94c1382-383e-440d-846e-6d6a7dfad046
+		summarizeBy: none
+		sourceColumn: ERROR_MSG
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column JOB_DESC
+		dataType: string
+		lineageTag: a9f15329-4332-4168-bdad-0a7e7366de00
+		summarizeBy: none
+		sourceColumn: JOB_DESC
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOURCE
+		dataType: string
+		lineageTag: 73ea6115-776f-47f2-9caa-5f2645d6deb7
+		summarizeBy: none
+		sourceColumn: SOURCE
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column PROCESS
+		dataType: string
+		lineageTag: ce2ae8a2-d21c-4ff2-bff5-329b32a9ce37
+		summarizeBy: none
+		sourceColumn: PROCESS
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column PARRENT_JOB_ID
+		dataType: string
+		lineageTag: 369f8572-21ac-48c5-b67d-7c7cdee3edd3
+		summarizeBy: none
+		sourceColumn: PARRENT_JOB_ID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLOW_NAME
+		dataType: string
+		lineageTag: 2010e30a-493a-4f88-93f7-180342cf92fb
+		summarizeBy: none
+		sourceColumn: FLOW_NAME
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column PROJECT_ID
+		dataType: string
+		lineageTag: 6bb83e02-47ba-4b28-8d2b-6752ddbc7753
+		summarizeBy: none
+		sourceColumn: PROJECT_ID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column SCHEDULE_START
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e5716129-aa47-4277-aad0-5e6c20afe235
+		summarizeBy: none
+		sourceColumn: SCHEDULE_START
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column SCHEDULE_END
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 850e8ebf-976f-4bdb-a320-3df891cd1a2c
+		summarizeBy: none
+		sourceColumn: SCHEDULE_END
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rerun tag' =
+			
+			var tag = CALCULATE(DISTINCTCOUNT('V_SM_JOB_INFO_LOG_SNAP'[RUN_ID]),FILTER(ALLEXCEPT('V_SM_JOB_INFO_LOG_SNAP','V_SM_JOB_INFO_LOG_SNAP'[JOB_ID],'V_SM_JOB_INFO_LOG_SNAP'[AS_OF_DAY]),'V_SM_JOB_INFO_LOG_SNAP'[RUN_ID]<>""))
+			RETURN IF(tag >1,"rerun")
+		lineageTag: 1ee0520a-7a7f-420b-acfa-706d110a3540
+		summarizeBy: none
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column AS_OF_DAY
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 985a46c7-0ade-4b31-bc98-932b39a98305
+		summarizeBy: none
+		sourceColumn: AS_OF_DAY
+
+		changedProperty = IsHidden
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column JOB_RANK
+		dataType: int64
+		formatString: 0
+		lineageTag: 9ba43b56-42bc-4aa0-b032-0534b0a938fb
+		summarizeBy: sum
+		sourceColumn: JOB_RANK
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CASE_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 12dce27f-eae0-4731-9913-e9b246713297
+		summarizeBy: count
+		sourceColumn: CASE_ID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column SCHEDULE_DURANTIONS
+		dataType: int64
+		formatString: 0
+		lineageTag: 30b2d0c6-57ae-4aa9-905a-3845a29ddab5
+		summarizeBy: sum
+		sourceColumn: SCHEDULE_DURANTIONS
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACTUAL_DURANTIONS
+		dataType: double
+		formatString: 0.0
+		lineageTag: e8d58ba3-b7fa-48e6-a329-5c783a7f083c
+		summarizeBy: sum
+		sourceColumn: ACTUAL_DURANTIONS
+
+		changedProperty = DataType
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column LAST_AS_OF_FALG
+		dataType: string
+		lineageTag: 016d6e8f-a93f-420f-861b-ca829bde5c29
+		summarizeBy: none
+		sourceColumn: LAST_AS_OF_FALG
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column latest_ =
+			
+			IF(V_SM_JOB_INFO_LOG_SNAP[LAST_AS_OF_FALG]="Y"||(V_SM_JOB_INFO_LOG_SNAP[LAST_AS_OF_FALG]="N"&&V_SM_JOB_INFO_LOG_SNAP[Rerun tag]="Rerun"),"Y","N")
+		lineageTag: 0df739cb-7302-4749-8d46-03dd52bfa1f0
+		summarizeBy: none
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column RANK_TIME
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a6bdc5ab-167a-4c12-9a18-559cdf2f63b2
+		summarizeBy: none
+		sourceColumn: RANK_TIME
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONFLUENCE_NODE
+		dataType: string
+		lineageTag: a2c1b6b1-ae36-4e17-8a04-645ead933df9
+		summarizeBy: none
+		sourceColumn: CONFLUENCE_NODE
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Latency_D = IF(('V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS]-'V_SM_JOB_INFO_LOG_SNAP'[SCHEDULE_DURANTIONS])>0&&V_SM_JOB_INFO_LOG_SNAP[P_End]>V_SM_JOB_INFO_LOG_SNAP[SCHEDULE_END],"Y","N")
+		lineageTag: 0fb3f893-1f17-47c9-8a4c-2001be83c535
+		summarizeBy: none
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Latency_S =
+			
+			VAR D_ =  DATEDIFF(V_SM_JOB_INFO_LOG_SNAP[SCHEDULE_START],V_SM_JOB_INFO_LOG_SNAP[P_Start],MINUTE)
+			RETURN  IF(D_>30,"Y","N")
+		lineageTag: cb6a373a-6af7-4fe4-9e93-ffe9fd177aea
+		summarizeBy: none
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column P_Start = IF(ISBLANK('V_SM_JOB_INFO_LOG_SNAP'[START_TS]),UTCNOW()+TIME(8,0,0),'V_SM_JOB_INFO_LOG_SNAP'[START_TS])
+		formatString: General Date
+		lineageTag: 82b4c936-aeaa-49dc-a63a-c309cd7f1113
+		summarizeBy: none
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Latency_T = IF(V_SM_JOB_INFO_LOG_SNAP[Latency_D]="Y"||V_SM_JOB_INFO_LOG_SNAP[Latency_S]="Y","Y","N")
+		lineageTag: b669093a-8122-4f4c-8b38-4e6dd93e0074
+		summarizeBy: none
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Start_Time =
+			
+			var minutes_ = IF(MINUTE(V_SM_JOB_INFO_LOG_SNAP[START_TS])<30,0,30)
+			return TIME(HOUR('V_SM_JOB_INFO_LOG_SNAP'[START_TS]),minutes_,0)
+		formatString: Long Time
+		lineageTag: e953401b-cd45-4dc6-866a-f101d021b4f7
+		summarizeBy: none
+
+		changedProperty = DataType
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column Total_durations = CALCULATE(SUM('V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS]),FILTER('V_SM_JOB_INFO_LOG_SNAP',EARLIER('V_SM_JOB_INFO_LOG_SNAP'[AS_OF_DAY])='V_SM_JOB_INFO_LOG_SNAP'[AS_OF_DAY]&&'V_SM_JOB_INFO_LOG_SNAP'[CONFLUENCE_NODE]<>"Y"&&'V_SM_JOB_INFO_LOG_SNAP'[LAST_AS_OF_FALG]="Y"))
+		formatString: 0
+		lineageTag: 04354646-fe9c-4569-9968-6c7ef3a8316b
+		summarizeBy: sum
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date_Number = MONTH('V_SM_JOB_INFO_LOG_SNAP'[AS_OF_DAY])&"/"&DAY('V_SM_JOB_INFO_LOG_SNAP'[AS_OF_DAY])&"/"&YEAR('V_SM_JOB_INFO_LOG_SNAP'[AS_OF_DAY])
+		dataType: string
+		lineageTag: ffd38ed6-cea5-464d-99a7-82cc55dccba0
+		summarizeBy: none
+
+		changedProperty = DataType
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Report Day' =
+			
+			IF('V_SM_JOB_INFO_LOG_SNAP'[AS_OF_DAY]= TODAY(),"Today",'V_SM_JOB_INFO_LOG_SNAP'[Date_Number])
+		lineageTag: 64d57a97-a213-46ea-ae37-ae284e52ef30
+		summarizeBy: none
+
+		changedProperty = SortByColumn
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column PROJECT_NAME
+		dataType: string
+		lineageTag: 668aaf37-34a3-49ca-ab38-89cd486f8dcf
+		summarizeBy: none
+		sourceColumn: PROJECT_NAME
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column v_Durations = ```
+			
+			VAR DIF ='V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS] + 0 
+			VAR HOURS = INT(DIF/3600)
+			VAR MINUTES =INT(MOD(DIF ,3600 )/ 60)
+			VAR SECONDS = MOD(DIF-MINUTES*60,3600)
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    HOURS = 0 && MINUTES <> 0  ,MINUTES & "m" & SECONDS & "s",
+			    HOURS = 0 && MINUTES = 0 , SECONDS & "s",
+			    HOURS&"h" & MINUTES & "m" & SECONDS & "s"
+			)
+			
+			```
+		lineageTag: 203c0a56-d4da-4703-8e16-671f7c45615f
+		summarizeBy: none
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'STATUS Icon' = ```
+			
+			VAR CURRENT_ = 
+			SWITCH(TRUE(),
+			'V_SM_JOB_INFO_LOG_SNAP'[STATUS]="Succeeded",[Succeeded],
+			'V_SM_JOB_INFO_LOG_SNAP'[STATUS]="Inprogress",[InProgress],
+			'V_SM_JOB_INFO_LOG_SNAP'[STATUS]="Not Started",[Not started],
+			'V_SM_JOB_INFO_LOG_SNAP'[STATUS]="Failed",[Failed],
+			'V_SM_JOB_INFO_LOG_SNAP'[STATUS]="Expiration",[expiration],
+			'V_SM_JOB_INFO_LOG_SNAP'[STATUS]="Cancelled",[cancelled])
+			RETURN CONCATENATE(CURRENT_,"  "&'V_SM_JOB_INFO_LOG_SNAP'[STATUS])
+			```
+		lineageTag: 9a732076-b2bb-4551-b8b7-8b75b0897578
+		summarizeBy: none
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Job_ = ```
+			
+			
+			var status_ = CALCULATE(VALUES(V_SM_JOB_INFO_LOG_SNAP[STATUS]),FILTER(ALLEXCEPT(V_SM_JOB_INFO_LOG_SNAP,V_SM_JOB_INFO_LOG_SNAP[JOB_ID],V_SM_JOB_INFO_LOG_SNAP[AS_OF_DAY]),V_SM_JOB_INFO_LOG_SNAP[LAST_AS_OF_FALG]="Y"&&V_SM_JOB_INFO_LOG_SNAP[D_con]>0))
+			VAR icon_ = 
+			SWITCH(TRUE(),
+			status_="Succeeded",[Succeeded],
+			status_="Inprogress",[InProgress],
+			status_="Not Started",[Not started],
+			status_="Failed",[Failed],
+			status_="Expiration",[expiration],
+			status_="Cancelled",[cancelled])
+			RETURN icon_ & V_SM_JOB_INFO_LOG_SNAP[JOB_NAME]
+			```
+		lineageTag: c28bd0a9-4fb0-4e6b-8b82-2a9e024f5527
+		summarizeBy: none
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Col_Actual Durations' =
+			
+			VAR DIF = 'V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS]
+			VAR HOURS = INT(DIF/3600)
+			VAR MINUTES =INT(MOD(DIF ,3600 )/ 60)
+			VAR SECONDS = ROUNDDOWN(MOD(DIF-MINUTES*60,3600),0)
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    HOURS = 0 && MINUTES = 0 && SECONDS = 0  , blank(),
+			    HOURS = 0 && MINUTES <> 0  ,MINUTES & "m" & SECONDS & "s",
+			    HOURS = 0 && MINUTES = 0 , SECONDS & "s",
+			    HOURS&"h" & MINUTES & "m" & SECONDS & "s"
+			)
+		lineageTag: f3686d6c-8a5d-4d47-8643-1cfe53bfbe0f
+		summarizeBy: none
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column v_Schedual_Durations = ```
+			
+			VAR DIF ='V_SM_JOB_INFO_LOG_SNAP'[SCHEDULE_DURANTIONS] + 0 
+			VAR HOURS = INT(DIF/3600)
+			VAR MINUTES =INT(MOD(DIF ,3600 )/ 60)
+			VAR SECONDS = MOD(DIF-MINUTES*60,3600)
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    HOURS = 0 && MINUTES <> 0  ,MINUTES & "m" & SECONDS & "s",
+			    HOURS = 0 && MINUTES = 0 , SECONDS & "s",
+			    HOURS&"h" & MINUTES & "m" & SECONDS & "s"
+			)
+			```
+		lineageTag: 8b8e68d5-972e-4e11-93bb-4717f2a035d6
+		summarizeBy: none
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReportDate =
+			
+			IF('V_SM_JOB_INFO_LOG_SNAP'[AS_OF_DAY] = TODAY(),"Today",'V_SM_JOB_INFO_LOG_SNAP'[AS_OF_DAY] & "")
+		lineageTag: e07f112c-279d-496b-8785-a554a33f04aa
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rerun Cycle' = ```
+			VAR rank_ = 
+			RANKX(FILTER(V_SM_JOB_INFO_LOG_SNAP,V_SM_JOB_INFO_LOG_SNAP[AS_OF_DAY]=EARLIER(V_SM_JOB_INFO_LOG_SNAP[AS_OF_DAY])&&V_SM_JOB_INFO_LOG_SNAP[JOB_ID]=EARLIER(V_SM_JOB_INFO_LOG_SNAP[JOB_ID])&&V_SM_JOB_INFO_LOG_SNAP[Rerun tag]="rerun"&&V_SM_JOB_INFO_LOG_SNAP[RUN_ID]<>""),V_SM_JOB_INFO_LOG_SNAP[START_TS],,ASC)
+			RETURN IF(V_SM_JOB_INFO_LOG_SNAP[STATUS]="Not Started",BLANK(),rank_)
+			```
+		formatString: 0
+		lineageTag: e66a6558-46a7-4b76-adf8-a718c9280906
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column sum_by_source = CALCULATE(SUM(V_SM_JOB_INFO_LOG_SNAP[ACTUAL_DURANTIONS]),FILTER(ALLEXCEPT(V_SM_JOB_INFO_LOG_SNAP,V_SM_JOB_INFO_LOG_SNAP[AS_OF_DAY],V_SM_JOB_INFO_LOG_SNAP[FLOW_NAME],V_SM_JOB_INFO_LOG_SNAP[SOURCE]),V_SM_JOB_INFO_LOG_SNAP[LAST_AS_OF_FALG]="Y"&&V_SM_JOB_INFO_LOG_SNAP[CONFLUENCE_NODE]=""))
+		lineageTag: 33898121-5e45-4f7a-b60c-26a97c249106
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column STD_SOURCE = CALCULATE(STDEV.P(V_SM_JOB_INFO_LOG_SNAP[ACTUAL_DURANTIONS]),FILTER(V_SM_JOB_INFO_LOG_SNAP,V_SM_JOB_INFO_LOG_SNAP[LAST_AS_OF_FALG]="Y"&&V_SM_JOB_INFO_LOG_SNAP[CONFLUENCE_NODE]=""&&V_SM_JOB_INFO_LOG_SNAP[AS_OF_DAY]=EARLIER(V_SM_JOB_INFO_LOG_SNAP[AS_OF_DAY])&&V_SM_JOB_INFO_LOG_SNAP[FLOW_NAME]=EARLIER(V_SM_JOB_INFO_LOG_SNAP[FLOW_NAME])&&V_SM_JOB_INFO_LOG_SNAP[SOURCE]=EARLIER(V_SM_JOB_INFO_LOG_SNAP[SOURCE])))/3600
+		lineageTag: cbfd89cd-79e3-4d15-8e3e-bbcd52e19d97
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Job_Cycle =
+			
+			var status_ = CALCULATE(VALUES(V_SM_JOB_INFO_LOG_SNAP[STATUS]),FILTER(ALLEXCEPT(V_SM_JOB_INFO_LOG_SNAP,V_SM_JOB_INFO_LOG_SNAP[JOB_ID],V_SM_JOB_INFO_LOG_SNAP[AS_OF_DAY]),V_SM_JOB_INFO_LOG_SNAP[LAST_AS_OF_FALG]="Y"))
+			RETURN
+			IF((V_SM_JOB_INFO_LOG_SNAP[Rerun tag]="rerun"||status_<>"Not Started")&&V_SM_JOB_INFO_LOG_SNAP[LAST_AS_OF_FALG]<>"Y"&&V_SM_JOB_INFO_LOG_SNAP[RUN_ID]=""&&HOUR(V_SM_JOB_INFO_LOG_SNAP[AS_OF])<>0,-1,V_SM_JOB_INFO_LOG_SNAP[Rerun Cycle])
+		formatString: 0
+		lineageTag: 359ee8c3-6060-4a7a-8eef-b6afc497afc8
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column P_End = IF(ISBLANK('V_SM_JOB_INFO_LOG_SNAP'[END_TS]),UTCNOW()+TIME(8,0,0),'V_SM_JOB_INFO_LOG_SNAP'[END_TS])
+		formatString: General Date
+		lineageTag: 46f5fef3-5605-4a5c-86cd-23d01516fd7c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column CYCLE
+		dataType: int64
+		formatString: 0
+		lineageTag: 50bd480b-d2ec-4a43-84e8-17aaaf372c6f
+		summarizeBy: sum
+		sourceColumn: CYCLE
+
+		annotation SummarizationSetBy = Automatic
+
+	column D_con = CALCULATE(COUNT(V_SM_JOB_INFO_LOG_SNAP[JOB_ID]),FILTER(ALLEXCEPT(V_SM_JOB_INFO_LOG_SNAP,V_SM_JOB_INFO_LOG_SNAP[FLOW_NAME],V_SM_JOB_INFO_LOG_SNAP[JOB_NAME]),V_SM_JOB_INFO_LOG_SNAP[LAST_AS_OF_FALG]="Y"&&V_SM_JOB_INFO_LOG_SNAP[CONFLUENCE_NODE]<>"Y"))+0
+		formatString: 0
+		lineageTag: 9805fa9a-03d4-4bc5-a96b-33cff6fa4ba4
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Job_2 = ```
+			
+			
+			var status_ = CALCULATE(VALUES(V_SM_JOB_INFO_LOG_SNAP[STATUS]))
+			VAR icon_ = 
+			SWITCH(TRUE(),
+			status_="Succeeded",[Succeeded],
+			status_="Inprogress",[InProgress],
+			status_="Not Started",[Not started],
+			status_="Failed",[Failed],
+			status_="Expiration",[expiration],
+			status_="Cancelled",[cancelled])
+			RETURN icon_ & V_SM_JOB_INFO_LOG_SNAP[JOB_NAME]
+			```
+		lineageTag: f8862c8f-bf43-4e73-8f0a-c3c0b267892f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Full_Frequency =
+			
+			// IF(V_SM_JOB_INFO_LOG_SNAP[JOB_FREQUENCY] = "Opt","Optional","Daily")
+			SWITCH(
+			    TRUE(),
+			    V_SM_JOB_INFO_LOG_SNAP[JOB_FREQUENCY] = "Opt", "Optional",
+			    V_SM_JOB_INFO_LOG_SNAP[JOB_FREQUENCY] = "D", "Daily",
+			    V_SM_JOB_INFO_LOG_SNAP[JOB_FREQUENCY] = "M", "Monthly",
+			    V_SM_JOB_INFO_LOG_SNAP[JOB_FREQUENCY] = "W", "Weekly",
+			    'V_SM_JOB_INFO_LOG_SNAP'[JOB_FREQUENCY]
+			    )
+		lineageTag: 0cb0a61b-5e73-4287-acea-447a09183703
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column JOB_FREQUENCY
+		dataType: string
+		lineageTag: 13a564a1-9482-4774-836a-c43834c24e3a
+		summarizeBy: none
+		sourceColumn: JOB_FREQUENCY
+
+		annotation SummarizationSetBy = Automatic
+
+	column NORMAL_CYCLE_FLAG
+		dataType: string
+		lineageTag: 37e633a5-8c4d-40c2-b7e4-2a40ddd2f0a4
+		summarizeBy: none
+		sourceColumn: NORMAL_CYCLE_FLAG
+
+		annotation SummarizationSetBy = Automatic
+
+	column RUN_CYCLE
+		dataType: int64
+		formatString: 0
+		lineageTag: 41856cac-53c1-4555-bca7-43d8a838b422
+		summarizeBy: sum
+		sourceColumn: RUN_CYCLE
+
+		annotation SummarizationSetBy = Automatic
+
+	column SCHEDUAL_CYCLE
+		dataType: int64
+		formatString: 0
+		lineageTag: d173b916-318e-4a17-ad6c-88cf45b45acc
+		summarizeBy: sum
+		sourceColumn: SCHEDUAL_CYCLE
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOURCE_TYPE
+		dataType: string
+		lineageTag: e78e73de-72ea-47bf-88a6-e59211dde007
+		summarizeBy: none
+		sourceColumn: SOURCE_TYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column ADF_KEY = ```
+			
+			// VAR CONCAT = 
+			//     V_SM_JOB_INFO_LOG_SNAP[SOURCE_TYPE] & V_SM_JOB_INFO_LOG_SNAP[RUN_ID] 
+			// VAR ADF_KEY =
+			// IF(LEFT( CONCAT , 3 ) = "ADF" , CONCAT , BLANK() )
+			// RETURN
+			// ADF_KEY 
+			IF(LEFT(V_SM_JOB_INFO_LOG_SNAP[SOURCE_TYPE],3) = "ADF" , V_SM_JOB_INFO_LOG_SNAP[SOURCE_RUN_ID] , BLANK() )
+			```
+		lineageTag: 98329679-1e03-44b5-94c3-630de7995e8c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column API_JOB_LOG_KEY = ```
+			
+			// VAR CONCAT = 
+			//     V_SM_JOB_INFO_LOG_SNAP[SOURCE_TYPE] & V_SM_JOB_INFO_LOG_SNAP[RUN_ID] 
+			// VAR API_JOB_LOG_KEY =
+			// IF(LEFT( CONCAT , 3 ) = "API" , CONCAT , BLANK() )
+			// RETURN
+			// API_JOB_LOG_KEY 
+			IF(LEFT(V_SM_JOB_INFO_LOG_SNAP[SOURCE_TYPE],3) = "API" , V_SM_JOB_INFO_LOG_SNAP[SOURCE_RUN_ID] , BLANK() )
+			```
+		lineageTag: dbd37829-2665-4696-b453-23e8a675d47b
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Databricks_KEY = ```
+			
+			// VAR CONCAT = 
+			//     V_SM_JOB_INFO_LOG_SNAP[SOURCE_TYPE] & V_SM_JOB_INFO_LOG_SNAP[RUN_ID] 
+			// VAR Databricks_KEY =
+			// IF(LEFT( CONCAT , 3 ) = "Dat" , CONCAT , BLANK() )
+			// RETURN
+			// Databricks_KEY 
+			IF(LEFT(V_SM_JOB_INFO_LOG_SNAP[SOURCE_TYPE],3) = "Dat" , V_SM_JOB_INFO_LOG_SNAP[SOURCE_RUN_ID] , BLANK() )
+			```
+		lineageTag: d1646c28-786c-4d57-ae10-9e85bca654ac
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Drill Indicator' = ```
+			
+			SWITCH(
+			    TRUE(),
+			    V_SM_JOB_INFO_LOG_SNAP[ADF_KEY]<>BLANK(),"ADF Pipeline",
+			    'V_SM_JOB_INFO_LOG_SNAP'[API_JOB_LOG_KEY] <>BLANK(),"Customized Log",
+			    'V_SM_JOB_INFO_LOG_SNAP'[Databricks_KEY]<>BLANK(),"Databricks Log",
+			    "Job Not Start"
+			)
+			
+			```
+		lineageTag: a293827d-b6c0-48a7-a333-a4274559e652
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOURCE_RUN_ID
+		dataType: string
+		lineageTag: 2e1c15f4-e809-46a7-9c20-f5610f87720e
+		summarizeBy: none
+		sourceColumn: SOURCE_RUN_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SCHEDULE_DAY_FLAG
+		dataType: string
+		lineageTag: 93df1bc8-66b1-453d-aade-20dac584abbf
+		summarizeBy: none
+		sourceColumn: SCHEDULE_DAY_FLAG
+
+		annotation SummarizationSetBy = Automatic
+
+	column Job_Icon = ```
+			
+			
+			var status_ = CALCULATE(VALUES(V_SM_JOB_INFO_LOG_SNAP[STATUS]))
+			VAR icon_ = 
+			SWITCH(TRUE(),
+			status_="Succeeded",[Succeeded],
+			status_="Inprogress",[InProgress],
+			status_="Not Started",[Not started],
+			status_="Failed",[Failed],
+			status_="Expiration",[expiration],
+			status_="Cancelled",[cancelled])
+			RETURN icon_
+			```
+		lineageTag: 89b513b5-5c5e-4714-a510-c56730eaa10f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column TIMEGENERATED
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 721b63f5-7a35-4074-b4aa-43227980d7b8
+		summarizeBy: none
+		sourceColumn: TIMEGENERATED
+
+		annotation SummarizationSetBy = Automatic
+
+	partition V_SM_JOB_INFO_LOG_SNAP-f57a57d1-fec4-4efe-98ae-b68f58355d56 = m
+		mode: import
+		queryGroup: View
+		source =
+				let
+				    Source = Sql.Databases(P_Server),
+				    P_DB = Source{[Name=P_DB]}[Data],
+				    MONITOR_STD_F_SM_JOB_INFO_LOG_SNAP = P_DB{[Schema=P_Schema,Item="V_SM_JOB_INFO_LOG_SNAP"]}[Data],
+				    #"Filtered Rows" = Table.SelectRows(MONITOR_STD_F_SM_JOB_INFO_LOG_SNAP, each Text.Contains([PROJECT_ID], #"Project 1")),
+				    #"Filtered Rows1" = Table.SelectRows(#"Filtered Rows", each Text.Contains([PARRENT_JOB_ID], Flow_Parameter)),
+				    #"Filtered Rows2" = Table.SelectRows(#"Filtered Rows1", each [AS_OF] > P_DatetimeLimit),
+				    #"Filtered Rows3" = Table.SelectRows(#"Filtered Rows2", each [AS_OF] >= RangeStart and [AS_OF] <= RangeEnd)
+				in
+				    #"Filtered Rows3"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_IsMQueryFoldable = True
+
+	annotation PBI_NavigationStepName = Navigation
+

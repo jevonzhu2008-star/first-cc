@@ -1,0 +1,101 @@
+table 'DATE TABLE'
+	lineageTag: 0b3a04c5-caf6-490d-8b05-de49157fadaa
+
+	column Year_MONTH
+		lineageTag: 7dd73886-8bdb-4bb4-9290-11eda171a76f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year_MONTH]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Number_Year_Month
+		formatString: 0
+		lineageTag: c83f6592-37d1-4b07-82a8-110e0b9b18fb
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Number_Year_Month]
+
+		annotation SummarizationSetBy = Automatic
+
+	column WEEK
+		lineageTag: 394212be-974b-4558-b879-263e282b1bf7
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [WEEK]
+
+		annotation SummarizationSetBy = Automatic
+
+	column WEEKDAY
+		formatString: 0
+		lineageTag: e679a979-b9d7-43c8-97bb-abd28c5ab35f
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [WEEKDAY]
+
+		annotation SummarizationSetBy = Automatic
+
+	column WEEKNUM
+		formatString: 0
+		lineageTag: 0389cbe0-c374-4737-ac6c-f465b1a2e371
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [WEEKNUM]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date_Number
+		dataType: string
+		lineageTag: e9131877-d10c-4a41-91d8-0faddf4537c2
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date_Number]
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReportDate =
+			
+			
+			IF('DATE TABLE'[Date] = MAX('DATE TABLE'[Date]),"Today",'DATE TABLE'[Date]& "")
+		lineageTag: aee51345-90c8-4d4b-a08b-c41a4ec13bef
+		summarizeBy: none
+		sortByColumn: Date_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		formatString: Long Date
+		lineageTag: 196be9a8-2fcc-4064-8667-6cd8ca315235
+		summarizeBy: none
+		sourceColumn: V_SM_JOB_INFO_LOG_SNAP[AS_OF_DAY]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ETLSL_DATE =
+			VAR etlsl = CALCULATE(DISTINCT(V_SM_JOB_INFO_LOG_SNAP[AS_OF_DAY]),FILTER(V_SM_JOB_INFO_LOG_SNAP,V_SM_JOB_INFO_LOG_SNAP[PROJECT_ID] IN {"P004","P006"}&&V_SM_JOB_INFO_LOG_SNAP[LAST_AS_OF_FALG]="Y"))
+			return IF('DATE TABLE'[Date]=etlsl,"Y")
+		lineageTag: 84eab142-69e0-4062-8b72-dbb8da12d850
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'DATE TABLE-36cc5483-872a-4c74-be00-5d7e931d02bf' = calculated
+		mode: import
+		source = ```
+				
+				ADDCOLUMNS(DISTINCT(V_SM_JOB_INFO_LOG_SNAP[AS_OF_DAY]),
+				"Year_MONTH",FORMAT([AS_OF_DAY],"MMM-YY"),
+				"Number_Year_Month",YEAR([AS_OF_DAY])*100+MONTH([AS_OF_DAY]),
+				"WEEK",FORMAT([AS_OF_DAY],"DDD"),
+				"WEEKDAY",WEEKDAY([AS_OF_DAY],2),
+				"WEEKNUM",WEEKNUM([AS_OF_DAY],2) ,
+				"Date_Number",YEAR([AS_OF_DAY])*10000+MONTH([AS_OF_DAY])*100+DAY([AS_OF_DAY]
+				))
+				
+				
+				```
+
+	annotation PBI_Id = eeae32719ac74337a0cbfaf7f16a8695
+

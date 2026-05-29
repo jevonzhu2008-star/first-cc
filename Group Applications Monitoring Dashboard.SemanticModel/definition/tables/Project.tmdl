@@ -1,0 +1,24 @@
+table Project
+	lineageTag: 3ec3b273-af6b-49f1-9125-cb2624362c44
+
+	column Project
+		dataType: string
+		lineageTag: 61329c29-b172-4b75-bb5f-682a90fbed82
+		summarizeBy: none
+		sourceColumn: Project
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Project = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WCijKz0pNLglJLC0qLVaKjQUA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Project = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Project", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

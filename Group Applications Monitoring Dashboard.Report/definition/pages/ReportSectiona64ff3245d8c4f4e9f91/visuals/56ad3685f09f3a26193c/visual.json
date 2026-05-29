@@ -1,0 +1,89 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "56ad3685f09f3a26193c",
+  "position": {
+    "x": 0,
+    "y": 10.728254308213314,
+    "z": 4000,
+    "height": 59.005398695173227,
+    "width": 1366.511392508671,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "        Applications Monitoring",
+                    "textStyle": {
+                      "fontFamily": "Arial",
+                      "fontSize": "32px",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": "  ",
+                    "textStyle": {
+                      "fontFamily": "Arial",
+                      "fontSize": "24pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": "| Daily Applications Job Detail",
+                    "textStyle": {
+                      "fontFamily": "Arial",
+                      "fontSize": "24pt",
+                      "color": "#cbaf78"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

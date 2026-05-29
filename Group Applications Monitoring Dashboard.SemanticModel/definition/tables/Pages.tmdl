@@ -1,0 +1,74 @@
+table Pages
+	lineageTag: 4ff9cf2f-105c-4b01-b661-45a763b3621b
+
+	column Page
+		dataType: string
+		lineageTag: a32ac4c8-1ad4-443e-be65-504a3a7e8250
+		summarizeBy: none
+		sourceColumn: Page
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type
+		dataType: string
+		lineageTag: 2d43a14d-fee5-4cf3-9d15-5e490e4bd09a
+		summarizeBy: none
+		sourceColumn: Type
+		sortByColumn: Sort
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sort
+		dataType: int64
+		formatString: 0
+		lineageTag: a79cc5ad-a6dd-4010-ab7e-545d97bed8ae
+		summarizeBy: sum
+		sourceColumn: Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETLSL
+		dataType: string
+		lineageTag: c8ae002a-4183-4222-854f-f91823feefae
+		summarizeBy: none
+		sourceColumn: ETLSL
+
+		annotation SummarizationSetBy = Automatic
+
+	column Taurus
+		dataType: string
+		lineageTag: d3bb0382-edb3-45ce-9813-2b57ccc6efb4
+		summarizeBy: none
+		sourceColumn: Taurus
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Super User'
+		dataType: string
+		lineageTag: 3d32167d-e28f-4e2b-a579-799bad75ccc9
+		summarizeBy: none
+		sourceColumn: Super User
+
+		annotation SummarizationSetBy = Automatic
+
+	column FusionX
+		dataType: string
+		lineageTag: a3f105b2-7c52-429b-bda3-153893c74f2e
+		summarizeBy: none
+		sourceColumn: FusionX
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Pages = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("hVLdCoIwFH6V4XVB9t+lZF0ZRHoT4sWyIYfmJm4W9vStGoZ6Kti5ON8fH9vi2PEp8Jp4RcEhpRqkUGTL5Y2EVZ7TsnYGzi/ONWPOsZlkEDubKAiDrhIFx2+7PU/vnzpkSHZMl5AqtNiHm2DFvoX7TBsGTWyoKRbY10eQM+IJymsFeMeuYoYFRyVkGSvJoRIGa2/ztuGl30PBOAhmJZ11gTi8VMMVdG0lnXWJONaV0jKHOzuTQGYG7QErxOVTTU/mUS7KinqAO2q+gL2A5AE=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Page = _t, Type = _t, Sort = _t, ETLSL = _t, Taurus = _t, #"Super User" = _t, FusionX = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Page", type text}, {"Type", type text}, {"Sort", Int64.Type}, {"ETLSL", type text}, {"Taurus", type text}, {"Super User", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

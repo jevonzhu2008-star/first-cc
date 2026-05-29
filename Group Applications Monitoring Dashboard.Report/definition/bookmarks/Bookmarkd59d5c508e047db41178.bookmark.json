@@ -1,0 +1,514 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.1.0/schema.json",
+  "displayName": "Gannt",
+  "name": "Bookmarkd59d5c508e047db41178",
+  "options": {
+    "applyOnlyToTargetVisuals": true,
+    "targetVisualNames": [
+      "a658e65865520b4a6276"
+    ],
+    "suppressData": true
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "ReportSection48e0148969a7a9e57dbf",
+    "sections": {
+      "ReportSection48e0148969a7a9e57dbf": {
+        "filters": {
+          "byExpr": [
+            {
+              "name": "Filter01ae113b4e875328e3c6",
+              "type": "Categorical",
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "m",
+                    "Entity": "V_SM_JOB_INFO_LOG_SNAP",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "In": {
+                        "Expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "m"
+                                }
+                              },
+                              "Property": "LAST_AS_OF_FALG"
+                            }
+                          }
+                        ],
+                        "Values": [
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'Y'"
+                              }
+                            }
+                          ]
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                    }
+                  },
+                  "Property": "LAST_AS_OF_FALG"
+                }
+              },
+              "howCreated": 1
+            }
+          ]
+        },
+        "visualContainers": {
+          "dfa813d291dc64212fdd": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "Filtercff6632ea18f1aa96348",
+                  "type": "Advanced",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "d",
+                        "Entity": "DATE TABLE",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "d"
+                                      }
+                                    },
+                                    "Property": "ReportDate"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "null"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DATE TABLE"
+                        }
+                      },
+                      "Property": "ReportDate"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "general": [
+                    {
+                      "properties": {
+                        "filter": {
+                          "filter": {
+                            "Version": 2,
+                            "From": [
+                              {
+                                "Name": "d",
+                                "Entity": "DATE TABLE",
+                                "Type": 0
+                              }
+                            ],
+                            "Where": [
+                              {
+                                "Condition": {
+                                  "In": {
+                                    "Expressions": [
+                                      {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Source": "d"
+                                            }
+                                          },
+                                          "Property": "ReportDate"
+                                        }
+                                      }
+                                    ],
+                                    "Values": [
+                                      [
+                                        {
+                                          "Literal": {
+                                            "Value": "'8/19/2024'"
+                                          }
+                                        }
+                                      ]
+                                    ]
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "selection": [
+                    {
+                      "properties": {
+                        "strictSingleSelect": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "true"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DATE TABLE"
+                        }
+                      },
+                      "Property": "ReportDate"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DATE TABLE"
+                        }
+                      },
+                      "Property": "ReportDate"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "7d9741273140015b7729": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "532b5e95bf05367d4414",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                        }
+                      },
+                      "Property": "CASE_ID"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "5000bf1b81610ab2bf83",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                        }
+                      },
+                      "Property": "RANK_TIME"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "27811d03ef56411c21e2",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                        }
+                      },
+                      "Property": "Job_"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "PBI_CV_9894B302_1DFF_4A96_ABFE_BF8588197714412",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                        }
+                      },
+                      "Property": "RANK_TIME"
+                    }
+                  }
+                }
+              ],
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "0d07c63060609e10ac94": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "15ec27c2f2497c3475f9": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "31a8f85e28d7c16076dc": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "fa558171b08ae194761a": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "df6736166fed91fdb6d4": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "69916ebb47e2994723d1",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Process_measure"
+                        }
+                      },
+                      "Property": "Max_time_Tarus"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Process_measure"
+                        }
+                      },
+                      "Property": "Max_time_Tarus"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "06226da4e8d8a4d31b33": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "f46443acb95564ff19b9": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "5de513ecf102dd696e65": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "a658e65865520b4a6276": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "dbe048a5155596ab1a1d",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                        }
+                      },
+                      "Property": "Job_"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "c7fe712f627055aa6a51",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                        }
+                      },
+                      "Property": "START_TS"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "8047c0f2249cded98eee",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                        }
+                      },
+                      "Property": "Actual Durations-h"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "17b8a7b57cfd1fd5218a",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                            }
+                          },
+                          "Property": "STATUS"
+                        }
+                      },
+                      "Function": 3
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "GanttChart4C3653EFFFEB4E7DA5A699CE198391E2",
+              "objects": {}
+            }
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "visible": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

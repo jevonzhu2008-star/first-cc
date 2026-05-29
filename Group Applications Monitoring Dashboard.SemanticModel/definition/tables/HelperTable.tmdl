@@ -1,0 +1,51 @@
+table HelperTable
+	lineageTag: d5a196d1-a3b9-4d49-a5a9-bd64c212e57e
+
+	column FusionX
+		dataType: string
+		lineageTag: dfe180cb-ecfc-4475-b552-0115db0523a0
+		summarizeBy: none
+		sourceColumn: FusionX
+
+		annotation SummarizationSetBy = Automatic
+
+	column Taurus
+		dataType: string
+		lineageTag: 4c6fead4-4acb-4103-8ad4-f53266b4af31
+		summarizeBy: none
+		sourceColumn: Taurus
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'New Star'
+		dataType: string
+		lineageTag: 26ff0fc9-349c-4d40-bbf8-47b603f11a82
+		summarizeBy: none
+		sourceColumn: New Star
+
+		annotation SummarizationSetBy = Automatic
+
+	column GPDM
+		dataType: string
+		lineageTag: ca390391-de96-4dea-97f5-23bfccc1a71f
+		summarizeBy: none
+		sourceColumn: GPDM
+
+		annotation SummarizationSetBy = Automatic
+
+	partition HelperTable = m
+		mode: import
+		queryGroup: View
+		source =
+				let
+				    Source = V_SM_JOB_INFO_LOG_SNAP,
+				    Project = List.Distinct( Source[PROJECT_NAME] ),
+				    Flow = List.Repeat( {List.Distinct( Source[FLOW_NAME] ) }, List.Count(Project) ),
+				    Helper = Table.FromColumns(Flow,Project)
+				in
+				    Helper
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

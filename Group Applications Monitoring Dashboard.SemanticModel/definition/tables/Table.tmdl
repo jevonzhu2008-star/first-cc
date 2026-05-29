@@ -1,0 +1,41 @@
+table Table
+	lineageTag: 67739ee0-e475-4e70-9318-4fb33f84ad33
+
+	column SOURCE
+		lineageTag: 5ffb296b-80a9-4505-963e-809b4ca68213
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: V_SM_JOB_INFO_LOG_SNAP[SOURCE]
+
+		annotation SummarizationSetBy = Automatic
+
+	column @SUM
+		lineageTag: b8c9325c-65bb-4a6b-b640-8fdc84bd90a5
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [@SUM]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Column =
+			CALCULATE(
+			    STDEVX.S('Table','Table'[@SUM]),ALLSELECTED('Table'[SOURCE]))
+		lineageTag: ac8caa52-8334-4632-babe-8453f0b65f08
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Table = calculated
+		mode: import
+		source =
+				ADDCOLUMNS(
+				        ALL('V_SM_JOB_INFO_LOG_SNAP'[SOURCE]),
+				        "@SUM", CALCULATE(SUM('V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS])/3600)
+				    )
+
+	annotation PBI_Id = ca14c94504a04f53a37107e30ca53429
+

@@ -1,0 +1,651 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "a658e65865520b4a6276",
+  "position": {
+    "x": 12.92533659730722,
+    "y": 303.7454100367197,
+    "z": 10000,
+    "height": 1152.5091799265606,
+    "width": 1734.1493268053855,
+    "tabOrder": 11000
+  },
+  "visual": {
+    "visualType": "GanttChart4C3653EFFFEB4E7DA5A699CE198391E2",
+    "query": {
+      "queryState": {
+        "Task": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                    }
+                  },
+                  "Property": "Job_"
+                }
+              },
+              "queryRef": "MONITOR_STD F_SM_JOB_INFO_LOG_SNAP.Job_",
+              "nativeQueryRef": "Job_"
+            }
+          ]
+        },
+        "actualStart": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                    }
+                  },
+                  "Property": "START_TS"
+                }
+              },
+              "queryRef": "MONITOR_STD F_SM_JOB_INFO_LOG_SNAP.START_TS",
+              "nativeQueryRef": "START_TS"
+            }
+          ]
+        },
+        "duration": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                    }
+                  },
+                  "Property": "Actual Durations-h"
+                }
+              },
+              "queryRef": "MONITOR_STD F_SM_JOB_INFO_LOG_SNAP.Actual Durations-h",
+              "nativeQueryRef": "Actual Durations-h"
+            }
+          ]
+        },
+        "tmeasure": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                        }
+                      },
+                      "Property": "STATUS"
+                    }
+                  },
+                  "Function": 3
+                }
+              },
+              "queryRef": "Min(MONITOR_STD F_SM_JOB_INFO_LOG_SNAP.STATUS)",
+              "nativeQueryRef": "First STATUS"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "migration": [
+        {
+          "properties": {
+            "migrationSettings": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\"v3_1_0\":{\"editor\":{\"isResolved\":true}}}'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "timeline": [
+        {
+          "properties": {
+            "ganttHeaderFormat": {
+              "expr": {
+                "Literal": {
+                  "Value": "'normal'"
+                }
+              }
+            },
+            "gantttoplevel": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "ganttmidlevel": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "ganttlowlevel": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "ganttTopLevelFillColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1F1D24'"
+                    }
+                  }
+                }
+              }
+            },
+            "ganttTopLevelTextColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "ganttMidLevelFillColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1F1D24'"
+                    }
+                  }
+                }
+              }
+            },
+            "ganttMidLevelTextColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "ganttLowLevelFillColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1F1D24'"
+                    }
+                  }
+                }
+              }
+            },
+            "ganttLowLevelTextColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "timelinePaddingStart": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
+            },
+            "timelinePaddingEnd": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "ganttzoomrangeenabled": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "ganttscrollenable": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "ganttZoomUnit": {
+              "expr": {
+                "Literal": {
+                  "Value": "'hour'"
+                }
+              }
+            },
+            "ganttTopLevelFontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "15D"
+                }
+              }
+            },
+            "ganttMidLevelTextSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "15D"
+                }
+              }
+            },
+            "ganttLowLevelFontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "15D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "chartOptions": [
+        {
+          "properties": {
+            "headerHeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            },
+            "weekStartDay": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "ganttdateformat": {
+              "expr": {
+                "Literal": {
+                  "Value": "'YYYY.MM.DD HH:mm:ss'"
+                }
+              }
+            },
+            "displayTotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "hideBlankGantt": {
+              "expr": {
+                "Literal": {
+                  "Value": "'none'"
+                }
+              }
+            },
+            "chartBackgroundColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1F1D24'"
+                    }
+                  }
+                }
+              }
+            },
+            "hideParentOnCollapse": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "hideParentOnExpand": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "zoomOptions": {
+              "expr": {
+                "Literal": {
+                  "Value": "'mouseWheel'"
+                }
+              }
+            },
+            "ganttRowHeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "40D"
+                }
+              }
+            },
+            "actualBarHeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "40D"
+                }
+              }
+            },
+            "ganttChartType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'gantt'"
+                }
+              }
+            },
+            "ganttBarType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'bar'"
+                }
+              }
+            },
+            "durationUnit": {
+              "expr": {
+                "Literal": {
+                  "Value": "'hours'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "displayColumn": [
+        {
+          "properties": {
+            "columnIdType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'none'"
+                }
+              }
+            },
+            "enableActualDuration": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "columnNameWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "300D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dataGrid": [
+        {
+          "properties": {
+            "headerBackgroungColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1F1D24'"
+                    }
+                  }
+                }
+              }
+            },
+            "headerFontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "datagridFontStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "'default'"
+                }
+              }
+            },
+            "datagridFontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "gridColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.6
+                    }
+                  }
+                }
+              }
+            },
+            "autoSplitPosition": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "gridWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "headerFontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "15D"
+                }
+              }
+            },
+            "datagridFontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dataLabel": [
+        {
+          "properties": {
+            "datalabeltextcolor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dataColors": [
+        {
+          "properties": {
+            "rowColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1F1D24'"
+                    }
+                  }
+                }
+              }
+            },
+            "alternativeRowColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1F1D24'"
+                    }
+                  }
+                }
+              }
+            },
+            "rowHoverColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1F1D24'"
+                    }
+                  }
+                }
+              }
+            },
+            "actualChildFillColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "numberFormatting": [
+        {
+          "properties": {
+            "isEnableSemantingFormatting": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "editor": [
+        {
+          "properties": {
+            "enableCustomSummaryTable": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "summaryTable": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "interaction": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "isHidden": true
+}

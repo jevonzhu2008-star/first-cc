@@ -1,0 +1,46 @@
+table 'Parameter 2'
+	lineageTag: 2a4c712b-665e-4e07-80fe-5ce8a3f2cc0b
+
+	column Parameter
+		lineageTag: 2a2468de-00ea-4e36-ba57-f05199e7929f
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Parameter Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Parameter Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Fields'
+		lineageTag: eb9b7071-cae7-4bc1-a2b9-fa6da845b8fe
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Parameter Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Order'
+		formatString: 0
+		lineageTag: 73b3b183-c4d8-4907-8688-bbe09fb44448
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Parameter 2' = calculated
+		mode: import
+		source =
+				{
+				    ("SOURCE", NAMEOF('Source'[SOURCE]), 1),
+				    ("FLOW_NAME", NAMEOF('Flow'[FLOW_NAME]), 0)
+				}
+
+	annotation PBI_Id = 74d914ac108e48c1b58d1bcfe55e46dc
+

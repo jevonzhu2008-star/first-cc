@@ -1,0 +1,301 @@
+table V_SM_SUB_JOB_INFO_LOG_SNAP
+	lineageTag: 6bd8ad53-fb76-4526-a76e-e8dfd7941816
+
+	column AS_OF
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a29377f5-62f6-47e5-bce8-14ad1841f33f
+		summarizeBy: none
+		sourceColumn: AS_OF
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column RUN_ID
+		dataType: string
+		lineageTag: 20389af6-249e-419f-bfaa-6bcc07993164
+		summarizeBy: none
+		sourceColumn: RUN_ID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column JOB_ID
+		dataType: string
+		lineageTag: 3cef472b-9e4c-4a8b-97cd-fe3ba47b960e
+		summarizeBy: none
+		sourceColumn: JOB_ID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column JOB_NAME
+		dataType: string
+		lineageTag: 7e659706-888b-44e9-8d1f-1d543a3b18ee
+		summarizeBy: none
+		sourceColumn: JOB_NAME
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column SUB_JOB_ID
+		dataType: string
+		lineageTag: 0e009a92-b7b4-4d17-9dfe-8f659a757993
+		summarizeBy: none
+		sourceColumn: SUB_JOB_ID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column SUB_JOB_NAME
+		dataType: string
+		lineageTag: 2aed0009-e1b3-4ea8-b3b5-c1b49d9297b4
+		summarizeBy: none
+		sourceColumn: SUB_JOB_NAME
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column STATUS
+		dataType: string
+		lineageTag: 324d3414-5370-403e-8081-594ab3d71096
+		summarizeBy: none
+		sourceColumn: STATUS
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column START_TS
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f9ed2433-41c3-4794-b3c2-7ac463f876d3
+		summarizeBy: none
+		sourceColumn: START_TS
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column END_TS
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: bbdb5fdb-e7b9-4434-a0c3-f5e53b108dad
+		summarizeBy: none
+		sourceColumn: END_TS
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ERROR_MSG
+		dataType: string
+		lineageTag: afe2ae2a-25ca-4139-a2ed-4c7dd9d5ad9b
+		summarizeBy: none
+		sourceColumn: ERROR_MSG
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column JOB_DESC
+		dataType: string
+		lineageTag: ef2395c7-6e47-4b15-866d-4335f06039d4
+		summarizeBy: none
+		sourceColumn: JOB_DESC
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOURCE
+		dataType: string
+		lineageTag: beaf3653-53e2-4840-9695-e0a934853859
+		summarizeBy: none
+		sourceColumn: SOURCE
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column PROCESS
+		dataType: string
+		lineageTag: 79cf6683-fbed-4316-966c-5c59b5d9af88
+		summarizeBy: none
+		sourceColumn: PROCESS
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column PARRENT_JOB_ID
+		dataType: string
+		lineageTag: 6153f690-bc0f-4244-9c6e-bd3dab35cc62
+		summarizeBy: none
+		sourceColumn: PARRENT_JOB_ID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLOW_NAME
+		dataType: string
+		lineageTag: c747c074-5bde-4b92-99df-793644d86f13
+		summarizeBy: none
+		sourceColumn: FLOW_NAME
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column PROJECT_ID
+		dataType: string
+		lineageTag: 531439ea-5b21-4920-8b2d-29bee865747f
+		summarizeBy: none
+		sourceColumn: PROJECT_ID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column SCHEDULE_START
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 659de607-8718-4bf0-8457-a8132bf6ccfd
+		summarizeBy: none
+		sourceColumn: SCHEDULE_START
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column SCHEDULE_END
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 043c5518-f723-4dec-a350-9bf4e695282a
+		summarizeBy: none
+		sourceColumn: SCHEDULE_END
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column AS_OF_DAY
+		dataType: string
+		lineageTag: ebbde315-0414-4337-94d3-53c95ef25597
+		summarizeBy: none
+		sourceColumn: AS_OF_DAY
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column JOB_RANK
+		dataType: int64
+		formatString: 0
+		lineageTag: bf123a11-c796-482d-b853-76b9296f30f0
+		summarizeBy: sum
+		sourceColumn: JOB_RANK
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CASE_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 95531493-d7bf-4d80-9dcb-f7ebf552587d
+		summarizeBy: count
+		sourceColumn: CASE_ID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column SCHEDULE_DURANTIONS
+		dataType: int64
+		formatString: 0
+		lineageTag: c79f2429-4c2e-45d6-859f-a6b2aa9905fa
+		summarizeBy: sum
+		sourceColumn: SCHEDULE_DURANTIONS
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACTUAL_DURANTIONS
+		dataType: int64
+		formatString: 0
+		lineageTag: d650fe9e-2b99-4a38-a561-1ca735e3de1b
+		summarizeBy: sum
+		sourceColumn: ACTUAL_DURANTIONS
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column LAST_AS_OF_FALG
+		dataType: string
+		lineageTag: e9b01229-64d1-41b0-917e-28250fe4eecf
+		summarizeBy: none
+		sourceColumn: LAST_AS_OF_FALG
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column RANK_TIME
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 907831c5-e52f-4322-936a-22e48996a995
+		summarizeBy: none
+		sourceColumn: RANK_TIME
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONFLUENCE_NODE
+		dataType: string
+		lineageTag: 66bbb83c-41b0-4c37-81f9-c7258196374c
+		summarizeBy: none
+		sourceColumn: CONFLUENCE_NODE
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column PROJECT_NAME
+		dataType: string
+		lineageTag: af5ece6d-06a5-4c82-a826-b10e1619c99b
+		summarizeBy: none
+		sourceColumn: PROJECT_NAME
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition V_SM_SUB_JOB_INFO_LOG_SNAP-da879e40-b2dc-4568-908b-b29fd13ccd77 = m
+		mode: import
+		queryGroup: View
+		source =
+				let
+				    Source = Sql.Databases(P_Server),
+				    P_DB = Source{[Name=P_DB]}[Data],
+				    MONITOR_STD_F_SM_SUB_JOB_INFO_LOG_SNAP = P_DB{[Schema=P_Schema,Item="V_SM_SUB_JOB_INFO_LOG_SNAP"]}[Data],
+				    #"Filtered Rows" = Table.SelectRows(MONITOR_STD_F_SM_SUB_JOB_INFO_LOG_SNAP, each Text.Contains([PROJECT_ID], #"Project 1")),
+				    #"Filtered Rows1" = Table.SelectRows(#"Filtered Rows", each [AS_OF] > P_DatetimeLimit),
+				    #"Filtered Rows2" = Table.SelectRows(#"Filtered Rows1", each [AS_OF] >= RangeStart and [AS_OF] <= RangeEnd)
+				in
+				    #"Filtered Rows2"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_IsMQueryFoldable = True
+

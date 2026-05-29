@@ -1,0 +1,88 @@
+table GCFR_Measure
+	lineageTag: 16a06e29-9e38-4a3e-bf80-dc401ffe95e2
+
+	-- 成功状态图标：返回绿色圆圈 emoji 图标文本（隐藏）
+	measure Succeeded = "🟢  "
+		lineageTag: 94f972e9-3a5e-4387-b16c-1586947244c1
+
+		changedProperty = IsHidden
+
+	-- 失败状态图标：返回红色圆圈 emoji 图标文本（隐藏）
+	measure Failed = "🔴  "
+		lineageTag: 98965806-5490-476f-8221-651587c61e4b
+
+		changedProperty = IsHidden
+
+	-- 未开始状态图标：返回空心圆圈 emoji 图标文本（隐藏）
+	measure 'Not started' = "◯ "
+		lineageTag: e73382f2-d100-463f-bd2b-a08a7d9c5821
+
+		changedProperty = IsHidden
+
+	-- 运行中状态图标：返回蓝色圆圈 emoji 图标文本（隐藏）
+	measure InProgress = "🔵  "
+		lineageTag: 362df91c-c1d2-4721-94af-0729affbb0a6
+
+		changedProperty = IsHidden
+
+	-- 占位符：始终返回0或0.001，用于图表占位（隐藏）
+	measure placeholder = IF( AVERAGE('V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS]) = 0 , 0 , 0.001 )
+		formatString: 0
+		lineageTag: b72aef5d-1409-41fa-abdd-39df1d7fc438
+
+		changedProperty = IsHidden
+
+	-- 作业名称标签：返回当前选中的作业名称（隐藏）
+	measure Label-jobname = ```
+
+			SELECTEDVALUE('V_SM_JOB_INFO_LOG_SNAP'[JOB_NAME])
+			//  & "    |      " & AVERAGE('MONITOR_STD F_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS])
+			```
+		lineageTag: ca85e0aa-21d4-4a6b-96d2-bc6a4d31864a
+
+		changedProperty = IsHidden
+
+	-- 今日vs昨日标题：生成对比标题文本，显示当前日和昨日的日期范围
+	measure Title-CurDay-1DayBefore =
+
+			VAR CurDay = FORMAT( SELECTEDVALUE( 'DATE TABLE'[Date] ) , "MMMM dd")
+			VAR OneDayBefore = FORMAT( SELECTEDVALUE( 'DATE TABLE'[Date] ) - 1 , "MMMM dd")
+			RETURN
+			   "Number Of Trigger Jobs Today VS Yesterday (" &  CurDay & " VS " &  OneDayBefore & ")"
+		lineageTag: 6f6cd559-31a0-4cfd-9902-3a9a56dd15c4
+
+		changedProperty = IsHidden
+
+	-- 过期状态图标：返回黄色圆圈 emoji 图标文本
+	measure expiration = "🟡  "
+		lineageTag: a0a5dd90-b4c3-404b-8655-26fef44e145a
+
+	-- 取消状态图标：返回紫色圆圈 emoji 图标文本
+	measure cancelled = "🟣"
+		lineageTag: 2cbcf9ad-2ebb-4691-81c5-cd44eb2fbca8
+
+	-- 钻取页面：获取选中的钻取指示器值
+	measure DrillPage = SELECTEDVALUE('V_SM_JOB_INFO_LOG_SNAP'[Drill Indicator])
+		lineageTag: 047e145b-6102-4ff0-a9be-15f039b0bf8d
+
+	column Column1
+		dataType: int64
+		formatString: 0
+		lineageTag: 2b1331ce-00ec-4b8f-bfbe-2d4a3f485ee5
+		summarizeBy: sum
+		sourceColumn: Column1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition GCFR_Measure = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMlSKjQUA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table

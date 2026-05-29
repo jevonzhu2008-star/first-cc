@@ -1,0 +1,35 @@
+table DateTimeTable
+	lineageTag: c2c08af8-f3b3-4f2c-a19d-ae0941dfb2cb
+
+	column DateTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 96d0ec38-7f3a-468c-9976-51e350c6cc55
+		summarizeBy: none
+		sourceColumn: DateTime
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DateTimeTable = m
+		mode: import
+		source = ```
+				let
+				    Source = 
+				    //Date.AddDays( Date.From( DateTimeZone.UtcNow()) , 1 )
+				    //  DateTime.From( DateTimeZone.UtcNow())
+				    //  #date(2024,6,19)
+				 Date.From( DateTimeZone.UtcNow() )
+				,
+				    RangeStart = DateTime.From( Date.AddDays(Source,-6)),
+				    DateTimeList = List.DateTimes (RangeStart,7*24*60,#duration(0,0,1,0)),
+				    #"Converted to Table" = Table.FromList(DateTimeList, Splitter.SplitByNothing(), {"DateTime"}, null, ExtraValues.Error),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Converted to Table",{{"DateTime", type datetime}}),
+				    #"Sorted Rows" = Table.Sort(#"Changed Type",{{"DateTime", Order.Descending}})
+				in
+				    #"Sorted Rows"
+				```
+
+	annotation PBI_ResultType = Table
+

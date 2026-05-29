@@ -1,0 +1,4943 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "7e895ec5901b98c0300c",
+  "position": {
+    "x": 13.887427669647554,
+    "y": 231.45712782745923,
+    "z": 0,
+    "height": 798.99000526038924,
+    "width": 1733.1509731720148,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "hierarchyChartByAkvelon6F792A8745784877BCD8F4ACA5AD4207",
+    "query": {
+      "queryState": {
+        "category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                    }
+                  },
+                  "Property": "CASE_ID"
+                }
+              },
+              "queryRef": "V_SM_JOB_INFO_LOG_SNAP.CASE_ID",
+              "nativeQueryRef": "CASE_ID"
+            }
+          ]
+        },
+        "title": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                    }
+                  },
+                  "Property": "JOB_NAME"
+                }
+              },
+              "queryRef": "V_SM_JOB_INFO_LOG_SNAP.JOB_NAME",
+              "nativeQueryRef": "JOB_NAME"
+            }
+          ]
+        },
+        "reportTo": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                    }
+                  },
+                  "Property": "JOB_RANK"
+                }
+              },
+              "queryRef": "V_SM_JOB_INFO_LOG_SNAP.JOB_RANK",
+              "nativeQueryRef": "JOB_RANK"
+            }
+          ]
+        },
+        "team": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                    }
+                  },
+                  "Property": "STATUS"
+                }
+              },
+              "queryRef": "V_SM_JOB_INFO_LOG_SNAP.STATUS",
+              "nativeQueryRef": "STATUS"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "levels": [
+        {
+          "properties": {
+            "isMaxDepth": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "maxDepth": {
+              "expr": {
+                "Literal": {
+                  "Value": "50D"
+                }
+              }
+            },
+            "controls": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "nodes": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "height": {
+              "expr": {
+                "Literal": {
+                  "Value": "30D"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "260D"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "colorName": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "displayHeightAndWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "shape": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "distanceBetweenTitleAndSubtitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
+            },
+            "fontSubtitleSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "6D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "legend": [
+        {
+          "properties": {
+            "titleLegend": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Status :'"
+                }
+              }
+            },
+            "colorLegend": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "15D"
+                }
+              }
+            },
+            "showLegend": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "links": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "tooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "wrap": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "teams": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.3
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "1L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_CNETLSL_PRD_ALL_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "null"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Out of scope'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "2L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_CNETLSL_PRD_SETUP_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "1L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Succeeded'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.3
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "1L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_GRETLSL_PRD_ALL_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "null"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Out of scope'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "2L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_GRETLSL_PRD_SETUP_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "1L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Succeeded'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.3
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "1L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_H3ETLSL_PRD_ALL_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "null"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Out of scope'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "2L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_H3ETLSL_PRD_SETUP_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "1L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Succeeded'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#CD3E32'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "28L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_H3ETLSL_PRD_L1_ECF_ALS_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "26L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Failed'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.3
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "1L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_IDETLSL_PRD_ALL_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "null"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Out of scope'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "2L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_IDETLSL_PRD_SETUP_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "1L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Succeeded'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.3
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "1L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_K2ETLSL_PRD_ALL_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "null"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Out of scope'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "2L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_K2ETLSL_PRD_SETUP_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "1L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Succeeded'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#CD3E32'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "153L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_K2ETLSL_PRD_L5_ECF_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "146L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Failed'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.3
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "1L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_KRETLSL_PRD_ALL_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "null"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Out of scope'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "2L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_KRETLSL_PRD_SETUP_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "1L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Succeeded'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#CD3E32'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "17L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_KRETLSL_PRD_L1_RCHLIC_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "7L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Failed'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.3
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "1L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_LKETLSL_PRD_ALL_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "null"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Out of scope'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "2L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_LKETLSL_PRD_SETUP_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "1L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Succeeded'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#CD3E32'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "132L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_LKETLSL_PRD_L3_RCDR_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "131L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Failed'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.3
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "1L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_MYETLSL_PRD_ALL_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "null"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Out of scope'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "2L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_MYETLSL_PRD_SETUP_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "1L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Succeeded'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#CD3E32'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "4L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_MYETLSL_PRD_PAA_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "3L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Failed'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.3
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "1L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_PHETLSL_PRD_ALL_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "null"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Out of scope'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "2L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_PHETLSL_PRD_SETUP_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "1L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Succeeded'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#CD3E32'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "135L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_PHETLSL_PRD_L3_ECF_1_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "134L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Failed'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.3
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "1L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_S2ETLSL_PRD_ALL_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "null"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Out of scope'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "2L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_S2ETLSL_PRD_SETUP_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "1L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Succeeded'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#CD3E32'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "26L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_S2ETLSL_PRD_L1_ECF_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "8L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Failed'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.3
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "1L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_THETLSL_PRD_ALL_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "null"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Out of scope'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "2L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_THETLSL_PRD_SETUP_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "1L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Succeeded'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#CD3E32'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "149L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_THETLSL_PRD_L5_ACF_BOX_2_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "148L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Failed'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.3
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "1L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_TLETLSL_PRD_ALL_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "null"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Out of scope'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.3
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "1L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_TWETLSL_PRD_ALL_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "null"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Out of scope'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "2L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_TWETLSL_PRD_SETUP_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "1L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Succeeded'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.3
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "1L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_VNETLSL_PRD_ALL_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "null"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Out of scope'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "2L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_VNETLSL_PRD_SETUP_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "1L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Succeeded'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#CD3E32'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "144L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_VNETLSL_PRD_L5_RCHTM_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "143L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Failed'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.3
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "1L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_WLETLSL_PRD_ALL_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "null"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Out of scope'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "2L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_WLETLSL_PRD_SETUP_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "1L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Succeeded'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#CD3E32'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "And": {
+                    "Left": {
+                      "And": {
+                        "Left": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "CASE_ID"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "196L"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                      }
+                                    },
+                                    "Property": "JOB_NAME"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'GO_WLETLSL_PRD_L9_SAS_BOX_M'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                                  }
+                                },
+                                "Property": "JOB_RANK"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "192L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Right": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+                              }
+                            },
+                            "Property": "STATUS"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'Failed'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "warning": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1F1D24'"
+                    }
+                  }
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'das'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "keepLayerOrder": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "section": {
+              "expr": {
+                "Literal": {
+                  "Value": "'aaad1686f32292fc500d'"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "type": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Canvas'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "6D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "2ef77d5d38030ddbd838",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+              }
+            },
+            "Property": "LAST_AS_OF_FALG"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      }
+    ]
+  }
+}

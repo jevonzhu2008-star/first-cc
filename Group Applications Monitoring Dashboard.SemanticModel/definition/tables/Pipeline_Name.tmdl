@@ -1,0 +1,17 @@
+table Pipeline_Name
+	lineageTag: 89f04314-3cb8-49b4-adbc-88fbb53c848a
+
+	column PIPELINENAME
+		lineageTag: 5648d307-bd8e-4974-aaca-e36bc65fb4f7
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: ADFACTIVITYRUN[PIPELINENAME]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Pipeline_Name = calculated
+		mode: import
+		source = DISTINCT('ADFACTIVITYRUN'[PIPELINENAME])
+
+	annotation PBI_Id = 43bb673291634674b6703a6c76c11734
+

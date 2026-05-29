@@ -1,0 +1,346 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "017fa473c0334716cf74",
+  "displayName": "ADF Pipeline",
+  "displayOption": "FitToWidth",
+  "height": 1350,
+  "width": 1800,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "Filter53cc963bbb709c9130a6",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ADFTRIGGERRUN"
+              }
+            },
+            "Property": "SUBSCRIPTIONS_NAME"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      },
+      {
+        "name": "Filter1ddba65a0c05a0a9b732",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ADFTRIGGERRUN"
+              }
+            },
+            "Property": "RESOURCEGROUPS"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      },
+      {
+        "name": "Filter6798f4c5e590385eeb90",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ADFTRIGGERRUN"
+              }
+            },
+            "Property": "FACTORIES"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      },
+      {
+        "name": "Filter0f1f61aca8308c05d79b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ADFTRIGGERRUN"
+              }
+            },
+            "Property": "TRIGGERID"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      },
+      {
+        "name": "Filtere90db0c0b50b612db137",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ADFTRIGGERRUN"
+              }
+            },
+            "Property": "TRIGGERNAME"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      },
+      {
+        "name": "Filter43a69ce17b1314a20a58",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ADFTRIGGERRUN"
+              }
+            },
+            "Property": "TRIGGERTYPE"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      },
+      {
+        "name": "Filter628b9e670500d0351280",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ADFTRIGGERRUN"
+              }
+            },
+            "Property": "STATUS"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      },
+      {
+        "name": "Filter1238d5884da2c0b5ccd9",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ADFTRIGGERRUN"
+              }
+            },
+            "Property": "TRIGGERFAILURETYPE"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      },
+      {
+        "name": "Filtereb4b888e4b7c5c678b11",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+              }
+            },
+            "Property": "ADF_KEY"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "v",
+              "Entity": "V_SM_JOB_INFO_LOG_SNAP",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "v"
+                          }
+                        },
+                        "Property": "ADF_KEY"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'ADFf452c4aa-1137-4262-b558-dffc396867b9'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "Drillthrough"
+      }
+    ]
+  },
+  "pageBinding": {
+    "name": "Pod1",
+    "type": "Drillthrough",
+    "parameters": [
+      {
+        "name": "Param_Filter53cc963bbb709c9130a6",
+        "boundFilter": "Filter53cc963bbb709c9130a6",
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ADFTRIGGERRUN"
+              }
+            },
+            "Property": "SUBSCRIPTIONS_NAME"
+          }
+        }
+      },
+      {
+        "name": "Param_Filter1ddba65a0c05a0a9b732",
+        "boundFilter": "Filter1ddba65a0c05a0a9b732",
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ADFTRIGGERRUN"
+              }
+            },
+            "Property": "RESOURCEGROUPS"
+          }
+        }
+      },
+      {
+        "name": "Param_Filter6798f4c5e590385eeb90",
+        "boundFilter": "Filter6798f4c5e590385eeb90",
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ADFTRIGGERRUN"
+              }
+            },
+            "Property": "FACTORIES"
+          }
+        }
+      },
+      {
+        "name": "Param_Filter0f1f61aca8308c05d79b",
+        "boundFilter": "Filter0f1f61aca8308c05d79b",
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ADFTRIGGERRUN"
+              }
+            },
+            "Property": "TRIGGERID"
+          }
+        }
+      },
+      {
+        "name": "Param_Filtere90db0c0b50b612db137",
+        "boundFilter": "Filtere90db0c0b50b612db137",
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ADFTRIGGERRUN"
+              }
+            },
+            "Property": "TRIGGERNAME"
+          }
+        }
+      },
+      {
+        "name": "Param_Filter43a69ce17b1314a20a58",
+        "boundFilter": "Filter43a69ce17b1314a20a58",
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ADFTRIGGERRUN"
+              }
+            },
+            "Property": "TRIGGERTYPE"
+          }
+        }
+      },
+      {
+        "name": "Param_Filter628b9e670500d0351280",
+        "boundFilter": "Filter628b9e670500d0351280",
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ADFTRIGGERRUN"
+              }
+            },
+            "Property": "STATUS"
+          }
+        }
+      },
+      {
+        "name": "Param_Filter1238d5884da2c0b5ccd9",
+        "boundFilter": "Filter1238d5884da2c0b5ccd9",
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ADFTRIGGERRUN"
+              }
+            },
+            "Property": "TRIGGERFAILURETYPE"
+          }
+        }
+      },
+      {
+        "name": "Param_Filtereb4b888e4b7c5c678b11",
+        "boundFilter": "Filtereb4b888e4b7c5c678b11",
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "V_SM_JOB_INFO_LOG_SNAP"
+              }
+            },
+            "Property": "ADF_KEY"
+          }
+        }
+      }
+    ]
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 1,
+                    "Percent": 0
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode"
+}

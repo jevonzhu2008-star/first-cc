@@ -1,0 +1,229 @@
+table 'Databricks Log'
+	lineageTag: 9b148220-4591-48d8-84f7-05f7cb30319c
+
+	measure 'Data As Of Databricks Log' =
+			
+			// var max_ = CALCULATE(MAX('API Job Log'[CREATE_TIME]),ALL('API Job Log'))
+			var max_ = CALCULATE(MAX('Databricks Log'[CREATE_TIME]),ALL('Databricks Log'))
+			return CONCATENATE("Data As Of: UTC ",max_)
+		lineageTag: 27217427-5262-4260-9cbf-63f9c4bcef15
+
+	column TIMEGENERATED
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime
+		lineageTag: 7e33906f-b6fd-4a7e-a985-04cccd5d644b
+		summarizeBy: none
+		sourceColumn: TIMEGENERATED
+
+		annotation SummarizationSetBy = Automatic
+
+	column LOG_ID
+		dataType: string
+		sourceProviderType: varchar(64)
+		lineageTag: 432f6eda-45a0-4543-97ca-b574789b2fb2
+		summarizeBy: none
+		sourceColumn: LOG_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACTION_NAME
+		dataType: string
+		sourceProviderType: varchar(64)
+		lineageTag: de260ee0-d6ab-470a-a49d-f416306cac82
+		summarizeBy: none
+		sourceColumn: ACTION_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column RESPONSE
+		dataType: string
+		sourceProviderType: varchar(max)
+		lineageTag: f94ef8b2-a916-434d-8b71-e3ce6177de77
+		summarizeBy: none
+		sourceColumn: RESPONSE
+
+		annotation SummarizationSetBy = Automatic
+
+	column JOB_ID
+		dataType: string
+		sourceProviderType: varchar(64)
+		lineageTag: b4f18b78-7baa-466d-84b5-4af6b120e621
+		summarizeBy: none
+		sourceColumn: JOB_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column JOB_RUN_ID
+		dataType: string
+		sourceProviderType: varchar(64)
+		lineageTag: bdaf9267-bc38-42d6-a0d6-8a3fc3a207f1
+		summarizeBy: none
+		sourceColumn: JOB_RUN_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column JOB_TRIGGER_TYPE
+		dataType: string
+		sourceProviderType: varchar(32)
+		lineageTag: c425dd10-f966-4fc4-a8cb-4157bb0417c3
+		summarizeBy: none
+		sourceColumn: JOB_TRIGGER_TYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column JOB_TASK_TYPE
+		dataType: string
+		sourceProviderType: varchar(32)
+		lineageTag: 9e5d317c-0940-41ad-8b1f-e899bc618362
+		summarizeBy: none
+		sourceColumn: JOB_TASK_TYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column TASK_RUN_ID
+		dataType: string
+		sourceProviderType: varchar(64)
+		lineageTag: 5b5172c9-f5ac-4ec5-87f3-dc28148bd4bd
+		summarizeBy: none
+		sourceColumn: TASK_RUN_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column TASK_KEY
+		dataType: string
+		sourceProviderType: varchar(500)
+		lineageTag: e398ebcb-d523-48bc-8334-42ff7a26a2c1
+		summarizeBy: none
+		sourceColumn: TASK_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column NOTEBOOK_PATH
+		dataType: string
+		sourceProviderType: varchar(500)
+		lineageTag: d3125530-88ca-4108-a190-6bbfdfeb342e
+		summarizeBy: none
+		sourceColumn: NOTEBOOK_PATH
+
+		annotation SummarizationSetBy = Automatic
+
+	column RUN_CREATOR_USERNAME
+		dataType: string
+		sourceProviderType: varchar(64)
+		lineageTag: 6f8f3b4c-c19a-41bf-a7dc-89326a916bb7
+		summarizeBy: none
+		sourceColumn: RUN_CREATOR_USERNAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column CLUSTER_ID
+		dataType: string
+		sourceProviderType: varchar(64)
+		lineageTag: 86a87837-af72-4589-b214-2d07cabd1b65
+		summarizeBy: none
+		sourceColumn: CLUSTER_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column JOB_CLUSTER_TYPE
+		dataType: string
+		sourceProviderType: varchar(32)
+		lineageTag: 6aa51bd6-0810-4a3e-8c8e-1ffae3fb9969
+		summarizeBy: none
+		sourceColumn: JOB_CLUSTER_TYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column IDENTITY_EMAIL
+		dataType: string
+		sourceProviderType: varchar(64)
+		lineageTag: 7e2e0593-ecc7-4fcc-995a-eb8ebfee669a
+		summarizeBy: none
+		sourceColumn: IDENTITY_EMAIL
+
+		annotation SummarizationSetBy = Automatic
+
+	column SUBSCRIPTION_ID
+		dataType: string
+		sourceProviderType: varchar(64)
+		lineageTag: 11bfc131-f683-44b1-9456-b76e838cd33a
+		summarizeBy: none
+		sourceColumn: SUBSCRIPTION_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SUBSCRIPTION_NAME
+		dataType: string
+		sourceProviderType: varchar(50)
+		lineageTag: 07505b06-badb-4a81-98fc-9bc09ff2c34a
+		summarizeBy: none
+		sourceColumn: SUBSCRIPTION_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column RESOURCEGROUPS
+		dataType: string
+		sourceProviderType: varchar(64)
+		lineageTag: a35521b1-78dd-4e7f-8989-a8334bfc56a4
+		summarizeBy: none
+		sourceColumn: RESOURCEGROUPS
+
+		annotation SummarizationSetBy = Automatic
+
+	column WORKSPACES
+		dataType: string
+		sourceProviderType: varchar(64)
+		lineageTag: ce129489-74e7-4f75-a115-094390765acd
+		summarizeBy: none
+		sourceColumn: WORKSPACES
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOURCE_RUN_ID
+		dataType: string
+		sourceProviderType: varchar(100)
+		lineageTag: 582d524b-f4aa-42b3-b9d7-87e209f8ff79
+		summarizeBy: none
+		sourceColumn: SOURCE_RUN_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column JOB_NAME
+		dataType: string
+		sourceProviderType: varchar(200)
+		lineageTag: 2673260d-6b47-49ee-ad9b-9223d1a22b13
+		summarizeBy: none
+		sourceColumn: JOB_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column CREATE_TIME
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime
+		lineageTag: 62763488-13b4-4e68-9461-75040b8af4ed
+		summarizeBy: none
+		sourceColumn: CREATE_TIME
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Databricks Log' = m
+		mode: directQuery
+		queryGroup: View
+		source = ```
+				let
+				    Source = Sql.Database(P_Server, P_DB),
+				    Custom1 = Value.NativeQuery(
+				         Source,
+				         "SELECT * FROM ["&P_Schema_DQ&"].[DATABRICKSJOBS]"
+				         
+				     )
+				in
+				    Custom1
+				```
+
+	annotation PBI_ResultType = Exception
+
+	annotation PBI_NavigationStepName = Navigation
+

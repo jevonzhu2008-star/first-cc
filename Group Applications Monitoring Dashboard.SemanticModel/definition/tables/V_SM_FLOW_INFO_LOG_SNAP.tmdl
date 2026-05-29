@@ -1,0 +1,312 @@
+table V_SM_FLOW_INFO_LOG_SNAP
+	lineageTag: 6ebec311-7321-4371-8259-0fb390bd2bd5
+
+	measure 'Actual Durations FLOW' = ```
+			
+			VAR DIF = 
+			        // DATEDIFF(MINTIME,MAXTIME,SECOND)
+			SUM('V_SM_FLOW_INFO_LOG_SNAP'[ACTUAL_DURANTIONS])
+			VAR HOURS = INT(DIF/3600)
+			VAR MINUTES =INT(MOD(DIF ,3600 )/ 60)
+			VAR SECONDS = ROUNDDOWN(MOD(DIF-MINUTES*60,3600),0)
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    HOURS = 0 && MINUTES = 0 && SECONDS = 0  , "0",
+			    HOURS = 0 && MINUTES <> 0  ,MINUTES & "m" & SECONDS & "s",
+			    HOURS = 0 && MINUTES = 0 , SECONDS & "s",
+			    HOURS&"h" & MINUTES & "m" & SECONDS & "s"
+			)
+			```
+		lineageTag: ab260fa9-6505-4ce7-a797-e014d6d59c36
+
+		changedProperty = IsHidden
+
+	column AS_OF_DAY
+		dataType: dateTime
+		formatString: m/d/yyyy
+		lineageTag: 70dc5e53-45f2-4b06-8960-ca0a32c771ae
+		summarizeBy: none
+		sourceColumn: AS_OF_DAY
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column PROJECT_ID
+		dataType: string
+		lineageTag: 7e0e925f-7f47-41a6-ac1a-21ace5e16dea
+		summarizeBy: none
+		sourceColumn: PROJECT_ID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column PROJECT_NAME
+		dataType: string
+		lineageTag: d472e0fe-8169-44f3-bd94-67cdbf2fe3b8
+		summarizeBy: none
+		sourceColumn: PROJECT_NAME
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLOW_NAME
+		dataType: string
+		lineageTag: 372cf01f-0280-4315-9f96-650080854f7c
+		summarizeBy: none
+		sourceColumn: FLOW_NAME
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACTUAL_DURANTIONS
+		dataType: int64
+		formatString: 0
+		lineageTag: 029224e3-8d3a-42e5-889f-918be4923299
+		summarizeBy: sum
+		sourceColumn: ACTUAL_DURANTIONS
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column SCHEDULE_DURANTIONS
+		dataType: int64
+		formatString: 0
+		lineageTag: b0c45c7b-63ec-40b2-8340-9fb6295e36d9
+		summarizeBy: sum
+		sourceColumn: SCHEDULE_DURANTIONS
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLOW_STATUS
+		dataType: string
+		lineageTag: 0be8f154-71c9-4a7f-806d-81a89e744b05
+		summarizeBy: none
+		sourceColumn: FLOW_STATUS
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column TOTAL_JOBS
+		dataType: int64
+		formatString: 0
+		lineageTag: 14bd0ec9-0002-4b65-8fe9-be1c7b547c8f
+		summarizeBy: sum
+		sourceColumn: TOTAL_JOBS
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column FAILED_JOBS
+		dataType: int64
+		formatString: 0
+		lineageTag: 0f5a1f02-c2e1-4693-9458-7e7512845519
+		summarizeBy: sum
+		sourceColumn: FAILED_JOBS
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column SUCCEEDED_JOBS
+		dataType: int64
+		formatString: 0
+		lineageTag: c6d81440-276b-47e3-a2ea-1c70afe375c6
+		summarizeBy: sum
+		sourceColumn: SUCCEEDED_JOBS
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column DURATION_LATENCY_JOBS
+		dataType: int64
+		formatString: 0
+		lineageTag: d1349189-17fa-42ca-854d-1e1c42d5d651
+		summarizeBy: sum
+		sourceColumn: DURATION_LATENCY_JOBS
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column SCHEDULED_LATENCY_JOBS
+		dataType: int64
+		formatString: 0
+		lineageTag: 60a5062f-7252-48da-b508-d1625fc6097a
+		summarizeBy: sum
+		sourceColumn: SCHEDULED_LATENCY_JOBS
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column RERUN_JOBS
+		dataType: int64
+		formatString: 0
+		lineageTag: 03edd54b-cc0a-4501-905f-80514b11ea85
+		summarizeBy: sum
+		sourceColumn: RERUN_JOBS
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column INPROGRESS_JOBS
+		dataType: int64
+		formatString: 0
+		lineageTag: fcb074fb-bb4b-4217-a819-1c30b0150980
+		summarizeBy: sum
+		sourceColumn: INPROGRESS_JOBS
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLOW_SCHEDULE_START
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9e5976ba-c399-45e1-87d7-301551ca4f9d
+		summarizeBy: none
+		sourceColumn: FLOW_SCHEDULE_START
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLOW_SCHEDULE_END
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d8461f96-312d-443e-ae9e-07f5292d331f
+		summarizeBy: none
+		sourceColumn: FLOW_SCHEDULE_END
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLOW_START
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: dc827618-cdde-46ab-bb45-ed862b442ac6
+		summarizeBy: none
+		sourceColumn: FLOW_START
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLOW_END
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: dbdaa156-fdf5-46cb-b098-fdc950b73231
+		summarizeBy: none
+		sourceColumn: FLOW_END
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column SUCCESSFUL_RATE
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 58c6de4a-bb0f-45a5-b902-7074364f3cc5
+		summarizeBy: sum
+		sourceColumn: SUCCESSFUL_RATE
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column NOT_STARTED_JOBS
+		dataType: int64
+		formatString: 0
+		lineageTag: 4e554be8-4e4f-4bf8-89cf-deee9604355b
+		summarizeBy: sum
+		sourceColumn: NOT_STARTED_JOBS
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column EXPIRATION_JOBS
+		dataType: int64
+		formatString: 0
+		lineageTag: 3dd77df6-e32a-4cce-a190-cb50a5fd10c2
+		summarizeBy: sum
+		sourceColumn: EXPIRATION_JOBS
+
+		annotation SummarizationSetBy = Automatic
+
+	column ALL_FAILED_JOB
+		dataType: int64
+		formatString: 0
+		lineageTag: 75542c50-227b-4e23-8922-0fc92e2d5446
+		summarizeBy: sum
+		sourceColumn: ALL_FAILED_JOB
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReportDate =
+			
+			// IF('DATE TABLE'[Date] = MAX('DATE TABLE'[Date]),"Today",'DATE TABLE'[Date]& "")
+			IF(V_SM_FLOW_INFO_LOG_SNAP[AS_OF_DAY] = MAX(V_SM_FLOW_INFO_LOG_SNAP[AS_OF_DAY]) , "Today", V_SM_FLOW_INFO_LOG_SNAP[AS_OF_DAY]&"")
+		lineageTag: c2ab3187-c461-4a36-ae84-dc78d9b57c2d
+		summarizeBy: none
+		sortByColumn: AS_OF_DAY
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column CREATE_TIME
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0870c4a0-4509-447d-ac88-892150500255
+		summarizeBy: none
+		sourceColumn: CREATE_TIME
+
+		annotation SummarizationSetBy = Automatic
+
+	column UPDATE_TIME
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 89a0086a-24f0-46c8-9140-a34f43e89e2c
+		summarizeBy: none
+		sourceColumn: UPDATE_TIME
+
+		annotation SummarizationSetBy = Automatic
+
+	partition V_SM_FLOW_INFO_LOG_SNAP = m
+		mode: import
+		queryGroup: View
+		source =
+				let
+				    Source = Sql.Databases(P_Server),
+				     P_DB  = Source{[Name= P_DB ]}[Data],
+				    MONITOR_STD_SIT_F_SM_FLOW_INFO_LOG_SNAP =  P_DB {[Schema= P_Schema ,Item="V_SM_FLOW_INFO_LOG_SNAP"]}[Data],
+				    #"Filtered Rows" = Table.SelectRows(MONITOR_STD_SIT_F_SM_FLOW_INFO_LOG_SNAP, each Text.Contains([PROJECT_ID], #"Project 1")),
+				    #"Filtered Rows1" = Table.SelectRows(#"Filtered Rows", each not Text.Contains([FLOW_NAME], #"Project 2")),
+				    #"Filtered Rows2" = Table.SelectRows(#"Filtered Rows1", each [PROJECT_NAME] <> null)
+				in
+				    #"Filtered Rows2"
+
+	changedProperty = IsHidden
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

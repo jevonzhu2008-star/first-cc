@@ -1,0 +1,70 @@
+table VS_
+	lineageTag: 40fd5794-4522-4240-b13f-6116f732ae6f
+
+	measure Today_Yesterday = IF(SELECTEDVALUE(VS_[Today VS Yesterday]) = "Today",[Current_day],[Last_day])
+		formatString: 0
+		lineageTag: 00358063-0ef5-4688-9de2-8c62abcd2252
+
+	measure Current_day = ```
+			
+			    COUNT ( 'V_SM_JOB_INFO_LOG_SNAP'[JOB_NAME] )
+			```
+		formatString: 0
+		lineageTag: f10326b2-beb3-495f-bc30-be347f6b16f5
+
+		changedProperty = IsHidden
+
+	measure Last_day =
+			
+			CALCULATE (
+			    COUNT ( 'V_SM_JOB_INFO_LOG_SNAP'[JOB_NAME] ),
+			    REMOVEFILTERS('DATE TABLE'),
+			    'DATE TABLE'[Date] = SELECTEDVALUE('DATE TABLE'[Date]) - 1
+			)
+		formatString: 0
+		lineageTag: ecb4b41d-26eb-435e-a613-b837aedf7406
+
+		changedProperty = IsHidden
+
+	measure drill_visual_level_value = SELECTEDVALUE('DateTable Dummy'[Date])
+		formatString: General Date
+		lineageTag: d05abed4-3392-48db-a2e9-89171bf3c352
+
+	measure drill_visual_level_filter = ```
+			
+			VAR today_ = [drill_visual_level_value]
+			VAR yes_= today_-1
+			VAR selection_ = SELECTEDVALUE(VS_[Today VS Yesterday])
+			VAR MAXJOBDATE =  MAX('V_SM_JOB_INFO_LOG_SNAP'[AS_OF_DAY])   
+			RETURN 
+			IF( (MAXJOBDATE = today_ && selection_="Today") || (MAXJOBDATE =yes_ && selection_="Yesterday"),1)
+			```
+		formatString: 0
+		lineageTag: 256d18cc-3a27-44e8-ac6c-4939057c6171
+
+	column 'Today VS Yesterday'
+		dataType: string
+		lineageTag: 8d030c46-036c-4d1e-b43c-aed006a7eceb
+		summarizeBy: none
+		sourceColumn: Today VS Yesterday
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sort
+		dataType: string
+		lineageTag: 9985d269-b9db-45f9-a5e3-4f0e9e817f01
+		summarizeBy: none
+		sourceColumn: Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	partition VS_ = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WCslPSaxU0lEyVIrViVaKTC0uSS2CiBgpxcYCAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Today VS Yesterday" = _t, Sort = _t])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

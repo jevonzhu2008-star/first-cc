@@ -1,0 +1,138 @@
+table 'API Job Log'
+	lineageTag: 23c4f622-e77c-4d4f-9cb8-4957a860e030
+
+	measure 'Data As Of_Api' =
+			
+			var max_ = CALCULATE(MAX('API Job Log'[CREATE_TIME]),ALL('API Job Log'))
+			return CONCATENATE("Data As Of: UTC ",max_)
+		lineageTag: 469bb97c-1ce7-4742-b02d-b74dd5291921
+
+	column TIMEGENERATED
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime
+		lineageTag: f0b50c6f-71b7-4e09-8027-29537307cb90
+		summarizeBy: none
+		sourceColumn: TIMEGENERATED
+
+		annotation SummarizationSetBy = Automatic
+
+	column RUN_ID
+		dataType: string
+		sourceProviderType: varchar(64)
+		lineageTag: b4f4aecb-d90c-4568-afff-3aca0f7ef645
+		summarizeBy: none
+		sourceColumn: RUN_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column JOB_ID
+		dataType: string
+		sourceProviderType: varchar(64)
+		lineageTag: aa4ab098-6972-4394-bd42-5d0a5a3ccaef
+		summarizeBy: none
+		sourceColumn: JOB_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column JOB_NAME
+		dataType: string
+		sourceProviderType: varchar(128)
+		lineageTag: b978c36d-c1ce-46eb-92ac-ea9a2b865d84
+		summarizeBy: none
+		sourceColumn: JOB_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column SUB_JOB_ID
+		dataType: string
+		sourceProviderType: varchar(64)
+		lineageTag: 8be33e34-a666-4486-942f-c7a3fef6e13c
+		summarizeBy: none
+		sourceColumn: SUB_JOB_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SUB_JOB_NAME
+		dataType: string
+		sourceProviderType: varchar(64)
+		lineageTag: 9305ca85-7e78-4fc5-b967-9f3283220d57
+		summarizeBy: none
+		sourceColumn: SUB_JOB_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column STATUS
+		dataType: string
+		sourceProviderType: varchar(16)
+		lineageTag: 99cb0bf6-f66a-4bb1-ab25-05caa281ce45
+		summarizeBy: none
+		sourceColumn: STATUS
+
+		annotation SummarizationSetBy = Automatic
+
+	column START_TS
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime
+		lineageTag: 65c8f9d7-002a-4ce0-8ecf-57a378739cdb
+		summarizeBy: none
+		sourceColumn: START_TS
+
+		annotation SummarizationSetBy = Automatic
+
+	column END_TS
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime
+		lineageTag: 85475503-4611-48b6-834e-fd58b00aa4aa
+		summarizeBy: none
+		sourceColumn: END_TS
+
+		annotation SummarizationSetBy = Automatic
+
+	column ERROR_MSG
+		dataType: string
+		sourceProviderType: varchar(128)
+		lineageTag: cb84b02f-f1a3-4a8e-93fe-87baf56f5137
+		summarizeBy: none
+		sourceColumn: ERROR_MSG
+
+		annotation SummarizationSetBy = Automatic
+
+	column CREATE_TIME
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime
+		lineageTag: 571f76fe-0c8e-4311-8848-36481f882bbf
+		summarizeBy: none
+		sourceColumn: CREATE_TIME
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOURCE_RUN_ID
+		dataType: string
+		sourceProviderType: varchar(100)
+		lineageTag: ab2b4ee2-61c1-4456-b038-7c79b018e78a
+		summarizeBy: none
+		sourceColumn: SOURCE_RUN_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'API Job Log' = m
+		mode: directQuery
+		queryGroup: View
+		source = ```
+				let
+				    Source = Sql.Database(P_Server, P_DB),
+				    Custom1 = Value.NativeQuery(
+				         Source,
+				         "SELECT * FROM ["&P_Schema_DQ&"].[API_JOB_LOG_CL]  where CREATE_TIME >="&P_Interval&""
+				         
+				     )
+				in
+				    Custom1
+				```
+
+	annotation PBI_ResultType = Table
+

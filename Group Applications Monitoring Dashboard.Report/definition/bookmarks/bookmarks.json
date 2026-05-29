@@ -1,0 +1,28 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmarksMetadata/1.0.0/schema.json",
+  "items": [
+    {
+      "name": "Bookmark9f9adb4036d74eb5b447"
+    },
+    {
+      "name": "Bookmark34871ced7aff46df47b2"
+    },
+    {
+      "name": "Bookmarkec4fdc5ffa9d57ecfe1b"
+    },
+    {
+      "name": "Bookmarkc7ecf743c8383dcdc538",
+      "displayName": "Process Map",
+      "children": [
+        "Bookmark8fde70d038736947b05e",
+        "Bookmarkd59d5c508e047db41178"
+      ]
+    },
+    {
+      "name": "d04a6bc65d2e5e04207c"
+    },
+    {
+      "name": "58e62e90e0b7579d395d"
+    }
+  ]
+}

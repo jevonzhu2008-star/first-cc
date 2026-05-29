@@ -1,0 +1,77 @@
+table Week_Table
+	lineageTag: 782431e4-b0e0-4a96-ac48-676d72dd1409
+
+	column Date
+		formatString: Long Date
+		lineageTag: 07a60daa-5a0b-49f8-a668-17555869f0e7
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Number_Year_Month
+		formatString: 0
+		lineageTag: 74b590c3-4239-49db-96c1-bf5ae727fd0a
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Number_Year_Month]
+
+		annotation SummarizationSetBy = Automatic
+
+	column WEEK
+		lineageTag: 0bc53f68-f778-4680-b894-64688acc3715
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [WEEK]
+		sortByColumn: Date_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column WEEKDAY
+		formatString: 0
+		lineageTag: 627b0c69-3997-4006-b31c-e452c37f8e17
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [WEEKDAY]
+
+		annotation SummarizationSetBy = Automatic
+
+	column WEEKNUM
+		formatString: 0
+		lineageTag: 4ca0afb4-7b29-4033-9395-dcbcef5f2338
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [WEEKNUM]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date_Number
+		formatString: 0
+		lineageTag: 49d518b0-d5d5-43de-a318-0b1d28b9d85d
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Date_Number]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Week_Table = calculated
+		mode: import
+		source =
+				
+				var year_ = YEAR(UTCNOW()+TIME(8,0,0))
+				var month_ = MONTH(UTCNOW()+TIME(8,0,0))
+				var day_ = DAY(TODAY())
+				return
+				ADDCOLUMNS(CALENDAR(UTCNOW()+TIME(8,0,0)-(WEEKDAY(UTCNOW()+TIME(8,0,0))-2),UTCNOW()+TIME(8,0,0)+(8-WEEKDAY(UTCNOW()+TIME(8,0,0)))),
+				"Number_Year_Month",YEAR([Date])*100+MONTH([Date]),
+				"WEEK",FORMAT([Date],"DDD"),
+				"WEEKDAY",WEEKDAY([Date],2),
+				"WEEKNUM",WEEKNUM([Date],2) ,
+				"Date_Number",YEAR([Date])*10000+MONTH([Date])*100+DAY([Date]
+				))
+
+	annotation PBI_Id = 5c73c2e214de4994b35423cc0f0ef495
+

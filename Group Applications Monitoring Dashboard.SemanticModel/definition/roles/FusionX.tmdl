@@ -1,0 +1,15 @@
+role FusionX
+	modelPermission: read
+
+	tablePermission DIM_ProjectFlow = [PROJECT_ID] == "P007"
+
+	tablePermission Pages = [FusionX] == "Y"
+
+	tablePermission V_SM_FLOW_INFO_LOG_SNAP = [PROJECT_ID] == "P007"
+
+	tablePermission V_SM_JOB_INFO_LOG_SNAP = [PROJECT_ID] == "P007"
+
+	tablePermission Dim_Project = [Dim_Project] == "FusionX"
+
+	annotation PBI_Id = 978a283c58404ee2a895beeed84b6b01
+

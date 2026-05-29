@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Group Applications Monitoring Dashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "4b78e249-2bb7-41d5-b9cc-8a51868a243a"
+  }
+}

@@ -1,0 +1,175 @@
+table ADFTRIGGERRUN
+	lineageTag: c2d55a18-a742-4818-bb36-3097eb4bb661
+
+	column TIMEGENERATED
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime
+		lineageTag: 1dc99ec1-a76e-4675-834a-c31218e6aabf
+		summarizeBy: none
+		sourceColumn: TIMEGENERATED
+
+		annotation SummarizationSetBy = Automatic
+
+	column STATUS
+		dataType: string
+		sourceProviderType: varchar(16)
+		lineageTag: 59e1b75d-3dae-47c9-9a27-8fdc0bbdc834
+		summarizeBy: none
+		sourceColumn: STATUS
+
+		annotation SummarizationSetBy = Automatic
+
+	column START
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime
+		lineageTag: 7e8f0a24-4656-421e-b697-8d490ffec116
+		summarizeBy: none
+		sourceColumn: START
+
+		annotation SummarizationSetBy = Automatic
+
+	column TRIGGERFAILURETYPE
+		dataType: string
+		sourceProviderType: varchar(128)
+		lineageTag: 8858dbd5-cd20-4e9e-ae30-41865fe123be
+		summarizeBy: none
+		sourceColumn: TRIGGERFAILURETYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column TRIGGERNAME
+		dataType: string
+		sourceProviderType: varchar(128)
+		lineageTag: 7686dfa7-d6d8-4e81-8cd6-50d935b4c743
+		summarizeBy: none
+		sourceColumn: TRIGGERNAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column TRIGGERID
+		dataType: string
+		sourceProviderType: varchar(64)
+		lineageTag: be9863f0-c4f0-4093-9f55-104a84379660
+		summarizeBy: none
+		sourceColumn: TRIGGERID
+
+		annotation SummarizationSetBy = Automatic
+
+	column TRIGGEREVENT
+		dataType: string
+		sourceProviderType: varchar(128)
+		lineageTag: f40f6beb-9d96-43e1-b602-ed2c018302e4
+		summarizeBy: none
+		sourceColumn: TRIGGEREVENT
+
+		annotation SummarizationSetBy = Automatic
+
+	column PARAMETERS
+		dataType: string
+		sourceProviderType: varchar(max)
+		lineageTag: 8a7df49f-f5b3-4d36-90de-6f0fae54abb0
+		summarizeBy: none
+		sourceColumn: PARAMETERS
+
+		annotation SummarizationSetBy = Automatic
+
+	column TRIGGERTYPE
+		dataType: string
+		sourceProviderType: varchar(64)
+		lineageTag: e3d9c9a4-4d95-4cc7-8512-0e8cd5827f34
+		summarizeBy: none
+		sourceColumn: TRIGGERTYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column SUBSCRIPTIONS
+		dataType: string
+		sourceProviderType: varchar(64)
+		lineageTag: 178be378-9bb6-4d17-b9dd-111cd04de3ba
+		summarizeBy: none
+		sourceColumn: SUBSCRIPTIONS
+
+		annotation SummarizationSetBy = Automatic
+
+	column RESOURCEGROUPS
+		dataType: string
+		sourceProviderType: varchar(64)
+		lineageTag: 9cf13f79-ea6f-4937-95ea-380f6b7c4620
+		summarizeBy: none
+		sourceColumn: RESOURCEGROUPS
+
+		annotation SummarizationSetBy = Automatic
+
+	column FACTORIES
+		dataType: string
+		sourceProviderType: varchar(64)
+		lineageTag: a7d90472-1aea-400a-863f-c229a944a752
+		summarizeBy: none
+		sourceColumn: FACTORIES
+
+		annotation SummarizationSetBy = Automatic
+
+	column CORRELATIONID
+		dataType: string
+		sourceProviderType: varchar(200)
+		lineageTag: 7f1a6a8d-0e5c-4d0c-a698-21b44e6cff6d
+		summarizeBy: none
+		sourceColumn: CORRELATIONID
+
+		annotation SummarizationSetBy = Automatic
+
+	column LEVEL
+		dataType: string
+		sourceProviderType: varchar(100)
+		lineageTag: 84900610-2fa3-4309-9b18-615bfbd472a3
+		summarizeBy: none
+		sourceColumn: LEVEL
+
+		annotation SummarizationSetBy = Automatic
+
+	column LOCATION
+		dataType: string
+		sourceProviderType: varchar(100)
+		lineageTag: 1822bb70-e492-4ef3-9cf7-ac295e9bf6fd
+		summarizeBy: none
+		sourceColumn: LOCATION
+
+		annotation SummarizationSetBy = Automatic
+
+	column CREATE_TIME
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime
+		lineageTag: d314547c-9d34-46be-9926-6e999ce6105d
+		summarizeBy: none
+		sourceColumn: CREATE_TIME
+
+		annotation SummarizationSetBy = Automatic
+
+	column SUBSCRIPTIONS_NAME
+		dataType: string
+		sourceProviderType: varchar(64)
+		lineageTag: 0d386e91-0081-4988-b1ae-109b923f86df
+		summarizeBy: none
+		sourceColumn: SUBSCRIPTIONS_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ADFTRIGGERRUN = m
+		mode: directQuery
+		queryGroup: View
+		source = ```
+				let
+				    Source = Sql.Database(P_Server, P_DB),
+				    Custom1 = Value.NativeQuery(
+				         Source,
+				         "SELECT * FROM ["&P_Schema_DQ&"].[ADFTRIGGERRUN]  where CREATE_TIME >="&P_Interval&""
+				         
+				     )
+				in Custom1
+				```
+
+	annotation PBI_ResultType = Table
+

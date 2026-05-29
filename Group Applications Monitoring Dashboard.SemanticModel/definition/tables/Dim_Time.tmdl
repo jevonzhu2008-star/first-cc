@@ -1,0 +1,27 @@
+table Dim_Time
+	lineageTag: feddd7a2-1214-4288-8fae-4e6ee376f393
+
+	column Time
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: 0132bad7-1186-419c-9fb0-737c8ec65b54
+		summarizeBy: none
+		sourceColumn: Time
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	partition Dim_Time = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("VdC5DQJRFATBXLAx9v3mTmW1+acBQhiFNM54rdr307a9vjsd588Zz/LkuXiunpvn7nl4npyxYCwYC8aCsWAsGAvGgrFgLFgWLAuWBevPYHulW7qlW7qlW7qlW7qlW7qlW7qlW7qlW7qlW7qlW7qlW7ql2+8cbw==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Time = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Time", type time}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

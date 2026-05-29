@@ -1,0 +1,17 @@
+table DIM_Status
+	lineageTag: 3a70081d-b5dc-4e80-8375-d904e4f2a3de
+
+	column STATUS
+		lineageTag: 1da034f3-c10d-4141-a544-137146ca34df
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: V_SM_JOB_INFO_LOG_SNAP[STATUS]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_Status = calculated
+		mode: import
+		source = DISTINCT('V_SM_JOB_INFO_LOG_SNAP'[STATUS])
+
+	annotation PBI_Id = 2f8f4741b4ba49aca6851e06d12d7118
+

@@ -1,0 +1,114 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "dd27d745913db2d449ca",
+  "displayName": "Drill Through to Sub Pipeline Activity ",
+  "displayOption": "FitToWidth",
+  "height": 1350,
+  "width": 1800,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "Filterf53ead93cd57d4278d28",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ADFPIPELINERUN_SUB"
+              }
+            },
+            "Property": "RUN_ID"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "a",
+              "Entity": "ADFPIPELINERUN_SUB",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "a"
+                          }
+                        },
+                        "Property": "RUN_ID"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'47448e38-b814-41c4-a3e5-585f6326f884'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "Drillthrough"
+      }
+    ]
+  },
+  "pageBinding": {
+    "name": "d4e70b15a34db623c92b",
+    "type": "Drillthrough",
+    "parameters": [
+      {
+        "name": "Param_Filterf53ead93cd57d4278d28",
+        "boundFilter": "Filterf53ead93cd57d4278d28",
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ADFPIPELINERUN_SUB"
+              }
+            },
+            "Property": "RUN_ID"
+          }
+        }
+      }
+    ]
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 1,
+                    "Percent": 0
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode"
+}

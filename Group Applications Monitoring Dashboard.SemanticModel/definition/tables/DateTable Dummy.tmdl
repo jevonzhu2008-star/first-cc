@@ -1,0 +1,87 @@
+table 'DateTable Dummy'
+	lineageTag: 8526a0c7-e294-47c7-859a-8caf8e76d6ed
+
+	column Year_MONTH
+		lineageTag: 27e47738-6f56-4059-9f6e-dc76eaf38cad
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: DATE TABLE[Year_MONTH]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Number_Year_Month
+		formatString: 0
+		lineageTag: bc6972ed-b36a-46d2-ae9b-f88762f7502a
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: DATE TABLE[Number_Year_Month]
+
+		annotation SummarizationSetBy = Automatic
+
+	column WEEK
+		lineageTag: 06294636-3026-41c2-806a-6b8fa2b8d953
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: DATE TABLE[WEEK]
+
+		annotation SummarizationSetBy = Automatic
+
+	column WEEKDAY
+		formatString: 0
+		lineageTag: 3cee9445-900d-4687-b038-db17fb193c8d
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: DATE TABLE[WEEKDAY]
+
+		annotation SummarizationSetBy = Automatic
+
+	column WEEKNUM
+		formatString: 0
+		lineageTag: 94ee88ab-7ac1-4f12-b6d0-8ff7e5eb07b5
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: DATE TABLE[WEEKNUM]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date_Number
+		lineageTag: 1c2a0cb3-d513-4e08-8b0d-9eba59956dd0
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: DATE TABLE[Date_Number]
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReportDate
+		lineageTag: 994065ec-5c48-4540-8948-55f1ff8184e4
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: DATE TABLE[ReportDate]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		formatString: Long Date
+		lineageTag: 7e609cf3-1336-4cdd-9ce6-b03a639dde6e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: DATE TABLE[Date]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ETLSL_DATE
+		lineageTag: e878e54f-9a16-4282-99bf-33a87b90ca13
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: DATE TABLE[ETLSL_DATE]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'DateTable Dummy' = calculated
+		mode: import
+		source = 'DATE TABLE'
+
+	annotation PBI_Id = 7e6a111e1ffe4d7d8edea8d2ac81c459
+

@@ -1,0 +1,17 @@
+table Flow
+	lineageTag: 791c4210-51b3-468f-9ac2-9b27d376c308
+
+	column FLOW_NAME
+		lineageTag: 04dfe89b-50d4-4346-86c9-917d2e6ad446
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: V_SM_JOB_INFO_LOG_SNAP[FLOW_NAME]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Flow = calculated
+		mode: import
+		source = DISTINCT('V_SM_JOB_INFO_LOG_SNAP'[FLOW_NAME])
+
+	annotation PBI_Id = c04fc5c456aa4172a39a3b0a1631fb3f
+

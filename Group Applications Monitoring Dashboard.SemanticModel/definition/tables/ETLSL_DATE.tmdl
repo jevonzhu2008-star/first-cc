@@ -1,0 +1,26 @@
+table ETLSL_DATE
+	lineageTag: 7e1fa1e6-fd6d-4dfa-be07-68b785dc6826
+
+	column AS_OF_DAY
+		formatString: General Date
+		lineageTag: 61a71dff-1c1d-4729-afd1-5106af5024ef
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: V_SM_JOB_INFO_LOG_SNAP[AS_OF_DAY]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Project
+		lineageTag: 59e332ba-6449-4e4c-98c7-a1c2f053a133
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Project]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ETLSL_DATE = calculated
+		mode: import
+		source = ADDCOLUMNS(CALCULATETABLE(DISTINCT(V_SM_JOB_INFO_LOG_SNAP[AS_OF_DAY]),FILTER(V_SM_JOB_INFO_LOG_SNAP,V_SM_JOB_INFO_LOG_SNAP[PROJECT_ID] IN {"P004","P006"}&&V_SM_JOB_INFO_LOG_SNAP[LAST_AS_OF_FALG]="Y")),"Project","ETLSL")
+
+	annotation PBI_Id = 3245cb98c1fa40a8ba6e35d195bf9334
+

@@ -1,0 +1,611 @@
+table _Measure
+	lineageTag: 5e03264d-4f1e-440e-9405-90be650350d2
+
+	-- 计算作业成功率：成功作业数 / 总作业数
+	measure success_rate =
+
+			var s_ = CALCULATE(COUNT('V_SM_JOB_INFO_LOG_SNAP'[JOB_ID]),FILTER('V_SM_JOB_INFO_LOG_SNAP','V_SM_JOB_INFO_LOG_SNAP'[STATUS]="Succeeded"))
+			var all_ = CALCULATE(COUNT('V_SM_JOB_INFO_LOG_SNAP'[JOB_ID]))
+			RETURN DIVIDE(s_,all_,0) + 0
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: f42f599d-7479-448f-8fd5-637f7864e022
+
+	-- 统计失败作业数量：状态为"Failed"的作业计数
+	measure Failed_Jobs = CALCULATE(COUNT('V_SM_JOB_INFO_LOG_SNAP'[JOB_ID]),FILTER('V_SM_JOB_INFO_LOG_SNAP','V_SM_JOB_INFO_LOG_SNAP'[STATUS]="Failed"))+0
+		formatString: 0
+		lineageTag: f98e1489-e9ab-4e6d-94cc-3081e2becee8
+
+	-- 统计持续时间延迟的作业数量：Latency_D = "Y" 的作业去重计数
+	measure Durartion_Latency =
+
+			CALCULATE(DISTINCTCOUNT('V_SM_JOB_INFO_LOG_SNAP'[JOB_ID]),FILTER('V_SM_JOB_INFO_LOG_SNAP','V_SM_JOB_INFO_LOG_SNAP'[Latency_D]="Y"))+0
+		formatString: 0
+		lineageTag: 1cbfe521-29f6-44b9-b35d-3ae737650874
+
+	-- 统计重跑作业数量：Rerun tag = "rerun" 的作业去重计数
+	measure Rerun = CALCULATE(DISTINCTCOUNT('V_SM_JOB_INFO_LOG_SNAP'[JOB_ID]),FILTER('V_SM_JOB_INFO_LOG_SNAP','V_SM_JOB_INFO_LOG_SNAP'[Rerun tag]="rerun"))
+		formatString: 0
+		lineageTag: b8c93de4-6a00-4bc0-b3a9-8cfe5a9db211
+
+	-- 计算作业失败率：失败作业数 / 总作业数
+	measure Failed_Rate =
+
+			var F_ = CALCULATE(COUNT('V_SM_JOB_INFO_LOG_SNAP'[JOB_ID]),FILTER('V_SM_JOB_INFO_LOG_SNAP','V_SM_JOB_INFO_LOG_SNAP'[STATUS]="Failed"))
+			var all_ = CALCULATE(COUNT('V_SM_JOB_INFO_LOG_SNAP'[JOB_ID]))
+			RETURN DIVIDE(F_,all_,0)+0
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: b6ba9b7c-f638-40c1-a743-4cacb83e7c33
+
+	-- 计算作业完成率：已完成（成功）作业数 / 总作业数
+	measure 'Completion rate' =
+
+			var total_ = COUNT('V_SM_JOB_INFO_LOG_SNAP'[JOB_ID])
+			var comp_ = CALCULATE(COUNT('V_SM_JOB_INFO_LOG_SNAP'[JOB_ID]),FILTER('V_SM_JOB_INFO_LOG_SNAP','V_SM_JOB_INFO_LOG_SNAP'[STATUS]="Succeeded"))
+			RETURN DIVIDE(comp_,total_,0)+0
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 56b28eae-e576-4df3-982d-b1d29e9f1fe9
+
+	-- 动态标题：根据参数选择返回"Job Status By Source"或"Job Status By Flow"
+	measure 'Job Status by' =
+
+			VAR _parameter = SELECTEDVALUE('Parameter 2'[Parameter Fields])
+			VAR text_ = IF(_parameter = "'Source'[SOURCE]","Source","Flow")
+			return  CONCATENATE("Job Status By ",text_)
+		lineageTag: bbf9d20f-135a-46ed-a16e-dfe183d288a3
+
+	-- 动态标题：根据参数选择返回"Total Duration By Source"或"Total Duration By Flow"
+	measure 'Top 5 Average Duration by' =
+
+			VAR _parameter = SELECTEDVALUE('Parameter 2'[Parameter Fields])
+			VAR text_ = IF(_parameter = "'Source'[SOURCE]","Source","Flow")
+			return  CONCATENATE("Total Duration By ",text_)
+		lineageTag: 0bc059db-05fc-4a30-a740-58e905970129
+
+	-- 动态标题：根据参数选择返回"Failed Rate By Source"或"Failed Rate By Flow"
+	measure 'Failed Rate by' =
+
+			VAR _parameter = SELECTEDVALUE('Parameter 2'[Parameter Fields])
+			VAR text_ = IF(_parameter = "'Source'[SOURCE]","Source","Flow")
+			return  CONCATENATE("Failed Rate By ",text_)
+		lineageTag: 0a2c156f-f7ac-4d09-8f94-9524df47db22
+
+	-- 统计计划时间延迟的作业数量：Latency_S = "Y" 的作业去重计数
+	measure Scheduled_Latency =
+
+			CALCULATE(DISTINCTCOUNT('V_SM_JOB_INFO_LOG_SNAP'[JOB_ID]),FILTER('V_SM_JOB_INFO_LOG_SNAP','V_SM_JOB_INFO_LOG_SNAP'[Latency_S]="Y"))+0
+		formatString: 0
+		lineageTag: 48a89f5f-09df-4033-a595-e505cbe806cf
+
+	-- 统计每日失败作业数量：按日期筛选状态为"Failed"的作业去重计数
+	measure Daily_Failed_Jobs = CALCULATE(DISTINCTCOUNT('V_SM_JOB_INFO_LOG_SNAP'[JOB_ID]),FILTER('V_SM_JOB_INFO_LOG_SNAP','V_SM_JOB_INFO_LOG_SNAP'[STATUS]="Failed"))+0
+		formatString: 0
+		lineageTag: 341718c3-d766-466a-b0c3-83c05d56c741
+
+	-- 下次计划开始时间（预留度量）
+	measure Next_scheduled_start
+		lineageTag: 5bcf89e8-9e45-4148-a858-008ba1f85982
+
+	-- 判断流程整体状态：根据所有作业是否全部成功/全部未开始/部分进行中返回不同状态
+	measure Flow_Status =
+
+			var count_all= DISTINCTCOUNT('V_SM_JOB_INFO_LOG_SNAP'[JOB_ID])
+			VAR succeeded_ = CALCULATE(DISTINCTCOUNT('V_SM_JOB_INFO_LOG_SNAP'[JOB_ID]),FILTER('V_SM_JOB_INFO_LOG_SNAP','V_SM_JOB_INFO_LOG_SNAP'[STATUS]="Succeeded"))
+			VAR not_started = CALCULATE(DISTINCTCOUNT('V_SM_JOB_INFO_LOG_SNAP'[JOB_ID]),FILTER('V_SM_JOB_INFO_LOG_SNAP','V_SM_JOB_INFO_LOG_SNAP'[STATUS]="No Started"))
+			return SWITCH(TRUE(),
+			count_all=succeeded_,"Succeeded",
+			not_started=count_all,"No Started",
+			"InProgress")
+		lineageTag: 8dbb796c-c486-455a-bf15-e653895da046
+
+	-- 成功阈值标记（预留度量）
+	measure Succeeded_threshold
+		lineageTag: ce67ae6d-908f-424b-b207-96aab81bb9b2
+
+	-- 获取第一个作业的开始时间：格式化为"yyyy-mm-dd HH:MM:SS"
+	measure first_job_time = ```
+			 VAR DT = FORMAT(MIN('V_SM_JOB_INFO_LOG_SNAP'[START_TS]),"HH:MM:SS")
+			 VAR DATES = FORMAT(MIN('V_SM_JOB_INFO_LOG_SNAP'[START_TS]),"yyyy-mm-dd")
+			 RETURN
+			 IF( DT = BLANK() ,"Not Started",
+			    --DATES & UNICHAR(10) & DT
+			    DATES & "  " & DT
+			 )
+			```
+		lineageTag: 06d741a4-8332-4c74-a01a-2b758870bfa7
+
+	-- 计算快照成功率：仅统计状态为成功/失败的已完成作业，排除未开始等状态
+	measure success_rate_snap =
+
+			VAR s_ =
+			    CALCULATE (
+			        COUNT ( 'V_SM_JOB_INFO_LOG_SNAP'[JOB_ID] ),
+			        FILTER (
+			            'V_SM_JOB_INFO_LOG_SNAP',
+			            'V_SM_JOB_INFO_LOG_SNAP'[STATUS] = "Succeeded"
+			        )
+			    )
+			VAR all_ =
+			    CALCULATE (
+			        COUNT ( 'V_SM_JOB_INFO_LOG_SNAP'[JOB_ID] ),
+			        FILTER (
+			            'V_SM_JOB_INFO_LOG_SNAP',
+			            'V_SM_JOB_INFO_LOG_SNAP'[STATUS]
+			                IN {
+			                    "Succeeded",
+			                    "Failed"
+			                }
+			        )
+			    )
+			RETURN
+			    DIVIDE (
+			        s_,
+			        all_,
+			        0
+			    )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 8fada7e9-dabb-4a74-a59f-1701afbab0cd
+
+	-- 总作业计数快照：统计V_SM_JOB_INFO_LOG_SNAP中的所有作业计数
+	measure Jobs_snap = COUNT('V_SM_JOB_INFO_LOG_SNAP'[JOB_ID]) + 0
+		formatString: 0
+		lineageTag: d63e9a41-0e53-4a09-b591-f3ed54ad7ff6
+
+	-- 计算实际持续时间与计划持续时间的差值平均值：(实际平均 - 计划平均)
+	measure durations_diff_snap = AVERAGE('V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS])-AVERAGE('V_SM_JOB_INFO_LOG_SNAP'[SCHEDULE_DURANTIONS])
+		lineageTag: f6a25de6-59e0-4c5f-b8a8-a1da95cff323
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	-- 计算成功作业的平均实际持续时间：仅筛选状态为"Succeeded"的作业
+	measure Average_succeeded = CALCULATE(AVERAGE('V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS]),FILTER('V_SM_JOB_INFO_LOG_SNAP','V_SM_JOB_INFO_LOG_SNAP'[STATUS]="Succeeded"))
+		lineageTag: 4666a1d3-c991-4bd0-8003-cfe29b3ae31e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	-- 计算失败作业的平均实际持续时间：仅筛选状态为"Failed"的作业
+	measure Average_Failed = CALCULATE(AVERAGE('V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS]),FILTER('V_SM_JOB_INFO_LOG_SNAP','V_SM_JOB_INFO_LOG_SNAP'[STATUS]="Failed"))
+		lineageTag: 9b69d5e9-a3ca-4e90-9a67-28a11dcc0300
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	-- 计算运行中作业的平均实际持续时间：仅筛选状态为"InProgress"的作业
+	measure Average_running = CALCULATE(AVERAGE('V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS]),FILTER('V_SM_JOB_INFO_LOG_SNAP','V_SM_JOB_INFO_LOG_SNAP'[STATUS]="InProgress"))
+		lineageTag: b20d54af-f117-4848-b9fb-44384775be0a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	-- 计算按作业分组的持续时间标准差：转换为小时单位
+	measure STD_by_job =
+
+			CALCULATE(STDEV.P('V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS])/3600,ALL('V_SM_JOB_INFO_LOG_SNAP'[JOB_NAME]))
+		formatString: 0.0000
+		lineageTag: 1d926df6-7422-4d14-872b-526d1aa356cb
+
+	-- 每日格式化颜色判断：根据(平均持续时间 / 标准差)的比值返回颜色，异常值标为橙色
+	measure Daily_formatting = ```
+
+			 VAR p_ = DIVIDE(AVERAGE('V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS]),[STD_by_job],0)
+			 RETURN IF(p_>=2||p_<=0.25,"#FBB51F","#08B1A8")
+			```
+		lineageTag: 7dbd5db8-697b-496b-a9fb-fd449bcba580
+
+	-- 开始颜色条件格式：如果最大Latency_S = "Y"则返回橙色
+	measure start_color = IF(MAX('V_SM_JOB_INFO_LOG_SNAP'[Latency_S])="Y","#FBB51F")
+		lineageTag: 81b51cfe-105e-4b3f-b6ae-30dcf743f83b
+
+	-- 统计成功作业数量：状态为"Succeeded"的作业计数
+	measure Succeeded_Jobs = CALCULATE(COUNT('V_SM_JOB_INFO_LOG_SNAP'[JOB_ID]),FILTER('V_SM_JOB_INFO_LOG_SNAP','V_SM_JOB_INFO_LOG_SNAP'[STATUS]="Succeeded"))+0
+		formatString: 0
+		lineageTag: 3c3f2b79-7443-41ad-99b3-69691c55e71c
+
+	-- 计算成功率与阈值(99.5%)的差值：用于判断是否超过阈值
+	measure over_th = [success_rate_snap]-0.995
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 11e504d5-1aa3-41d5-8cd7-f8e236bfcebd
+
+	-- 去重作业计数快照：对JOB_ID进行去重计数
+	measure Jobs_snap_distinct = DISTINCTCOUNT('V_SM_JOB_INFO_LOG_SNAP'[JOB_ID])+0
+		formatString: 0
+		lineageTag: 1ebea91b-0b08-44c4-8014-dacff8bc0bc7
+
+	-- 获取所有作业中的最大日期：用于显示最新数据日期
+	measure Max_as_of_day = CALCULATE(MAX('V_SM_JOB_INFO_LOG_SNAP'[AS_OF_DAY]),ALL('V_SM_JOB_INFO_LOG_SNAP'))
+		formatString: General Date
+		lineageTag: 3a605c5a-73b1-4fef-ac93-682e176fdb0a
+
+	-- 周范围标题生成：生成当前周和对比周的日期范围文本
+	measure week_title =
+
+			var ex_time = MAX(Week_Table[Date])
+			var ex_time_min =MIN(Week_Table[Date])
+			var text_1 = FORMAT(ex_time,"mm/dd/yyyy")
+			var text_2 = CONCATENATE(FORMAT(ex_time_min,"mm/dd/yyyy"), " - ")
+			var ex_time_7 = MAX(Week_Table[Date])-7
+			var ex_time_min_7 =MIN(Week_Table[Date])-7
+			var text_3 = FORMAT(ex_time_7,"mm/dd/yyyy")
+			var text_4 = CONCATENATE(" VS " ,CONCATENATE(FORMAT(ex_time_min_7,"mm/dd/yyyy"), " - "))
+			var text_5 = CONCATENATE(text_2,text_1)
+			VAR TEXT_6 = CONCATENATE(text_4,TEXT_3)
+			RETURN CONCATENATE(text_5,TEXT_6
+			)
+		lineageTag: 7233a6c6-6b07-43ec-9cb7-fea1f25b5eb8
+
+	-- 按日期分组的平均持续时间标准差：转换为小时单位
+	measure STD_by_Day =
+
+			STDEVX.S(ALLSELECTED(V_SM_JOB_INFO_LOG_SNAP[AS_OF_DAY]),[Average_Duration])/3600
+		lineageTag: 1d5ac26d-d625-46a0-93ae-0cc79ad29176
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	-- 按日期计算平均持续时间：转换为小时单位
+	measure Average_by_Day = CALCULATE(AVERAGE('V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS])/3600,ALLSELECTED('V_SM_JOB_INFO_LOG_SNAP'[AS_OF_DAY]))
+		formatString: 0
+		lineageTag: dbd3215f-a344-47d0-9fff-dfe09d276e95
+
+	-- 范围格式化颜色判断：根据(当日平均与总体平均差值的绝对值)是否大于标准差返回颜色
+	measure range_formatting = ```
+
+			 VAR p_ = ABS(AVERAGE('V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS])-[Average_by_Day])-[STD_by_Day]
+			 RETURN IF(p_>=0,"#08B1A8","#FBB51F")
+			```
+		lineageTag: be12bf53-af41-4e60-ae76-306f80e55ce7
+
+	-- 按来源计算平均持续时间：总和除以来源数，转换为小时单位
+	measure Average_By_source = DIVIDE(SUM('V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS])/3600,COUNT('V_SM_JOB_INFO_LOG_SNAP'[SOURCE]),0)
+		lineageTag: aea7c051-54e5-4698-b3d4-656a40eac718
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	-- 按来源计算平均持续时间的标准差：对每个来源的总和计算标准差
+	measure Std_source = ```
+
+			VAR A=
+			    ADDCOLUMNS(
+			        ALL('V_SM_JOB_INFO_LOG_SNAP'[SOURCE]),
+			        "@SUM", CALCULATE(SUM('V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS])/3600)
+			    )
+			VAR RESULT =
+			CALCULATE(
+			    STDEVX.S(A,[@SUM]),ALLSELECTED('V_SM_JOB_INFO_LOG_SNAP'[SOURCE]))
+			RETURN
+			    RESULT
+			```
+		lineageTag: ca1263c9-bb81-4e97-952f-28a678c69bf9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	-- 格式化最大持续时间：将最大持续时间秒数转换为"Xh Xm Xs"格式显示
+	measure MAX_durations2 =
+
+			VAR DIF = MAX('V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS]) + 0
+			VAR HOURS = INT(DIF/3600)
+			VAR MINUTES =INT(MOD(DIF ,3600 )/ 60)
+			VAR SECONDS = ROUNDDOWN(MOD(DIF-MINUTES*60,3600),0)
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    HOURS = 0 && MINUTES <> 0  ,MINUTES & "m" & SECONDS & "s",
+			    HOURS = 0 && MINUTES = 0 , SECONDS & "s",
+			    HOURS&"h" & MINUTES & "m" & SECONDS & "s"
+			)
+		lineageTag: eee781b9-bdcc-4b33-9d03-be05c2cf7172
+
+	-- 格式化最小持续时间：将最小持续时间秒数转换为"Xh Xm Xs"格式显示
+	measure MIN_durations2 =
+
+			VAR DIF =  MIN('V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS]) + 0
+			VAR HOURS = INT(DIF/3600)
+			VAR MINUTES =INT(MOD(DIF ,3600 )/ 60)
+			VAR SECONDS = ROUNDDOWN(MOD(DIF-MINUTES*60,3600),0)
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    HOURS = 0 && MINUTES <> 0  ,MINUTES & "m" & SECONDS & "s",
+			    HOURS = 0 && MINUTES = 0 , SECONDS & "s",
+			    HOURS&"h" & MINUTES & "m" & SECONDS & "s"
+			)
+		lineageTag: 7d671b42-a57e-499d-abf3-696b3462fc2b
+
+	-- 统计当前运行中作业数量：筛选状态为"InProgress"的作业计数
+	measure Cnt_Running_Job =
+
+			CALCULATE(
+			    COUNT('V_SM_JOB_INFO_LOG_SNAP'[JOB_ID]),
+			    'V_SM_JOB_INFO_LOG_SNAP'[STATUS] = "InProgress"
+			) + 0
+		formatString: 0
+		lineageTag: df6c383c-1cc5-4fa4-9d20-8322d5602311
+
+	-- 统计最新失败作业信息数量：筛选状态失败、最新标记、非Confluence节点的作业计数
+	measure 'Failed Job_info' =
+
+			CALCULATE(
+			    COUNT('V_SM_JOB_INFO_LOG_SNAP'[JOB_ID]),
+			    FILTER(V_SM_JOB_INFO_LOG_SNAP,'V_SM_JOB_INFO_LOG_SNAP'[STATUS] = "Failed" &&V_SM_JOB_INFO_LOG_SNAP[LAST_AS_OF_FALG]="Y"&&V_SM_JOB_INFO_LOG_SNAP[CONFLUENCE_NODE]<>"Y")
+			) + 0
+		formatString: 0
+		lineageTag: c48081a8-3740-4e72-b6ff-da54436cfb69
+
+	-- 失败作业信息条件格式颜色：如果有失败作业返回红色，否则返回深色背景
+	measure 'Failed Job_info_color' =
+
+			IF( [Failed Job_info] <> 0 , "#cd3e32","#1f1d24")
+		lineageTag: 74f22f01-415d-4eda-92fd-c3a2fd8dcd06
+
+	-- 计算所有作业的平均持续时间
+	measure Average_Duration = AVERAGE('V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS])
+		lineageTag: 1338fb70-b057-463f-aa70-3b64898246c1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	-- 计算Y轴最大值：按作业名称分组平均后取最大值，增加10%边距，转换为分钟
+	measure Max_Y = ```
+
+			VAR M = ADDCOLUMNS(
+			           SUMMARIZECOLUMNS('V_SM_JOB_INFO_LOG_SNAP'[JOB_NAME],'V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS]),
+			           "@AVG",CALCULATE( AVERAGE('V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS]))
+			)
+			VAR maxs = MAXX( M , [@AVG] )
+			VAR MAXS_ = maxs *1.1
+			RETURN
+			    ROUND(ABS(MAXS_), 0)/60
+
+			```
+		formatString: 0
+		lineageTag: fa95b8b7-e558-4c2b-9f0a-543276f4cca9
+
+	-- 计算Y轴最小值：按作业名称分组平均后取最小值，减少10%边距，转换为分钟
+	measure Min_Y = ```
+
+			VAR M = ADDCOLUMNS(
+			           SUMMARIZECOLUMNS('V_SM_JOB_INFO_LOG_SNAP'[JOB_NAME],'V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS]),
+			           "@AVG",CALCULATE( AVERAGE('V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS]))
+			)
+			VAR maxs = MINX( M , [@AVG] )
+			VAR MAXS_ = maxs *0.9
+			RETURN
+			  ROUND(ABS(MAXS_), 0)/60
+
+			```
+		lineageTag: 67d2351a-8863-4898-a7d1-21b8c432010e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	-- 格式化总实际持续时间：将总秒数转换为"Xh Xm Xs"格式显示
+	measure sum_v_durations = ```
+
+			VAR DIF =SUM('V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS]) + 0
+			VAR HOURS = INT(DIF/3600)
+			VAR MINUTES =INT(MOD(DIF ,3600 )/ 60)
+			VAR SECONDS = MOD(DIF-MINUTES*60,3600)
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    HOURS = 0 && MINUTES <> 0  ,MINUTES & "m" & SECONDS & "s",
+			    HOURS = 0 && MINUTES = 0 , SECONDS & "s",
+			    HOURS&"h" & MINUTES & "m" & SECONDS & "s"
+			)
+
+			```
+		lineageTag: 0ead7e67-75d9-4add-85ce-34114bf87a13
+
+	-- 格式化总计划持续时间：将总秒数转换为"Xh Xm Xs"格式显示
+	measure sum_v_s_durations = ```
+
+			VAR DIF =SUM('V_SM_JOB_INFO_LOG_SNAP'[SCHEDULE_DURANTIONS]) + 0
+			VAR HOURS = INT(DIF/3600)
+			VAR MINUTES =INT(MOD(DIF ,3600 )/ 60)
+			VAR SECONDS = MOD(DIF-MINUTES*60,3600)
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    HOURS = 0 && MINUTES <> 0  ,MINUTES & "m" & SECONDS & "s",
+			    HOURS = 0 && MINUTES = 0 , SECONDS & "s",
+			    HOURS&"h" & MINUTES & "m" & SECONDS & "s"
+			)
+			```
+		lineageTag: 44927177-e453-4d57-ada7-8c678345166a
+
+	-- 钻取选择标识：如果当前日期等于最大AS_OF_DAY返回1，否则返回0
+	measure drill_selection = ```
+			VAR s_ = MAX('V_SM_JOB_INFO_LOG_SNAP'[AS_OF_DAY])
+			RETURN
+			IF(MAX('V_SM_SUB_JOB_INFO_LOG_SNAP'[AS_OF_DAY])= s_,1,0)
+			```
+		formatString: 0
+		lineageTag: dec5a1ef-5dee-493a-8432-737bd2841b31
+
+	-- 流程钻取选择标识：如果当前日期等于V_SM_FLOW_INFO_LOG_SNAP最大AS_OF_DAY返回1，否则返回0
+	measure drill_selection_flow = ```
+			VAR s_ = MAX('V_SM_FLOW_INFO_LOG_SNAP'[AS_OF_DAY])
+			RETURN
+			IF(MAX('V_SM_JOB_INFO_LOG_SNAP'[AS_OF_DAY])= s_,1,0)
+			```
+		formatString: 0
+		lineageTag: 4c6a1540-07b8-4dc5-ac33-ceef8826d877
+
+	-- 格式化流程总实际持续时间：将总秒数转换为"Xh Xm Xs"格式显示
+	measure sum_Flow_durations = ```
+
+			VAR DIF =SUM('V_SM_FLOW_INFO_LOG_SNAP'[ACTUAL_DURANTIONS]) + 0
+			VAR HOURS = INT(DIF/3600)
+			VAR MINUTES =INT(MOD(DIF ,3600 )/ 60)
+			VAR SECONDS = MOD(DIF-MINUTES*60,3600)
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    HOURS = 0 && MINUTES <> 0  ,MINUTES & "m" & SECONDS & "s",
+			    HOURS = 0 && MINUTES = 0 , SECONDS & "s",
+			    HOURS&"h" & MINUTES & "m" & SECONDS & "s"
+			)
+
+			```
+		lineageTag: 8a9358e9-33b7-40cc-a84b-63251635504e
+
+	-- 格式化流程总计划持续时间：将总秒数转换为"Xh Xm Xs"格式显示
+	measure sum_Flow_s_durations = ```
+
+			VAR DIF =SUM('V_SM_FLOW_INFO_LOG_SNAP'[SCHEDULE_DURANTIONS]) + 0
+			VAR HOURS = INT(DIF/3600)
+			VAR MINUTES =INT(MOD(DIF ,3600 )/ 60)
+			VAR SECONDS = MOD(DIF-MINUTES*60,3600)
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    HOURS = 0 && MINUTES <> 0  ,MINUTES & "m" & SECONDS & "s",
+			    HOURS = 0 && MINUTES = 0 , SECONDS & "s",
+			    HOURS&"h" & MINUTES & "m" & SECONDS & "s"
+			)
+			//
+			```
+		lineageTag: d046a951-3535-43ae-91bf-3a671fe51f2c
+
+	-- 按作业计算平均持续时间：转换为分钟单位
+	measure AVG_by_job = CALCULATE(AVERAGE('V_SM_JOB_INFO_LOG_SNAP'[ACTUAL_DURANTIONS]),ALLSELECTED('V_SM_JOB_INFO_LOG_SNAP'[JOB_NAME]))/60
+		lineageTag: 2652096d-c5c5-4958-a3a1-7d34a305d5b8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	-- 重跑作业条件格式颜色：如果有重跑作业返回红色，否则返回深色背景
+	measure 'Rerun Job_info_color' = ```
+
+			VAR Rerun =
+			CALCULATE(
+			    COUNT('V_SM_JOB_INFO_LOG_SNAP'[JOB_ID]),
+			    'V_SM_JOB_INFO_LOG_SNAP'[Rerun tag] = "rerun"
+			) + 0
+			VAR Color = IF( Rerun <> 0 , "#cd3e32","#1f1d24")
+			RETURN
+			Color
+			```
+		lineageTag: 68d6eaf4-bf08-4799-bde0-41a948d04ad0
+
+	-- 作业计数快照（不含零）：不额外+0，用于特殊场景
+	measure 'Jobs_snap without 0' = COUNT('V_SM_JOB_INFO_LOG_SNAP'[JOB_ID])
+		formatString: 0
+		lineageTag: 463ce272-3d81-4e53-8256-f649ab0098f2
+
+	-- 来源标准差2（预留度量）
+	measure Std_source_2
+		lineageTag: cd417f19-0f5c-453d-b44d-e7c2db87eaa8
+
+	-- 统计过期作业数量：筛选最新日期、当前流程、状态过期的作业去重计数
+	measure expiration_jobs = CALCULATE(DISTINCTCOUNT(V_SM_JOB_INFO_LOG_SNAP[JOB_ID]),FILTER(V_SM_JOB_INFO_LOG_SNAP,V_SM_JOB_INFO_LOG_SNAP[FLOW_NAME]=MAX(DIM_ProjectFlow[FLOW_NAME])&&V_SM_JOB_INFO_LOG_SNAP[AS_OF_DAY]=MAX('DATE TABLE'[Date])&&V_SM_JOB_INFO_LOG_SNAP[LAST_AS_OF_FALG]="Y"&&V_SM_JOB_INFO_LOG_SNAP[STATUS]="Expiration"))+0
+		formatString: 0
+		lineageTag: c0981560-f981-431c-b659-58818cb152dd
+
+	-- 统计重跑次数：统计Rerun Cycle > 1的作业计数
+	measure rerun_times =
+
+			CALCULATE(COUNT(V_SM_JOB_INFO_LOG_SNAP[JOB_ID]),FILTER(V_SM_JOB_INFO_LOG_SNAP,V_SM_JOB_INFO_LOG_SNAP[Rerun Cycle]>1
+			))+0
+		formatString: 0
+		lineageTag: 0a23eca4-bd55-4e21-a356-c5d5d40acf05
+
+	-- 最小开始条件判断：返回1如果当前作业ID等于最小开始时间对应的作业ID
+	measure min_start_condition =
+			VAR job_id = CALCULATE(MIN(V_SM_JOB_INFO_LOG_SNAP[JOB_ID]),FILTER(ALLSELECTED(V_SM_JOB_INFO_LOG_SNAP),V_SM_JOB_INFO_LOG_SNAP[START_TS]=[Min_start]))
+			RETURN IF(SELECTEDVALUE(V_SM_JOB_INFO_LOG_SNAP[JOB_ID])=job_id,1)
+		formatString: 0
+		lineageTag: f7a631f1-3526-4217-ac00-8f391d27de23
+
+	-- 运行中作业信息颜色：如果有符合条件的运行中作业返回蓝色，否则返回深色背景
+	measure 'InProgress Job_info' =
+
+			var info_=  CALCULATE(
+			    COUNT('V_SM_JOB_INFO_LOG_SNAP'[JOB_ID]),
+			    FILTER(V_SM_JOB_INFO_LOG_SNAP,'V_SM_JOB_INFO_LOG_SNAP'[STATUS] = "InProgress" &&V_SM_JOB_INFO_LOG_SNAP[LAST_AS_OF_FALG]="Y"&&V_SM_JOB_INFO_LOG_SNAP[CONFLUENCE_NODE]<>"Y")
+			) + 0
+			RETURN IF(info_<>0,"#2A86CA","#1F1D24")
+		lineageTag: ed401cc7-74f6-437c-959f-5ad93431c4f7
+
+	-- 成功作业信息颜色：如果有符合条件的成功作业返回绿色，否则返回深色背景
+	measure 'Succeeded Job_info' =
+
+			var info_=  CALCULATE(
+			    COUNT('V_SM_JOB_INFO_LOG_SNAP'[JOB_ID]),
+			    FILTER(V_SM_JOB_INFO_LOG_SNAP,'V_SM_JOB_INFO_LOG_SNAP'[STATUS] = "Succeeded" &&V_SM_JOB_INFO_LOG_SNAP[LAST_AS_OF_FALG]="Y"&&V_SM_JOB_INFO_LOG_SNAP[CONFLUENCE_NODE]<>"Y")
+			) + 0
+			RETURN IF(info_<>0,"#319F4F","#1F1D24")
+		lineageTag: aa12a7c9-6891-4a5c-b629-113056526ebb
+
+	-- 流程持续时间超限颜色：如果实际总持续时间大于计划总持续时间返回红色
+	measure FLOW_DURATION_COLOR = IF(SUM(V_SM_FLOW_INFO_LOG_SNAP[ACTUAL_DURANTIONS])>SUM(V_SM_FLOW_INFO_LOG_SNAP[SCHEDULE_DURANTIONS]),"#CD3E32")
+		lineageTag: 67ec9edb-b102-423f-9a38-31d40ac5ec40
+
+	-- 判断延迟类型：根据Latency_D和Latency_S的标记返回"Duration Latency"/"Scheduled Latency"/"Both Latency"
+	measure Latency_Type =
+			SWITCH(TRUE(),
+			MAX(V_SM_JOB_INFO_LOG_SNAP[Latency_S])<>"Y"&&MAX(V_SM_JOB_INFO_LOG_SNAP[Latency_D])="Y","Duration Latency",
+			MAX(V_SM_JOB_INFO_LOG_SNAP[Latency_D])<>"Y"&&MAX(V_SM_JOB_INFO_LOG_SNAP[Latency_S])="Y","Scheduled Latency",
+			MAX(V_SM_JOB_INFO_LOG_SNAP[Latency_D])="Y"&&MAX(V_SM_JOB_INFO_LOG_SNAP[Latency_S])="Y","Both Latency")
+		lineageTag: 9c24b62b-1321-4536-a931-8200b697d91a
+
+	-- 延迟作业信息颜色：如果有符合条件的延迟作业返回橙色，否则返回深色背景
+	measure 'Latency Job_info' =
+
+			var info_=  CALCULATE(
+			    COUNT('V_SM_JOB_INFO_LOG_SNAP'[JOB_ID]),
+			    FILTER(V_SM_JOB_INFO_LOG_SNAP,V_SM_JOB_INFO_LOG_SNAP[Latency_T]="Y" &&V_SM_JOB_INFO_LOG_SNAP[LAST_AS_OF_FALG]="Y"&&V_SM_JOB_INFO_LOG_SNAP[CONFLUENCE_NODE]<>"Y")
+			) + 0
+			RETURN IF(info_<>0,"#E49B09","#1F1D24")
+		lineageTag: 037ae404-2bd5-48bb-b08e-fba85667868b
+
+	-- 过期作业信息颜色：如果有符合条件的过期作业返回橙色，否则返回深色背景
+	measure 'Expiration Job_info' =
+
+			var info_=  CALCULATE(
+			    COUNT('V_SM_JOB_INFO_LOG_SNAP'[JOB_ID]),
+			    FILTER(V_SM_JOB_INFO_LOG_SNAP,V_SM_JOB_INFO_LOG_SNAP[STATUS]="Expiration" &&V_SM_JOB_INFO_LOG_SNAP[LAST_AS_OF_FALG]="Y"&&V_SM_JOB_INFO_LOG_SNAP[CONFLUENCE_NODE]<>"Y")
+			) + 0
+			RETURN IF(info_<>0,"#E49B09","#1F1D24")
+		lineageTag: 99d122be-fd53-4ab4-8a86-44a4fdb7cd59
+
+	-- 统计总触发作业数量：筛选最新、非未开始、选中流程、非Confluence节点的作业计数
+	measure Total_Triggered_Jobs = CALCULATE(COUNT(V_SM_JOB_INFO_LOG_SNAP[JOB_ID]),FILTER(V_SM_JOB_INFO_LOG_SNAP,V_SM_JOB_INFO_LOG_SNAP[latest_]="Y"&&V_SM_JOB_INFO_LOG_SNAP[STATUS]<>"Not Started"&&V_SM_JOB_INFO_LOG_SNAP[FLOW_NAME]=SELECTEDVALUE(V_SM_FLOW_INFO_LOG_SNAP[FLOW_NAME])&&V_SM_JOB_INFO_LOG_SNAP[CONFLUENCE_NODE]<>"Y"))+0
+		formatString: 0
+		lineageTag: 8d3d0344-9aaa-4771-83da-a6beb11d6106
+
+	-- 成功作业计数（不含零）：不额外+0，用于特殊场景
+	measure 'Succeeded_Jobs Without0' = CALCULATE(COUNT('V_SM_JOB_INFO_LOG_SNAP'[JOB_ID]),FILTER('V_SM_JOB_INFO_LOG_SNAP','V_SM_JOB_INFO_LOG_SNAP'[STATUS]="Succeeded"))
+		formatString: 0
+		lineageTag: 32dc42be-0553-4092-85c6-3fe600b5c691
+
+	-- 成功率（不含零）：不额外+0，用于特殊场景
+	measure 'success_rate without0' =
+
+			var s_ = CALCULATE(COUNT('V_SM_JOB_INFO_LOG_SNAP'[JOB_ID]),FILTER('V_SM_JOB_INFO_LOG_SNAP','V_SM_JOB_INFO_LOG_SNAP'[STATUS]="Succeeded"))
+			var all_ = CALCULATE(COUNT('V_SM_JOB_INFO_LOG_SNAP'[JOB_ID]))
+			RETURN DIVIDE(s_,all_,0)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: b9431ede-a880-48bd-a610-a58c60810395
+
+	-- 失败作业计数（不含零）：不额外+0，用于特殊场景
+	measure 'Failed_Jobs without0' = CALCULATE(COUNT('V_SM_JOB_INFO_LOG_SNAP'[JOB_ID]),FILTER('V_SM_JOB_INFO_LOG_SNAP','V_SM_JOB_INFO_LOG_SNAP'[STATUS]="Failed"))
+		formatString: 0
+		lineageTag: c48e3bf1-ec07-45f6-a0fd-ac41d386507b
+
+	-- 失败率（不含零）：不额外+0，用于特殊场景
+	measure 'Failed_Rate without0' =
+
+			var F_ = CALCULATE(COUNT('V_SM_JOB_INFO_LOG_SNAP'[JOB_ID]),FILTER('V_SM_JOB_INFO_LOG_SNAP','V_SM_JOB_INFO_LOG_SNAP'[STATUS]="Failed"))
+			var all_ = CALCULATE(COUNT('V_SM_JOB_INFO_LOG_SNAP'[JOB_ID]))
+			RETURN DIVIDE(F_,all_,0)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: aa61f69d-c65c-4426-90be-0c595d601a70
+
+	column Value
+		formatString: 0
+		lineageTag: d5decdb3-9c0e-4f9-91b4-779541ab8208
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measure-715d61b5-464a-46b8-be3d-c52ea738c61e = calculated
+		mode: import
+		source = {1}
+
+	annotation PBI_Id = a1b4ea63f160455c86f7b2c9ea4cae98

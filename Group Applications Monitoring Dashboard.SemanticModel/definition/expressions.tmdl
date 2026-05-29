@@ -1,0 +1,66 @@
+expression P_Schema = "MONITOR_SMT" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: a1e8f5d5-a3cd-4965-a187-5fbbf2ca7f8e
+
+	annotation PBI_ResultType = Text
+
+	annotation PBI_NavigationStepName = Navigation
+
+expression P_Server = "goazedsdb0020.database.windows.net" meta [IsParameterQuery = true, IsParameterQueryRequired = true, Type = "Text"]
+	lineageTag: 74d02a3b-b3e0-4314-9a80-28adc52f3f81
+
+	annotation PBI_ResultType = Text
+
+expression P_DB = "I17CRTDATADDB01" meta [IsParameterQuery = true, IsParameterQueryRequired = true, Type = "Text"]
+	lineageTag: 785bea07-a0a9-4e2a-942d-4c4deb9ca4b8
+
+	annotation PBI_ResultType = Text
+
+expression P_DatetimeLimit = #datetime(2024, 12, 24, 0, 0, 0) meta [IsParameterQuery=true, Type="DateTime", IsParameterQueryRequired=true]
+	lineageTag: eb3c8db4-be47-4c2b-b16a-eb3d3116ef76
+
+	annotation PBI_ResultType = DateTime
+
+expression 'Project 1' = "P" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: ad8e2f9b-ac4d-4049-9814-51031b95624a
+
+	annotation PBI_ResultType = Text
+
+expression 'Project 2' = " " meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: d05971a2-8533-4651-ace4-9a19d06851e6
+
+	annotation PBI_ResultType = Text
+
+	annotation PBI_NavigationStepName = Navigation
+
+expression Flow_Parameter = "P" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 891059ad-0be9-4d01-836d-b489fb9ac873
+
+	annotation PBI_ResultType = Text
+
+expression 'ADF RG' = "RG" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: eb28102e-d0c1-43c8-a60c-0906ea33941e
+
+	annotation PBI_ResultType = Text
+
+expression RangeStart = #datetime(2024, 1, 1, 0, 0, 0) meta [IsParameterQuery=true, Type="DateTime", IsParameterQueryRequired=true]
+	lineageTag: 10d4b244-df3f-48f9-adbe-aeabb5e83604
+
+	annotation PBI_ResultType = DateTime
+
+expression RangeEnd = #datetime(2099, 1, 1, 0, 0, 0) meta [IsParameterQuery=true, Type="DateTime", IsParameterQueryRequired=true]
+	lineageTag: c863040b-5095-468a-a224-8c741bd78b0c
+
+	annotation PBI_ResultType = DateTime
+
+expression P_Interval = "DATEADD(day, -30, GETDATE())" meta [IsParameterQuery = true, IsParameterQueryRequired = true, Type = "Text"]
+	lineageTag: 727148e7-aa96-47d7-b337-cc6aed53800d
+
+	annotation PBI_ResultType = Text
+
+expression P_Schema_DQ = "MONITOR_LAN" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 88aadf32-6216-4a32-be7f-467f1b6e570a
+
+	annotation PBI_ResultType = Text
+
+	annotation PBI_NavigationStepName = Navigation
+

@@ -1,0 +1,238 @@
+table ADFPIPELINERUN_SUB
+	lineageTag: 200dcc85-cbce-4272-846e-b47634556c3c
+
+	measure 'Data As Of SubPipeline' =
+			
+			// var max_ = CALCULATE(MAX('API Job Log'[CREATE_TIME]),ALL('API Job Log'))
+			var max_ = CALCULATE(MAX('ADFPIPELINERUN_SUB'[CREATE_TIME]),ALL(ADFPIPELINERUN_SUB))
+			return CONCATENATE("Data As Of: UTC ",max_)
+		lineageTag: 8b18977c-4a55-47e3-ae9c-e33be8011652
+
+	column TIMEGENERATED
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime
+		lineageTag: 496c338e-438b-465a-ac8b-c648b3f51333
+		summarizeBy: none
+		sourceColumn: TIMEGENERATED
+
+		annotation SummarizationSetBy = Automatic
+
+	column STATUS
+		dataType: string
+		sourceProviderType: varchar(16)
+		lineageTag: b0e7d2ca-932c-430b-98b3-5d0ff7a7126e
+		summarizeBy: none
+		sourceColumn: STATUS
+
+		annotation SummarizationSetBy = Automatic
+
+	column START
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime
+		lineageTag: 7d89d9a9-5871-4521-9747-123ab5e7838b
+		summarizeBy: none
+		sourceColumn: START
+
+		annotation SummarizationSetBy = Automatic
+
+	column END
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime
+		lineageTag: e63dd2f2-c211-4159-8c06-edc48f7afb54
+		summarizeBy: none
+		sourceColumn: END
+
+		annotation SummarizationSetBy = Automatic
+
+	column FAILURETYPE
+		dataType: string
+		sourceProviderType: varchar(128)
+		lineageTag: 53163d69-d026-4530-a6ac-ac3dd203f673
+		summarizeBy: none
+		sourceColumn: FAILURETYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column PIPELINENAME
+		dataType: string
+		sourceProviderType: varchar(200)
+		lineageTag: abd45882-1a86-4b62-8658-5361c2ad5b5f
+		summarizeBy: none
+		sourceColumn: PIPELINENAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column RUN_ID
+		dataType: string
+		sourceProviderType: varchar(64)
+		lineageTag: 95ffe969-0332-4fe3-9f13-aacb5bc101a7
+		summarizeBy: none
+		sourceColumn: RUN_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PARAMETERS
+		dataType: string
+		sourceProviderType: varchar(max)
+		lineageTag: 07d9111e-cfbd-4501-a944-de21984c677a
+		summarizeBy: none
+		sourceColumn: PARAMETERS
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUCT_CODE
+		dataType: string
+		sourceProviderType: varchar(16)
+		lineageTag: 00e053ad-7412-49a9-b197-e0874f71bec6
+		summarizeBy: none
+		sourceColumn: PRODUCT_CODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column MASTER_RUN_ID
+		dataType: string
+		sourceProviderType: varchar(64)
+		lineageTag: ff40c32e-f70a-44ad-adab-f0ab03f00847
+		summarizeBy: none
+		sourceColumn: MASTER_RUN_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUCT_STAGE_ID
+		dataType: string
+		sourceProviderType: varchar(16)
+		lineageTag: c29d5ca9-0477-474a-b0cd-18be99686dd9
+		summarizeBy: none
+		sourceColumn: PRODUCT_STAGE_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SUBSCRIPTIONS
+		dataType: string
+		sourceProviderType: varchar(64)
+		lineageTag: d6a8b95a-fbb8-4275-995d-becb5475065c
+		summarizeBy: none
+		sourceColumn: SUBSCRIPTIONS
+
+		annotation SummarizationSetBy = Automatic
+
+	column RESOURCEGROUPS
+		dataType: string
+		sourceProviderType: varchar(64)
+		lineageTag: f539e716-3c8c-4aea-aa9b-82f620afa6aa
+		summarizeBy: none
+		sourceColumn: RESOURCEGROUPS
+
+		annotation SummarizationSetBy = Automatic
+
+	column FACTORIES
+		dataType: string
+		sourceProviderType: varchar(64)
+		lineageTag: 00a643b1-a74a-4727-b89c-b1b959b27bff
+		summarizeBy: none
+		sourceColumn: FACTORIES
+
+		annotation SummarizationSetBy = Automatic
+
+	column PREDECESSORS
+		dataType: string
+		sourceProviderType: varchar(1000)
+		lineageTag: 1279e816-9859-45b8-bdf7-aef9af43a691
+		summarizeBy: none
+		sourceColumn: PREDECESSORS
+
+		annotation SummarizationSetBy = Automatic
+
+	column PREDECESSORS_NAME
+		dataType: string
+		sourceProviderType: varchar(100)
+		lineageTag: d6c1e10c-7abf-4779-a4a7-1d4c3ac81dc3
+		summarizeBy: none
+		sourceColumn: PREDECESSORS_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column PREDECESSORS_ID
+		dataType: string
+		sourceProviderType: varchar(100)
+		lineageTag: 9bf7e553-d351-4162-9b15-a52088c9772e
+		summarizeBy: none
+		sourceColumn: PREDECESSORS_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PREDECESSORS_INVOKEDBYTYPE
+		dataType: string
+		sourceProviderType: varchar(100)
+		lineageTag: 6e8ca4c6-34be-4880-acd3-0ae60be6b4f4
+		summarizeBy: none
+		sourceColumn: PREDECESSORS_INVOKEDBYTYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column PREDECESSORS_PIPELINENAME
+		dataType: string
+		sourceProviderType: varchar(200)
+		lineageTag: 5d84fc3e-442f-464d-b404-3cb66d012fd1
+		summarizeBy: none
+		sourceColumn: PREDECESSORS_PIPELINENAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column PREDECESSORS_PIPELINERUNID
+		dataType: string
+		sourceProviderType: varchar(100)
+		lineageTag: 6f7bbabf-b83b-463c-911e-5bd3b891c21e
+		summarizeBy: none
+		sourceColumn: PREDECESSORS_PIPELINERUNID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CREATE_TIME
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime
+		lineageTag: e7495d76-715c-479e-b169-c07fbd32e987
+		summarizeBy: none
+		sourceColumn: CREATE_TIME
+
+		annotation SummarizationSetBy = Automatic
+
+	column SUBSCRIPTIONS_NAME
+		dataType: string
+		sourceProviderType: varchar(64)
+		lineageTag: caa3d363-9692-4540-8adc-aa79b87832b8
+		summarizeBy: none
+		sourceColumn: SUBSCRIPTIONS_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOURCE_RUN_ID
+		dataType: string
+		sourceProviderType: varchar(100)
+		lineageTag: 1badce11-494a-4d58-afda-72e902feb8fe
+		summarizeBy: none
+		sourceColumn: SOURCE_RUN_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ADFPIPELINERUN_SUB = m
+		mode: directQuery
+		queryGroup: View
+		source = ```
+				let
+				    Source = Sql.Database(P_Server, P_DB),
+				    Custom1 = Value.NativeQuery(
+				         Source,
+				         "SELECT * FROM ["&P_Schema_DQ&"].[ADFPIPELINERUN]  where CREATE_TIME >="&P_Interval&" and PREDECESSORS_PIPELINERUNID is not null"
+				         
+				     )
+				in
+				    Custom1
+				```
+
+	annotation PBI_ResultType = Exception
+

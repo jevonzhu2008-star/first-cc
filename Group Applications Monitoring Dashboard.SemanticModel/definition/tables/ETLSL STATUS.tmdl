@@ -1,0 +1,22 @@
+table 'ETLSL STATUS'
+	lineageTag: 39e40c9f-7e01-4edb-8d8a-1edcce906cde
+
+	column Status
+		dataType: string
+		lineageTag: 23d33d29-2423-432e-8afb-30f4d249b403
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'ETLSL STATUS' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WCi5NTk5NTUlNUYrViVbyyy9RCC5JLCqB8j3zAory04tSi4vBXLfEzByojH9piUJ+mkJxcn5BqlJsLAA=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Status = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Status", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
