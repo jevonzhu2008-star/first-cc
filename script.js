@@ -136,6 +136,84 @@ function saveTasks() {
   saveData(data);
 }
 
+function generateTaskId() {
+  return Date.now().toString(36) + Math.random().toString(36).substr(2);
+}
+
+function addTask(title) {
+  title = title.trim();
+  if (!title) return;
+  tasks.push({
+    id: generateTaskId(),
+    title: title,
+    completedPomodoros: 0,
+    completed: false,
+    createdAt: new Date().toISOString()
+  });
+  saveTasks();
+  renderTasks();
+  taskAddInput.value = '';
+}
+
+function toggleTaskCompleted(id) {
+  const task = tasks.find(t => t.id === id);
+  if (task) {
+    task.completed = !task.completed;
+    saveTasks();
+    renderTasks();
+  }
+}
+
+function deleteTask(id) {
+  tasks = tasks.filter(t => t.id !== id);
+  saveTasks();
+  renderTasks();
+}
+
+function startTask(id) {
+  const task = tasks.find(t => t.id === id);
+  if (task) {
+    taskInput.value = task.title;
+    tasksPanel.classList.remove('open');
+  }
+}
+
+function incrementTaskPomodoro(taskTitle) {
+  if (!taskTitle) return;
+  const task = tasks.find(t => t.title === taskTitle.trim() && !t.completed);
+  if (task) {
+    task.completedPomodoros++;
+    saveTasks();
+    renderTasks();
+  }
+}
+
+function renderTasks() {
+  const list = document.getElementById('taskList');
+  if (tasks.length === 0) {
+    list.innerHTML = '<div class="task-empty">暂无任务</div>';
+    return;
+  }
+
+  // Sort: incomplete first, then by creation time (newest first)
+  const sortedTasks = [...tasks].sort((a, b) => {
+    if (a.completed !== b.completed) {
+      return a.completed ? 1 : -1;
+    }
+    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+  });
+
+  list.innerHTML = sortedTasks.map(task => `
+    <div class="task-item ${task.completed ? 'completed' : ''}">
+      <div class="task-checkbox ${task.completed ? 'checked' : ''}" data-action="toggle" data-id="${task.id}"></div>
+      <span class="task-title">${escapeHtml(task.title)}</span>
+      <span class="task-pomodoro">${task.completedPomodoros}</span>
+      ${!task.completed ? `<button class="btn-task-start" data-action="start" data-id="${task.id}">开始</button>` : ''}
+      <button class="btn-task-delete" data-action="delete" data-id="${task.id}">&times;</button>
+    </div>
+  `).join('');
+}
+
 function toggleEl(el, on) {
   if (on) el.classList.add('on');
   else el.classList.remove('on');
