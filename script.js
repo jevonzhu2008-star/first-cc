@@ -14,6 +14,7 @@ let intervalId = null;
 let autoBreak = true;
 let autoWork = false;
 let soundOn = false;
+let tasks = [];
 
 const STORAGE_KEY = 'pomodoro_data_v1';
 
@@ -34,9 +35,10 @@ function getTodayKey() {
 }
 
 function getData() {
-  const data = loadData() || { records: {}, settings: {}, theme: 'dark' };
+  const data = loadData() || { records: {}, settings: {}, theme: 'dark', tasks: [] };
   const today = getTodayKey();
   if (!data.records[today]) data.records[today] = [];
+  if (!data.tasks) data.tasks = [];
   return data;
 }
 
@@ -121,6 +123,17 @@ function loadSettings() {
     if (s.autoBreak !== undefined) { autoBreak = s.autoBreak; toggleEl(toggleAutoBreak, autoBreak); }
     if (s.autoWork !== undefined) { autoWork = s.autoWork; toggleEl(toggleAutoWork, autoWork); }
   }
+}
+
+function loadTasks() {
+  const data = getData();
+  tasks = data.tasks || [];
+}
+
+function saveTasks() {
+  const data = getData();
+  data.tasks = tasks;
+  saveData(data);
 }
 
 function toggleEl(el, on) {
@@ -464,6 +477,7 @@ document.addEventListener('keydown', (e) => {
 barEl.style.strokeDasharray = CIRCUMFERENCE;
 barEl.style.strokeDashoffset = '0';
 loadSettings();
+loadTasks();
 updateTabs();
 updateDisplay();
 updateStats();
