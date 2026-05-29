@@ -396,6 +396,7 @@ function onTimerComplete() {
   if (mode === 'work') {
     const task = taskInput.value.trim();
     addRecord(task, MODES.work.minutes);
+    incrementTaskPomodoro(task);
     notify('番茄钟 - 工作完成', task ? `任务完成: ${task}` : '工作时段结束，休息一下吧！');
 
     if (autoBreak) {
@@ -445,6 +446,12 @@ function toggleSettings() {
 function toggleHistory() {
   historyPanel.classList.toggle('open');
   settingsPanel.classList.remove('open');
+}
+
+function toggleTasksPanel() {
+  tasksPanel.classList.toggle('open');
+  settingsPanel.classList.remove('open');
+  historyPanel.classList.remove('open');
 }
 
 function updateModeTimes() {
@@ -521,6 +528,10 @@ const longBreakMinEl = document.getElementById('longBreakMin');
 const toggleAutoBreak = document.getElementById('toggleAutoBreak');
 const toggleAutoWork = document.getElementById('toggleAutoWork');
 const taskInput = document.getElementById('taskInput');
+const btnTasks = document.getElementById('btnTasks');
+const tasksPanel = document.getElementById('tasksPanel');
+const taskAddInput = document.getElementById('taskAddInput');
+const btnAddTask = document.getElementById('btnAddTask');
 
 // Events
 tabs.forEach(tab => tab.addEventListener('click', () => setMode(tab.dataset.mode)));
@@ -530,6 +541,11 @@ btnReset.addEventListener('click', reset);
 btnSkip.addEventListener('click', skip);
 btnSettings.addEventListener('click', toggleSettings);
 btnSound.addEventListener('click', toggleWhiteNoise);
+btnTasks.addEventListener('click', toggleTasksPanel);
+btnAddTask.addEventListener('click', () => addTask(taskAddInput.value));
+taskAddInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') addTask(taskAddInput.value);
+});
 
 toggleAutoBreak.addEventListener('click', () => toggleSwitch(toggleAutoBreak, 'autoBreak'));
 toggleAutoWork.addEventListener('click', () => toggleSwitch(toggleAutoWork, 'autoWork'));
@@ -541,6 +557,22 @@ toggleAutoWork.addEventListener('click', () => toggleSwitch(toggleAutoWork, 'aut
 document.getElementById('btnExportJson').addEventListener('click', exportJson);
 document.getElementById('btnExportCsv').addEventListener('click', exportCsv);
 document.getElementById('btnClear').addEventListener('click', clearData);
+document.getElementById('taskList').addEventListener('click', (e) => {
+  const action = e.target.dataset.action;
+  const id = e.target.dataset.id;
+  if (!action || !id) return;
+  switch (action) {
+    case 'toggle':
+      toggleTaskCompleted(id);
+      break;
+    case 'start':
+      startTask(id);
+      break;
+    case 'delete':
+      deleteTask(id);
+      break;
+  }
+});
 
 // Keyboard
 document.addEventListener('keydown', (e) => {
